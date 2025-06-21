@@ -246,30 +246,6 @@ input:focus {
 .orange-dot { background-color: #ff9800; }
 .red-dot { background-color: #f44336; }
 
-#aqua-bot-skin, #aqua-bot-wellbeing {
-    margin: 20px 0;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
-}
-
-#aqua-bot-skin-messages, #aqua-bot-wellbeing-messages {
-    max-height: 200px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-    font-size: 15px;
-    color: #555;
-}
-
-#aqua-bot-skin-options button, #aqua-bot-wellbeing-options button {
-    margin: 5px;
-    background: linear-gradient(45deg, #4caf50, #81c784);
-    border-radius: 15px;
-    padding: 12px 25px;
-    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
-    z-index: 1000;
-}
 
 #aqua-bot-skin-options button:hover, #aqua-bot-wellbeing-options button:hover {
     background: linear-gradient(45deg, #43a047, #66bb6a);
@@ -869,82 +845,98 @@ header {
     vertical-align: middle;
     margin-right: 5px;
 }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
 .aquabot-container {
-    border: 3px solid #004d40;
-    border-radius: 20px;
-    padding: 30px;
-    max-width: 900px;
-    width: 95%;
-    margin: 40px auto;
-    background: #e0f2f1;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-.aquabot-container:hover {
-    transform: translateY(-8px);
-}
-.aquabot-messages {
-    max-height: 650px;
-    overflow-y: auto;
-    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
     padding: 20px;
-    background: #ffffff;
-    border-radius: 15px;
-    border: 2px solid #004d40;
+    width: 100%;
+    max-width: 800px; /* Dopasowane do kontenera nadrzędnego */
+    height: 500px;
+    margin: 20px auto;
+    background: #f5f5f5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
+
+.aquabot-messages {
+    flex-grow: 1;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .bot-message {
-    background: #b2dfdb;
-    color: #000000;
-    padding: 15px 20px;
-    margin: 10px 15px;
-    border-radius: 20px 20px 20px 8px;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.6;
-    animation: fadeIn 0.4s ease;
+    background: #e3f2fd;
+    color: #333;
+    padding: 10px 15px;
+    margin: 0 0 15px 0;
+    border-radius: 18px 18px 18px 4px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 80%;
+    align-self: flex-start; /* Wiadomości bota po lewej */
 }
+
 .user-message {
-    background: #81d4fa;
-    color: #000000;
-    padding: 15px 20px;
-    margin: 10px 15px;
-    border-radius: 20px 20px 8px 20px;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.6;
-    text-align: right;
-    animation: fadeIn 0.4s ease;
+    background: #e0e0e0;
+    color: #333;
+    padding: 10px 15px;
+    margin: 0 0 15px auto;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 80%;
+    align-self: flex-end; /* Twoje wiadomości po prawej */
 }
+
+.aquabot-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0; /* Trzyma na dole */
+}
+
 .aquabot-input {
-    width: 70%;
-    padding: 15px;
-    font-size: 22px;
-    border: 3px solid #004d40;
-    border-radius: 30px;
-    margin-right: 20px;
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
     outline: none;
-    background: #ffffff;
-    color: #000000;
-    transition: border-color 0.3s ease;
+    background: #fff;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
 }
+
 .aquabot-input:focus {
     border-color: #0288d1;
 }
+
 .aquabot-send {
-    padding: 15px 35px;
-    font-size: 22px;
-    background: #004d40;
-    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #0288d1;
+    color: #fff;
     border: none;
-    border-radius: 30px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    font-family: 'Roboto', sans-serif;
 }
+
 .aquabot-send:hover {
-    background: #00332b;
-    transform: scale(1.1);
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    background: #0277bd;
 }

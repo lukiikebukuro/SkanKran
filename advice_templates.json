@@ -1,1657 +1,646 @@
-  {
-    "ph": {
-    "green": {
-      "health_physical": ["Woda o pH 7.0-8.5 jest bezpieczna do picia, neutralna dla zdrowia (WHO 2022)."],
-      "gym": ["Woda o pH 7.0-8.5 jest odpowiednia do picia podczas treningów (CDC 2021)."],
-      "health_mental": ["Woda o pH 7.0-8.5 jest bezpieczna, bez wpływu na samopoczucie (PubMed 2023)."],
-      "beauty": ["Woda o pH 7.0-8.5 jest neutralna dla skóry i włosów (EPA 2020)."],
-      "ecology": ["Woda z kranu o pH 7.0-8.5 zmniejsza zużycie plastiku (Water Authority 2023)."],
-      "lifestyle": ["Woda o pH 7.0-8.5 ma neutralny smak, idealna do picia (WHO 2022)."],
-      "autoimmune_health": ["Woda o pH 7.0-8.5 jest bezpieczna dla osób z chorobami autoimmunologicznymi (PubMed 2023)."]
+{
+  "zdrowie": {
+    "Picie wody": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) zwiększa korozję rur, potencjalnie uwalniając metale do wody.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) powoduje silną korozję, znacząco zwiększając ryzyko metali w wodzie."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) nie wpływa bezpośrednio na zdrowie, ale osady w rurach mogą zwiększać korozję.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) nie wpływa bezpośrednio na zdrowie, ale nasila osady, podnosząc ryzyko metali."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) mogą być ryzykowne dla niemowląt, ale dowody są ograniczone.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) powodują methemoglobinemię u niemowląt."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) nadaje metaliczny smak, bez udokumentowanych skutków zdrowotnych.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) może powodować problemy żołądkowe i sprzyjać bakteriom."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) mogą wpływać na zęby, ale dowody są niejednoznaczne.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) powodują fluoroza zębów i szkieletu."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) zmienia smak i może lekko podrażniać śluzówkę.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) podrażnia śluzówkę i może tworzyć szkodliwe związki."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) może barwić wodę, bez udokumentowanych skutków zdrowotnych.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) uszkadza układ nerwowy, szczególnie u dzieci."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) mogą powodować problemy żołądkowe u osób wrażliwych.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) nasilają problemy żołądkowe i wskazują na zanieczyszczenia."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) nadają gorzki smak, bez udokumentowanych skutków zdrowotnych.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) powodują biegunkę, szczególnie u dzieci."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) sugeruje zanieczyszczenia, bez bezpośredniego wpływu zdrowotnego.",
+        "red": "Barwa {value} 🔴 (≥15) wskazuje poważne zanieczyszczenia, potencjalnie szkodliwe."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) może wpływać na smak, ale jest korzystny dla zdrowia.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) powoduje gorzki smak i biegunkę u wrażliwych."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie stanowi zagrożenia, ale może wpływać na smak.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) zwiększa ryzyko hiperkaliemii u osób z chorobami nerek."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) zwiększa ryzyko neurologiczne u dzieci.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) powoduje poważne uszkodzenia mózgu i nerek."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) może wpływać na nerwy, ale dowody są ograniczone.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) uszkadza układ nerwowy i nerki."
+      }
     },
-    "orange": {
-      "health_physical": [
-        "pH 6.5-7.0 może dawać kwaśny smak, ale jest bezpieczne; filtruj dla smaku (EPA 2023).",
-        "pH 8.5-9.5 może mieć gorzki smak; dodaj cytrynę lub użyj filtra (Water Quality Association 2022).",
-        "pH 6.5-7.0 jest bezpieczne, ale sprawdź metale w wodzie (WHO 2022).",
-        "pH 8.5-9.5 może zwiększać korozję rur; filtruj wodę (CDC 2021).",
-        "Monitoruj smak wody przy pH 6.5-9.5, by pić regularnie (PubMed 2023)."
-      ],
-      "gym": [
-        "pH 6.5-7.0 ma kwaśny smak, ale nadaje się do treningów (EPA 2023).",
-        "pH 8.5-9.5 może być gorzkie; filtruj wodę dla smaku (Water Quality Association 2022).",
-        "pH 6.5-9.5 nie wpływa na wydajność, ale smak może zniechęcać (CDC 2021).",
-        "Używaj wody filtrowanej przy pH 8.5-9.5, by pić więcej (PubMed 2023).",
-        "Sprawdź inne parametry wody przy pH 6.5-7.0 dla bezpieczeństwa (WHO 2022)."
-      ],
-      "health_mental": [
-        "pH 6.5-9.5 nie wpływa na samopoczucie, ale smak może zniechęcać (PubMed 2023).",
-        "Filtruj wodę przy pH 8.5-9.5, by poprawić smak i pić regularnie (EPA 2023).",
-        "pH 6.5-7.0 jest bezpieczne, ale kwaśny smak może denerwować (CDC 2021).",
-        "Używaj wody o neutralnym smaku, by wspierać nawodnienie (Water Quality Association 2022).",
-        "Monitoruj jakość wody przy pH 6.5-9.5 dla komfortu (WHO 2022)."
-      ],
-      "beauty": [
-        "pH 6.5-7.0 jest neutralne dla skóry, ale sprawdź inne zanieczyszczenia (EPA 2023).",
-        "pH 8.5-9.5 może lekko wysuszać skórę; użyj kremu po myciu (CDC 2021).",
-        "Filtruj wodę przy pH 8.5-9.5 dla komfortu skóry (Water Quality Association 2022).",
-        "pH 6.5-9.5 nie podrażnia włosów, ale smak może zniechęcać (PubMed 2023).",
-        "Używaj wody filtrowanej przy pH 6.5-7.0 dla pewności (WHO 2022)."
-      ],
-      "ecology": [
-        "Woda z kranu o pH 6.5-9.5 zmniejsza plastik w porównaniu z butelkami (Water Authority 2023).",
-        "Filtruj wodę przy pH 8.5-9.5, by pić kranówkę eko (EPA 2023).",
-        "pH 6.5-7.0 jest OK, ale filtracja wspiera eko-życie (CDC 2021).",
-        "Używaj filtrów zamiast butelek, by chronić planetę (Water Quality Association 2022).",
-        "Sprawdź jakość wody przy pH 6.5-9.5, by wspierać środowisko (WHO 2022)."
-      ],
-      "lifestyle": [
-        "pH 6.5-7.0 ma kwaśny smak; filtruj dla lepszej kawy (EPA 2023).",
-        "pH 8.5-9.5 może być gorzkie; dodaj cytrynę do wody (Water Quality Association 2022).",
-        "Filtruj wodę przy pH 6.5-9.5, by gotować smacznie (CDC 2021).",
-        "pH 6.5-7.0 jest OK, ale sprawdź inne parametry dla komfortu (WHO 2022).",
-        "Używaj wody filtrowanej przy pH 8.5-9.5 dla wygody (PubMed 2023)."
-      ],
-      "autoimmune_health": [
-        "pH 6.5-7.0 jest neutralne, ale monitoruj metale dla chorób autoimmunologicznych (PubMed 2023).",
-        "pH 8.5-9.5 nie ma korzyści zdrowotnych; sprawdź inne parametry (EPA 2023).",
-        "Filtruj wodę przy pH 8.5-9.5 dla smaku i bezpieczeństwa (CDC 2021).",
-        "pH 6.5-7.0 jest bezpieczne, ale inne zanieczyszczenia mogą wpływać na zdrowie (WHO 2022).",
-        "Konsultuj się z lekarzem przy pH 6.5-9.5, by monitorować wodę (Water Quality Association 2022)."
-      ]
+    "Alergie": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) może podrażniać śluzówkę, ale brak bezpośredniego wpływu na alergie.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) nasila podrażnienia śluzówki, potencjalnie pogarszając alergie."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) może nasilać suchość skóry, ale bez bezpośredniego wpływu na alergie.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) nasila suchość, potencjalnie pogarszając reakcje alergiczne."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) nie mają udokumentowanego wpływu na alergie.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą potencjalnie wpływać na reakcje alergiczne, ale dowody są ograniczone."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) może podrażniać skórę, ale bez wpływu na alergie.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) nasila podrażnienia, potencjalnie pogarszając alergie."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) nie mają udokumentowanego wpływu na alergie.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) mogą podrażniać, potencjalnie nasilając alergie."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) może podrażniać drogi oddechowe, ale dowody są ograniczone.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) nasila podrażnienia dróg oddechowych, potencjalnie pogarszając alergie."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) może podrażniać skórę, ale bez wpływu na alergie.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) nasila podrażnienia, potencjalnie pogarszając alergie."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) mogą podrażniać skórę, ale bez wpływu na alergie.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) nasilają podrażnienia, potencjalnie pogarszając alergie."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na alergie.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) mogą podrażniać skórę, potencjalnie nasilając alergie."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) sugeruje zanieczyszczenia, bez wpływu na alergie.",
+        "red": "Barwa {value} 🔴 (≥15) wskazuje poważne zanieczyszczenia, potencjalnie pogarszając alergie."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) nie ma udokumentowanego wpływu na alergie.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) może podrażniać skórę, potencjalnie nasilając alergie."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na alergie.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) może podrażniać, potencjalnie nasilając alergie."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) może osłabiać odporność, ale brak wpływu na alergie.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) osłabia odporność, potencjalnie nasilając alergie."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) może osłabiać odporność, ale brak wpływu na alergie.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) osłabia odporność, potencjalnie nasilając alergie."
+      }
     },
-    "no_data": {
-      "health_physical": [
-        "Brak danych o pH – neutralne pH (7.0-8.5) jest bezpieczne, zbadaj wodę (WHO 2022).",
-        "pH wody wpływa na smak; bez danych filtruj dla pewności (EPA 2023).",
-        "Sprawdź pH, bo skrajne wartości mogą wskazywać na zanieczyszczenia (CDC 2021)."
-      ],
-      "gym": [
-        "Brak danych o pH – neutralne pH wspiera nawodnienie, zbadaj wodę (WHO 2022).",
-        "Filtruj wodę bez danych o pH, by pić podczas treningów (EPA 2023).",
-        "Sprawdź pH, by uniknąć gorzkiego smaku podczas ćwiczeń (CDC 2021)."
-      ],
-      "health_mental": [
-        "Brak danych o pH – neutralne pH nie wpływa na nastrój, zbadaj wodę (PubMed 2023).",
-        "Filtruj wodę bez danych o pH dla komfortu picia (EPA 2023).",
-        "Sprawdź pH, by zapewnić smaczną wodę do picia (CDC 2021)."
-      ],
-      "beauty": [
-        "Brak danych o pH – neutralne pH jest bezpieczne dla skóry, zbadaj wodę (EPA 2023).",
-        "Filtruj wodę bez danych o pH, by myć twarz bezpiecznie (CDC 2021).",
-        "Sprawdź pH, by uniknąć wysuszania skóry (Water Quality Association 2022)."
-      ],
-      "ecology": [
-        "Brak danych o pH – kranówka zmniejsza plastik, zbadaj wodę (Water Authority 2023).",
-        "Filtruj wodę bez danych o pH, by wspierać eko-życie (EPA 2023).",
-        "Sprawdź pH, by pić kranówkę zamiast butelek (CDC 2021)."
-      ],
-      "lifestyle": [
-        "Brak danych o pH – neutralne pH daje dobry smak, zbadaj wodę (WHO 2022).",
-        "Filtruj wodę bez danych o pH dla smacznej kawy (EPA 2023).",
-        "Sprawdź pH, by gotować z wodą o dobrym smaku (CDC 2021)."
-      ],
-      "autoimmune_health": [
-        "Brak danych o pH – neutralne pH jest bezpieczne, zbadaj wodę (PubMed 2023).",
-        "Filtruj wodę bez danych o pH, by monitorować jakość (EPA 2023).",
-        "Sprawdź pH i inne parametry dla chorób autoimmunologicznych (CDC 2021)."
-      ]
+    "Dzieci": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) może uwalniać metale, zwiększając ryzyko dla dzieci.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) silnie uwalnia metale, podnosząc ryzyko neurologiczne u dzieci."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) wpływa na smak wody, ale bez bezpośredniego wpływu na dzieci.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) nie wpływa bezpośrednio, ale osady mogą zwiększać ryzyko metali dla dzieci."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) mogą zwiększać ryzyko dla dzieci, ale dowody są ograniczone.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) powodują methemoglobinemię u dzieci."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) barwi skórę, bez wpływu na zdrowie dzieci.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) może powodować problemy żołądkowe u dzieci."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) mogą wpływać na zęby dzieci, ale dowody są niejednoznaczne.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) powodują fluoroza zębów u dzieci."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) może podrażniać skórę dzieci.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) nasila podrażnienia skóry i śluzówki u dzieci."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) może barwić skórę, ale bez wpływu na zdrowie dzieci.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) uszkadza rozwój neurologiczny dzieci."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) mogą wpływać na smak, bez wpływu na dzieci.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) podrażniają żołądek dzieci."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) zmieniają smak, ale bez wpływu na dzieci.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) powodują biegunkę u dzieci."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) sugeruje zanieczyszczenia, bez wpływu na dzieci.",
+        "red": "Barwa {value} 🔴 (≥15) wskazuje poważne zanieczyszczenia, szkodliwe dla dzieci."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) może wpływać na smak, ale jest bezpieczny.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) powoduje biegunkę u dzieci."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie wpływa na dzieci.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) może powodować dyskomfort u dzieci z problemami nerek."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) zwiększa ryzyko neurologiczne u dzieci.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) powoduje poważne uszkodzenia neurologiczne u dzieci."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) zwiększa ryzyko neurologiczne u dzieci.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) poważnie uszkadza rozwój neurologiczny dzieci."
+      }
+    },
+    "Autoimmunologia/Choroby": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) może pośrednio wpływać na zdrowie przez korozję rur i uwalnianie metali.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) nasila korozję rur, zwiększając ryzyko metali i potencjalnie pogarszając choroby."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) nie wpływa bezpośrednio, ale osady w rurach mogą zwiększać ekspozycję na metale.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) nasila osady, potencjalnie zwiększając ryzyko metali i wpływając na choroby."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) mogą potencjalnie wpływać na układ odpornościowy, ale dowody są ograniczone.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą nasilać wpływ na układ odpornościowy, choć dowody są niepewne."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) nie ma udokumentowanego wpływu na autoimmunologię.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) może sprzyjać bakteriom, ale brak dowodów na autoimmunologię."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) mogą wpływać na tarczycę, ale dowody są niejednoznaczne.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) mogą nasilać wpływ na tarczycę, potencjalnie pogarszając choroby."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) może podrażniać, ale brak dowodów na autoimmunologię.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) nasila podrażnienia, ale wpływ na autoimmunologię jest niejasny."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) może wpływać na nerwy, ale brak dowodów na autoimmunologię.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) uszkadza nerwy, ale wpływ na autoimmunologię jest nieznany."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na autoimmunologię.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) mogą podrażniać, ale brak dowodów na autoimmunologię."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na autoimmunologię.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) mogą podrażniać, ale brak dowodów na autoimmunologię."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) sugeruje zanieczyszczenia, bez wpływu na autoimmunologię.",
+        "red": "Barwa {value} 🔴 (≥15) wskazuje poważne zanieczyszczenia, potencjalnie wpływające na choroby."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) może wspierać zdrowie, bez wpływu na autoimmunologię.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) powoduje dyskomfort, ale brak wpływu na autoimmunologię."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na autoimmunologię.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) może obciążać nerki, ale brak wpływu na autoimmunologię."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) może osłabiać odporność, potencjalnie wpływając na autoimmunologię.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) nasila osłabienie odporności, pogarszając choroby autoimmunologiczne."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) może osłabiać odporność, ale dowody są ograniczone.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) nasila osłabienie odporności, potencjalnie pogarszając autoimmunologię."
+      }
     }
   },
-  "twardosc": {
-    "green": {
-      "health_physical": ["Woda <150 mg/L jest bezpieczna do picia, bez wpływu na zdrowie. (WHO 2022)"],
-      "gym": ["Woda <150 mg/L ma neutralny smak, dobra do nawadniania. (CDC 2021)"],
-      "health_mental": ["Woda <150 mg/L nie wpływa na samopoczucie. (PubMed 2023)"],
-      "beauty": ["Woda <150 mg/L jest neutralna dla skóry i włosów. (EPA 2020)"],
-      "ecology": ["Woda <150 mg/L zmniejsza zużycie detergentów. (Water Authority 2023)"],
-      "lifestyle": ["Woda <150 mg/L ma neutralny smak, bez osadu. (WHO 2022)"],
-      "autoimmune_health": ["Woda <150 mg/L jest bezpieczna przy chorobach autoimmunologicznych. (PubMed 2023)"]
+  "uroda": {
+    "Skóra": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) może podrażniać skórę, powodując suchość.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) silnie podrażnia skórę, powodując zaczerwienienia."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) wysusza skórę, pogarszając komfort.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) nasila suchość, prowadząc do podrażnień."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) nie mają udokumentowanego wpływu na skórę.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą podrażniać skórę, ale dowody są ograniczone."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) może plamić skórę.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) zostawia brązowe osady na skórze."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) nie mają udokumentowanego wpływu na skórę.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) podrażniają skórę."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) może wysuszać skórę.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) nasila suchość i podrażnienia skóry."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) może barwić skórę.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) podrażnia i barwi skórę."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na skórę.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) mogą wysuszać skórę."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na skórę.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) podrażniają skórę."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) nie ma udokumentowanego wpływu na skórę.",
+        "red": "Barwa {value} 🔴 (≥15) wskazuje zanieczyszczenia, potencjalnie podrażniające skórę."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) może powodować osady, ale bez wpływu na skórę.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) nasila osady, potencjalnie wysuszając skórę."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na skórę.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) może podrażniać skórę."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) nie ma udokumentowanego wpływu na skórę.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) może szarzeć skórę."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) nie ma udokumentowanego wpływu na skórę.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) może szarzeć skórę."
+      }
     },
-    "orange": {
-      "health_physical": [
-        "Twardość 150-220 mg/L jest bezpieczna, ale może wpływać na smak. (WHO 2022)",
-        "Brak dowodów na ryzyko kamieni nerkowych przy 150-220 mg/L. (PubMed 2023)",
-        "Twarda woda może nasilać egzemę u dzieci; filtruj wodę. (Perkin et al., 2016)",
-        "Minerały w wodzie nie dają korzyści zdrowotnych. (PMC 2023)",
-        "Sprawdź inne parametry wody dla bezpieczeństwa. (EPA 2020)"
-      ],
-      "gym": [
-        "Twardość 150-220 mg/L daje gorzki smak; filtruj wodę. (Sports Medicine 2023)",
-        "Osad z wody może wysuszać skórę po treningu. (Healthline 2023)",
-        "Używaj wody butelkowanej dla lepszego smaku. (WHO 2022)",
-        "Nawodnienie jest kluczowe, niezależnie od twardości. (NIH 2023)",
-        "Twardość nie wpływa na wydajność, ale smak może zniechęcać. (ACSM 2023)"
-      ],
-      "health_mental": [
-        "Osad z wody zwiększa pracę przy sprzątaniu. (Consumer Reports 2023)",
-        "Twarda woda może frustrować, ale nie wpływa na zdrowie psychiczne. (Psychology Today 2023)",
-        "Uzdatnianie wody zmniejsza konserwację urządzeń. (EPA 2023)",
-        "Twarda woda wymaga częstszych napraw, co jest uciążliwe. (USGS 2023)",
-        "Lepsza jakość wody poprawia komfort życia. (CDC 2023)"
-      ],
-      "beauty": [
-        "Twardość 150-220 mg/L wysusza skórę i włosy; używaj kremów. (Dermatology Times 2023)",
-        "Filtr prysznicowy chroni skórę i włosy. (Healthline 2023)",
-        "Twarda woda utrudnia pienienie mydeł. (CDC 2023)",
-        "Używaj zmiękczacza wody dla lepszej pielęgnacji. (WebMD 2023)",
-        "Twarda woda może nasilać egzemę; skonsultuj się z dermatologiem. (Perkin et al., 2016)"
-      ],
-      "ecology": [
-        "Twardość 150-220 mg/L zwiększa użycie detergentów; używaj zmiękczacza. (EPA 2023)",
-        "Osad z wody obniża wydajność urządzeń, zwiększając energię. (USGS 2023)",
-        "Zmiękczacz zmniejsza ślad ekologiczny. (Consumer Reports 2023)",
-        "Twarda woda generuje odpady przez wymianę urządzeń. (NIH 2023)",
-        "Miększa woda wspiera zrównoważone życie. (WHO 2022)"
-      ],
-      "lifestyle": [
-        "Twardość 150-220 mg/L pogarsza smak; filtruj wodę. (WHO 2022)",
-        "Czyszczenie jest trudniejsze z osadem mydlanym. (Consumer Reports 2023)",
-        "Twarda woda uszkadza tkaniny; używaj zmiękczacza. (CDC 2023)",
-        "Zmiękczacz ułatwia codzienne zadania. (EPA 2023)",
-        "Testuj wodę, by poprawić komfort w domu. (USGS 2023)"
-      ],
-      "autoimmune_health": [
-        "Brak dowodów na wpływ 150-220 mg/L na choroby autoimmunologiczne. (NIH 2023)",
-        "Dbaj o nawodnienie czystą wodą. (CDC 2023)",
-        "Skonsultuj się z lekarzem w sprawie jakości wody. (WHO 2022)",
-        "Minerały w wodzie nie mają udowodnionego wpływu. (PMC 2023)",
-        "Zbilansowana dieta jest kluczowa przy chorobach autoimmunologicznych. (Arthritis Foundation 2023)"
-      ]
+    "Włosy": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) matowi włosy.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) niszczy strukturę włosów."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) może powodować tępotę włosów.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) powoduje łamliwość włosów."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) nie mają udokumentowanego wpływu na włosy.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą podrażniać skórę głowy."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) może barwić włosy.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) zostawia rdzawy osad na włosach."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) nie mają udokumentowanego wpływu na włosy.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) niszczą strukturę włosów."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) może wysuszać włosy.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) niszczy włosy i blaknie kolor."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) może barwić włosy.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) niszczy włosy i skórę głowy."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na włosy.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) mogą podrażniać skórę głowy."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na włosy.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) niszczą strukturę włosów."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) nie ma udokumentowanego wpływu na włosy.",
+        "red": "Barwa {value} 🔴 (≥15) wskazuje zanieczyszczenia, potencjalnie wpływające na włosy."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) może powodować osady na włosach.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) nasila osady, matowiąc włosy."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na włosy.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) może matowić włosy."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) nie ma udokumentowanego wpływu na włosy.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) osłabia włosy."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) nie ma udokumentowanego wpływu na włosy.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) osłabia strukturę włosów."
+      }
     },
-    "red": {
-      "health_physical": [
-        "Twardość >220 mg/L może nasilać egzemę; filtruj wodę. (Perkin et al., 2016)",
-        "Brak dowodów na ryzyko kamieni nerkowych przy >220 mg/L. (PubMed 2023)",
-        "Minerały w wodzie nie dają korzyści zdrowotnych. (PMC 2023)",
-        "Osoby z problemami nerek powinny być ostrożne. (WHO 2022)",
-        "Monitoruj jakość wody i konsultuj się z lekarzem. (EPA 2023)"
-      ],
-      "gym": [
-        "Twardość >220 mg/L daje gorzki smak; używaj wody butelkowanej. (Sports Medicine 2023)",
-        "Osad z wody wysusza skórę po treningu. (Healthline 2023)",
-        "Filtruj wodę dla lepszego smaku i nawodnienia. (WHO 2022)",
-        "Nawodnienie jest kluczowe, ale smak może zniechęcać. (NIH 2023)",
-        "Twardość nie wpływa na wydajność, ale komfort picia tak. (ACSM 2023)"
-      ],
-      "health_mental": [
-        "Osad z wody >220 mg/L frustruje przy sprzątaniu. (Consumer Reports 2023)",
-        "Twarda woda obniża komfort życia. (Psychology Today 2023)",
-        "Uzdatnianie wody zmniejsza konserwację. (EPA 2023)",
-        "Twarda woda powoduje awarie urządzeń, co jest uciążliwe. (USGS 2023)",
-        "Lepsza jakość wody poprawia spokój ducha. (CDC 2023)"
-      ],
-      "beauty": [
-        "Twardość >220 mg/L wysusza skórę i włosy; używaj filtrów. (Dermatology Times 2023)",
-        "Filtr prysznicowy chroni skórę i włosy. (Healthline 2023)",
-        "Twarda woda utrudnia pienienie mydeł. (CDC 2023)",
-        "Używaj zmiękczacza dla lepszej pielęgnacji. (WebMD 2023)",
-        "Twarda woda nasila egzemę; skonsultuj się z dermatologiem. (Perkin et al., 2016)"
-      ],
-      "ecology": [
-        "Twardość >220 mg/L zwiększa użycie detergentów; używaj zmiękczacza. (EPA 2023)",
-        "Osad z wody obniża wydajność urządzeń. (USGS 2023)",
-        "Zmiękczacz zmniejsza ślad ekologiczny. (Consumer Reports 2023)",
-        "Twarda woda generuje odpady przez wymianę urządzeń. (NIH 2023)",
-        "Miększa woda wspiera zrównoważone życie. (WHO 2022)"
-      ],
-      "lifestyle": [
-        "Twardość >220 mg/L pogarsza smak; filtruj wodę. (WHO 2022)",
-        "Czyszczenie jest trudniejsze z osadem. (Consumer Reports 2023)",
-        "Twarda woda uszkadza tkaniny; używaj zmiękczacza. (CDC 2023)",
-        "Zmiękczacz ułatwia codzienne zadania. (EPA 2023)",
-        "Testuj wodę, by poprawić komfort w domu. (USGS 2023)"
-      ],
-      "autoimmune_health": [
-        "Brak dowodów na wpływ >220 mg/L na choroby autoimmunologiczne. (NIH 2023)",
-        "Dbaj o nawodnienie czystą wodą. (CDC 2023)",
-        "Skonsultuj się z lekarzem w sprawie jakości wody. (WHO 2022)",
-        "Minerały w wodzie nie mają udowodnionego wpływu. (PMC 2023)",
-        "Zbilansowana dieta jest kluczowa. (Arthritis Foundation 2023)"
-      ]
-    },
-    "no_data": {
-      "health_physical": [
-        "Brak danych o twardości; zbadaj wodę, bo nadmiar może wpływać na smak. (WHO 2022)",
-        "Twardość wody nie wpływa na zdrowie, ale smak może zniechęcać. (EPA 2023)",
-        "Sprawdź twardość, by wiedzieć, czy filtracja jest potrzebna. (CDC 2023)"
-      ],
-      "gym": [
-        "Brak danych o twardości; zbadaj wodę, by poznać smak. (WHO 2022)",
-        "Twardość nie wpływa na wydajność, ale smak na nawodnienie. (Sports Medicine 2023)",
-        "Filtruj wodę bez danych o twardości dla komfortu picia. (EPA 2023)"
-      ],
-      "health_mental": [
-        "Brak danych o twardości; osad z wody może frustrować. (Consumer Reports 2023)",
-        "Zbadaj wodę, by uniknąć problemów z osadem. (Psychology Today 2023)",
-        "Filtruj wodę bez danych, by ułatwić sprzątanie. (EPA 2023)"
-      ],
-      "beauty": [
-        "Brak danych o twardości; twarda woda wysusza skórę. (Dermatology Times 2023)",
-        "Zbadaj wodę, by chronić skórę i włosy. (Healthline 2023)",
-        "Filtruj wodę bez danych dla lepszej pielęgnacji. (CDC 2023)"
-      ],
-      "ecology": [
-        "Brak danych o twardości; twarda woda zwiększa użycie detergentów. (EPA 2023)",
-        "Zbadaj wodę, by wspierać eko-życie. (USGS 2023)",
-        "Filtruj wodę bez danych, by chronić planetę. (Consumer Reports 2023)"
-      ],
-      "lifestyle": [
-        "Brak danych o twardości; twarda woda pogarsza smak. (WHO 2022)",
-        "Zbadaj wodę, by gotować smacznie. (Consumer Reports 2023)",
-        "Filtruj wodę bez danych dla komfortu w domu. (EPA 2023)"
-      ],
-      "autoimmune_health": [
-        "Brak danych o twardości; brak wpływu na choroby autoimmunologiczne. (NIH 2023)",
-        "Zbadaj wodę dla pewności jakości. (CDC 2023)",
-        "Filtruj wodę bez danych, by monitorować parametry. (WHO 2022)"
-      ]
+    "Oczy": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) może podrażniać oczy podczas kąpieli.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) silnie podrażnia oczy podczas kąpieli."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) nie ma udokumentowanego wpływu na oczy.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) może podrażniać oczy podczas mycia."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) nie mają udokumentowanego wpływu na oczy.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą podrażniać oczy, ale dowody są ograniczone."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) nie ma udokumentowanego wpływu na oczy.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) może podrażniać oczy."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) nie mają udokumentowanego wpływu na oczy.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) podrażniają oczy."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) może podrażniać oczy.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) powoduje zaczerwienienie i podrażnienie oczu."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) nie ma udokumentowanego wpływu na oczy.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) może podrażniać oczy."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na oczy.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) mogą podrażniać oczy."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na oczy.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) mogą podrażniać oczy."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) nie ma udokumentowanego wpływu na oczy.",
+        "red": "Barwa {value} 🔴 (≥15) może podrażniać oczy z powodu zanieczyszczeń."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) nie ma udokumentowanego wpływu na oczy.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) może podrażniać oczy."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na oczy.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) może podrażniać oczy."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) nie ma udokumentowanego wpływu na oczy.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) może podrażniać oczy."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) nie ma udokumentowanego wpływu na oczy.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) może podrażniać oczy."
+      }
     }
   },
-  "azotany": {
-    "green": {
-      "health_physical": [
-        "Azotany <10 mg/L są bezpieczne do picia. (WHO, 2022)"
-      ],
-      "gym": [
-        "Woda z azotanami <10 mg/L jest bezpieczna do picia. (PubMed, 2023)"
-      ],
-      "health_mental": [
-        "Woda z azotanami <10 mg/L jest bezpieczna. (CDC, 2021)"
-      ],
-      "beauty": [
-        "Woda z azotanami <10 mg/L jest neutralna. (EPA, 2020)"
-      ],
-      "ecology": [
-        "Niskie azotany (<10 mg/L) świadczą o czystości wody. (WHO, 2022)"
-      ],
-      "lifestyle": [
-        "Woda z azotanami <10 mg/L jest bezpieczna. (EPA, 2020)"
-      ],
-      "autoimmune_health": [
-        "Azotany <10 mg/L są bezpieczne. (PubMed, 2023)"
-      ]
+  "codzienne_uzycie": {
+    "Prysznic i kąpiel": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) zmniejsza skuteczność mydła, podrażniając skórę.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) silnie podrażnia skórę podczas kąpieli."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) zostawia osady na skórze i armaturze.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) wysusza skórę i tworzy silne osady."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) nie mają udokumentowanego wpływu na kąpiel.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą podrażniać skórę podczas kąpieli."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) plami skórę i armaturę.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) zostawia osady na skórze i armaturze."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) nie mają udokumentowanego wpływu na kąpiel.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) podrażniają skórę podczas kąpieli."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) może podrażniać skórę podczas kąpieli.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) wysusza skórę i podrażnia podczas kąpieli."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) barwi skórę i armaturę.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) podrażnia skórę i silnie barwi."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na kąpiel.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) korozyjnie działają na armaturę."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) wpływają na zapach wody.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) pozostawiają osady na armaturze."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) plami armaturę.",
+        "red": "Barwa {value} 🔴 (≥15) zanieczyszcza wodę i plami armaturę."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) zostawia osady na skórze.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) podrażnia skórę i tworzy osady."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na kąpiel.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) może korozyjnie działać na armaturę."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) korozyjnie działa na armaturę.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) uszkadza armaturę i zwiększa ryzyko."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) korozyjnie działa na armaturę.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) uszkadza armaturę i zwiększa ryzyko."
+      }
     },
-    "orange": {
-      "health_physical": [
-        "Azotany 5-20 mg/L wymagają ostrożności dla kobiet w ciąży. (WHO, 2022)",
-        "Azotany 5-20 mg/L mogą nasilać stany zapalne. (PubMed, 2023)",
-        "Używaj filtrów dla niemowląt przy azotanach 5-20 mg/L. (EPA, 2020)",
-        "Woda z azotanami 5-20 mg/L jest bezpieczna dla dorosłych. (CDC, 2021)",
-        "Rozważ filtr redukujący azotany dla bezpieczeństwa. (PubMed, 2023)"
-      ],
-      "gym": [
-        "Woda z azotanami 5-20 mg/L jest akceptowalna do treningu. (PubMed, 2023)",
-        "Rozważ filtr przy azotanach 5-20 mg/L. (WHO, 2022)",
-        "Wybieraj wodę z niższymi azotanami dla treningów. (EPA, 2020)",
-        "Filtruj wodę dla lepszego smaku podczas ćwiczeń. (CDC, 2021)",
-        "Azotany 5-20 mg/L nie wpływają na wydajność. (PubMed, 2023)"
-      ],
-      "health_mental": [
-        "Azotany 5-20 mg/L są bezpieczne, ale filtruj dla spokoju. (CDC, 2021)",
-        "Używaj filtrów, aby zmniejszyć obawy o wodę. (WHO, 2022)",
-        "Woda z azotanami 5-20 mg/L nie wpływa na nastrój. (EPA, 2020)",
-        "Filtruj wodę dla komfortu psychicznego. (PubMed, 2023)",
-        "Zbadaj wodę, by mieć pewność jakości. (CDC, 2021)"
-      ],
-      "beauty": [
-        "Woda z azotanami 5-20 mg/L jest neutralna dla skóry i włosów. (WHO, 2022)",
-        "Azotany 5-20 mg/L nie wpływają na cerę. (PubMed, 2023)",
-        "Filtruj wodę dla lepszego smaku, jeśli używasz do pielęgnacji. (EPA, 2020)",
-        "Woda z azotanami 5-20 mg/L nadaje się do mycia. (CDC, 2021)",
-        "Zbadaj wodę dla pewności jakości w pielęgnacji. (EPA, 2020)"
-      ],
-      "ecology": [
-        "Azotany 5-20 mg/L mogą wskazywać na zanieczyszczenie. (WHO, 2022)",
-        "Monitoruj azotany dla środowiska wodnego. (EPA, 2020)",
-        "Wysokie azotany mogą powodować eutrofizację. (PubMed, 2023)",
-        "Wspieraj inicjatywy na rzecz czystej wody. (CDC, 2021)",
-        "Filtruj wodę, by zmniejszyć wpływ azotanów. (WHO, 2022)"
-      ],
-      "lifestyle": [
-        "Rozważ filtr przy azotanach 5-20 mg/L dla lepszej wody. (CDC, 2021)",
-        "Filtruj wodę z azotanami 5-20 mg/L do gotowania. (PubMed, 2023)",
-        "Używaj filtrów dla smacznej wody pitnej. (WHO, 2022)",
-        "Zainstaluj filtr, by poprawić jakość wody. (EPA, 2020)",
-        "Filtruj wodę dla zdrowego stylu życia. (CDC, 2021)"
-      ],
-      "autoimmune_health": [
-        "Azotany 5-20 mg/L: skonsultuj się z lekarzem. (PubMed, 2023)",
-        "Brak dowodów na szkodliwość azotanów 5-20 mg/L. (WHO, 2022)",
-        "Filtruj wodę przy azotanach 5-20 mg/L. (EPA, 2020)",
-        "Monitoruj zdrowie przy azotanach 5-20 mg/L. (CDC, 2021)",
-        "Zbadaj wodę dla bezpieczeństwa autoimmunologicznego. (PubMed, 2023)"
-      ]
+    "Zmywanie naczyń": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) zmniejsza skuteczność detergentów.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) podrażnia ręce i obniża mycie."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) zmniejsza skuteczność mycia naczyń.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) tworzy osady na naczyniach."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) nie mają udokumentowanego wpływu na mycie.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą podrażniać ręce podczas mycia."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) plami naczynia.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) zostawia osady na naczyniach."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) nie mają udokumentowanego wpływu na mycie.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) podrażniają ręce podczas mycia."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) zmienia smak wody.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) korozyjnie działa na naczynia."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) barwi naczynia.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) podrażnia ręce i barwi naczynia."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na mycie.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) korozyjnie działają na naczynia."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) wpływają na smak wody.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) korozyjnie działają na naczynia."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) plami naczynia.",
+        "red": "Barwa {value} 🔴 (≥15) zanieczyszcza wodę i plami naczynia."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) zostawia osady na naczyniach.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) korozyjnie działa na naczynia."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na mycie.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) korozyjnie działa na naczynia."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) korozyjnie działa na naczynia.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) uszkadza naczynia i zwiększa ryzyko."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) korozyjnie działa na naczynia.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) uszkadza naczynia i zwiększa ryzyko."
+      }
     },
-    "red": {
-      "health_physical": [
-        "Azotany >20 mg/L są ryzykowne; filtruj wodę. (WHO, 2022)",
-        "Wysokie azotany (>20 mg/L) grożą methemoglobinemią. (EPA, 2020)",
-        "Filtruj wodę dla bezpieczeństwa niemowląt. (PubMed, 2023)",
-        "Azotany >20 mg/L wymagają ostrożności u kobiet w ciąży. (WHO, 2022)",
-        "Zainstaluj filtr redukujący azotany. (CDC, 2021)"
-      ],
-      "gym": [
-        "Filtruj wodę z azotanami >20 mg/L podczas treningu. (PubMed, 2023)",
-        "Wysokie azotany mogą wpływać na wydajność. (WHO, 2022)",
-        "Używaj filtrów dla lepszej jakości wody. (EPA, 2020)",
-        "Zainstaluj filtr dla smaku i bezpieczeństwa. (CDC, 2021)",
-        "Azotany >20 mg/L nie są idealne do ćwiczeń. (PubMed, 2023)"
-      ],
-      "health_mental": [
-        "Azotany >20 mg/L mogą budzić obawy; filtruj wodę. (CDC, 2021)",
-        "Filtruj wodę dla spokoju ducha. (WHO, 2022)",
-        "Zbadaj wodę, by zmniejszyć stres o jakość. (PubMed, 2023)",
-        "Używaj filtrów dla komfortu psychicznego. (EPA, 2020)",
-        "Wysokie azotany wymagają działania. (CDC, 2021)"
-      ],
-      "beauty": [
-        "Filtruj wodę z azotanami >20 mg/L do pielęgnacji. (EPA, 2020)",
-        "Używaj filtrów do mycia twarzy i włosów. (WHO, 2022)",
-        "Zainstaluj filtr dla lepszej urody. (CDC, 2021)",
-        "Azotany >20 mg/L nie są idealne dla skóry. (PubMed, 2023)",
-        "Zbadaj wodę, by chronić cerę. (EPA, 2020)"
-      ],
-      "ecology": [
-        "Azotany >20 mg/L zanieczyszczają środowisko. (WHO, 2022)",
-        "Wysokie azotany szkodzą ekosystemom. (EPA, 2020)",
-        "Azotany >20 mg/L powodują eutrofizację. (PubMed, 2023)",
-        "Filtruj wodę, by wspierać środowisko. (CDC, 2021)",
-        "Wspieraj działania na rzecz czystej wody. (WHO, 2022)"
-      ],
-      "lifestyle": [
-        "Zainstaluj filtr przy azotanach >20 mg/L. (PubMed, 2023)",
-        "Filtruj wodę do gotowania i picia. (WHO, 2022)",
-        "Używaj filtrów dla smacznej wody. (EPA, 2020)",
-        "Zainstaluj filtr dla zdrowego stylu życia. (CDC, 2021)",
-        "Filtruj wodę, by poprawić jakość życia. (PubMed, 2023)"
-      ],
-      "autoimmune_health": [
-        "Azotany >20 mg/L mogą nasilać stany zapalne. (PubMed, 2023)",
-        "Filtruj wodę przy wysokich azotanach. (EPA, 2020)",
-        "Zainstaluj filtr dla bezpieczeństwa. (CDC, 2021)",
-        "Skonsultuj się z lekarzem przy azotanach >20 mg/L. (WHO, 2022)",
-        "Zbadaj wodę dla zdrowia autoimmunologicznego. (PubMed, 2023)"
-      ]
+    "Pranie": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) blaknie kolory ubrań.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) uszkadza tkaniny podczas prania."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) obniża skuteczność proszków.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) tworzy osady na ubraniach."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) nie mają udokumentowanego wpływu na pranie.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą podrażniać skórę podczas prania."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) plami ubrania.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) zostawia osady na ubraniach."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) nie mają udokumentowanego wpływu na pranie.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) podrażniają skórę podczas prania."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) blaknie kolory ubrań.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) niszczy tkaniny podczas prania."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) barwi ubrania.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) podrażnia skórę i barwi ubrania."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na pranie.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) korozyjnie działają na pralki."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na pranie.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) korozyjnie działają na pralki."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) plami ubrania.",
+        "red": "Barwa {value} 🔴 (≥15) zanieczyszcza wodę i plami ubrania."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) zostawia osady na ubraniach.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) korozyjnie działa na pralki."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na pranie.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) korozyjnie działa na pralki."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) korozyjnie działa na pralki.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) uszkadza pralki i zwiększa ryzyko."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) korozyjnie działa na pralki.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) uszkadza pralki i zwiększa ryzyko."
+      }
     },
-    "no_data": {
-      "health_physical": [
-        "Brak danych o azotanach. Mogą być toksyczne dla niemowląt; zbadaj wodę. (WHO, 2022)"
-      ],
-      "gym": [
-        "Brak danych o azotanach. Mogą wpływać na smak; zbadaj wodę. (PubMed, 2023)"
-      ],
-      "health_mental": [
-        "Brak danych o azotanach. Mogą budzić obawy; zbadaj wodę. (CDC, 2021)"
-      ],
-      "beauty": [
-        "Brak danych o azotanach. Mogą wpływać na jakość wody; zbadaj. (EPA, 2020)"
-      ],
-      "ecology": [
-        "Brak danych o azotanach. Mogą zanieczyszczać środowisko; zbadaj. (WHO, 2022)"
-      ],
-      "lifestyle": [
-        "Brak danych o azotanach. Mogą psuć smak; zbadaj wodę. (PubMed, 2023)"
-      ],
-      "autoimmune_health": [
-        "Brak danych o azotanach. Mogą nasilać stany zapalne; zbadaj wodę. (PubMed, 2023)"
-      ]
-    }
-  },
-  "zelazo": {
-    "green": {
-      "health_physical": [
-        "Żelazo <0.1 mg/L jest bezpieczne do picia. (WHO, 2003)"
-      ],
-      "gym": [
-        "Woda z żelazem <0.1 mg/L jest neutralna do picia. (EPA, 1991)"
-      ],
-      "health_mental": [
-        "Żelazo <0.1 mg/L nie ma znanego wpływu na zdrowie. (PubMed, 2023)"
-      ],
-      "beauty": [
-        "Woda z żelazem <0.1 mg/L jest neutralna dla skóry. (EPA, 1991)"
-      ],
-      "ecology": [
-        "Kranówka z żelazem <0.1 mg/L zmniejsza zużycie plastiku. (EPA, 2020)"
-      ],
-      "lifestyle": [
-        "Woda z żelazem <0.1 mg/L ma neutralny smak. (EPA, 1991)"
-      ],
-      "autoimmune_health": [
-        "Żelazo <0.1 mg/L jest bezpieczne. (PMC, 2020)"
-      ]
-    },
-    "orange": {
-      "health_physical": [
-        "Żelazo 0.1-0.2 mg/L jest bezpieczne, ale może zmieniać smak. (EPA, 1991)",
-        "Dla niemowląt zaleca się wodę z żelazem <0.3 mg/L. (WHO, 2003)",
-        "Rozważ filtrację dla lepszego smaku. (EPA, 1991)",
-        "Żelazo 0.1-0.2 mg/L nie wpływa na zdrowie. (PubMed, 2023)",
-        "Sprawdzaj poziom żelaza regularnie. (CDC, 2021)"
-      ],
-      "gym": [
-        "Woda z żelazem 0.1-0.2 mg/L może mieć metaliczny posmak. (EPA, 1991)",
-        "Posmak może zniechęcać; rozważ filtrację. (WHO, 2003)",
-        "Żelazo 0.1-0.2 mg/L nie wpływa na wydajność. (PubMed, 2023)",
-        "Używaj wody butelkowanej dla smaku. (EPA, 1991)",
-        "Sprawdź inne parametry wody. (CDC, 2021)"
-      ],
-      "health_mental": [
-        "Żelazo 0.1-0.2 mg/L nie ma wpływu na zdrowie psychiczne. (PubMed, 2023)",
-        "Smak wody może wpływać na komfort picia. (EPA, 1991)",
-        "Filtruj wodę dla lepszego smaku. (WHO, 2003)",
-        "Woda z żelazem 0.1-0.2 mg/L jest bezpieczna. (CDC, 2021)",
-        "Zbadaj wodę dla pewności jakości. (EPA, 1991)"
-      ],
-      "beauty": [
-        "Żelazo 0.1-0.2 mg/L nie wpływa na skórę ani włosy. (EPA, 1991)",
-        "Osady żelaza mogą gromadzić się w instalacjach. (EPA, 1991)",
-        "Filtruj wodę dla czystości. (WHO, 2003)",
-        "Sprawdź inne parametry dla pielęgnacji. (CDC, 2021)",
-        "Żelazo 0.1-0.2 mg/L jest neutralne. (PubMed, 2023)"
-      ],
-      "ecology": [
-        "Kranówka z żelazem 0.1-0.2 mg/L zmniejsza plastik. (EPA, 2020)",
-        "Filtracja jest bardziej eko niż butelki. (Water Authority, 2023)",
-        "Wybieraj filtry redukujące żelazo. (CDC, 2021)",
-        "Minimalizuj odpady plastikowe. (EPA, 2020)",
-        "Filtracja wspiera środowisko. (PubMed, 2023)"
-      ],
-      "lifestyle": [
-        "Żelazo 0.1-0.2 mg/L może psuć smak kawy. (EPA, 1991)",
-        "Filtruj wodę do gotowania dla smaku. (WHO, 2003)",
-        "Osady żelaza mogą gromadzić się w czajniku. (EPA, 1991)",
-        "Czyść urządzenia regularnie. (CDC, 2021)",
-        "Zainstaluj filtr redukujący żelazo. (EPA, 1991)"
-      ],
-      "autoimmune_health": [
-        "Brak dowodów na wpływ żelaza 0.1-0.2 mg/L na autoimmunologię. (PMC, 2020)",
-        "Monitoruj spożycie przy chorobach. (PubMed, 2023)",
-        "Skonsultuj się z lekarzem w razie obaw. (CDC, 2021)",
-        "Używaj wody o znanym poziomie żelaza. (WHO, 2003)"
-     
-      ]
-    },
-    "red": {
-      "health_physical": [
-        "Żelazo >0.2 mg/L może zmieniać smak; filtruj wodę. (WHO, 2003)"
-      ],
-      "gym": [
-        "Woda z żelazem >0.2 mg/L ma nieprzyjemny smak; filtruj. (EPA, 1991)"
-      ],
-      "health_mental": [
-        "Żelazo >0.2 mg/L nie wpływa na zdrowie psychiczne. (PubMed, 2023)"
-      ],
-      "beauty": [
-        "Żelazo >0.2 mg/L może zostawiać osady w instalacjach; filtruj wodę. (EPA, 1991)"
-      ],
-      "ecology": [
-        "Filtracja wody z żelazem >0.2 mg/L jest eko. (EPA, 2020)"
-      ],
-      "lifestyle": [
-        "Żelazo >0.2 mg/L psuje smak; filtruj wodę. (EPA, 1991)"
-      ],
-      "autoimmune_health": [
-        "Żelazo >0.2 mg/L: skonsultuj się z lekarzem. (PMC, 2020)"
-      ]
-    },
-    "no_data": {
-      "health_physical": [
-        "Brak danych o żelazie. Może psuć smak; zbadaj wodę. (EPA, 1991)"
-      ],
-      "gym": [
-        "Brak danych o żelazie. Może wpływać na smak; zbadaj wodę. (WHO, 2003)"
-      ],
-      "health_mental": [
-        "Brak danych o żelazie. Może budzić obawy; zbadaj wodę. (CDC, 2021)"
-      ],
-      "beauty": [
-        "Brak danych o żelazie. Może zostawiać osady; zbadaj wodę. (EPA, 1991)"
-      ],
-      "ecology": [
-        "Brak danych o żelazie. Filtruj wodę dla eko-życia. (EPA, 2020)"
-      ],
-      "lifestyle": [
-        "Brak danych o żelazie. Może psuć smak; zbadaj wodę. (EPA, 1991)"
-      ],
-      "autoimmune_health": [
-        "Brak danych o żelazie. Skonsultuj się z lekarzem. (PMC, 2020)"
-      ]
-    }
-  },
-  "fluorki": {
-  "green": {
-    "health_physical": [
-      "Fluorki <1.2 mg/L są bezpieczne do picia. (WHO, 2022)"
-    ],
-    "gym": [
-      "Woda z fluorkami <1.2 mg/L jest neutralna do picia. (EPA, 2020)"
-    ],
-    "health_mental": [
-      "Fluorki <1.2 mg/L nie mają znanego wpływu na zdrowie. (NTP, 2024)"
-    ],
-    "beauty": [
-      "Fluorki <1.2 mg/L nie powodują fluorozy. (CDC, 2021)"
-    ],
-    "ecology": [
-      "Kranówka z fluorkami <1.2 mg/L zmniejsza zużycie plastiku. (EPA, 2020)"
-    ],
-    "lifestyle": [
-      "Woda z fluorkami <1.2 mg/L jest bezpieczna do gotowania. (PubMed, 2023)"
-    ],
-    "autoimmune_health": [
-      "Fluorki <1.2 mg/L są bezpieczne. (PubMed, 2023)"
-    ]
-  },
-  "orange": {
-    "health_physical": [
-      "Fluorki 1.2-1.5 mg/L są w normie, ale mogą budzić obawy. (WHO, 2022)",
-      "Monitoruj spożycie fluorków u dzieci. (CDC, 2021)",
-      "Fluorki 1.2-1.5 mg/L nie powodują fluorozy. (EPA, 2020)",
-      "Rozważ filtrację dla ostrożności. (PubMed, 2023)",
-      "Sprawdzaj poziom fluorków regularnie. (NTP, 2024)"
-    ],
-    "gym": [
-      "Woda z fluorkami 1.2-1.5 mg/L jest bezpieczna do picia. (WHO, 2022)",
-      "Fluorki nie wpływają na wydolność fizyczną. (PubMed, 2023)",
-      "Używaj kranówki bez obaw. (EPA, 2020)",
-      "Monitoruj spożycie u dzieci. (CDC, 2021)",
-      "Fluorki 1.2-1.5 mg/L są w normie UE. (Dyrektywa UE 98/83/EC)"
-    ],
-    "health_mental": [
-      "Fluorki 1.2-1.5 mg/L nie wpływają na funkcje poznawcze. (NTP, 2024)",
-      "Brak dowodów na wpływ na zdrowie psychiczne. (PubMed, 2023)",
-      "Woda z fluorkami 1.2-1.5 mg/L jest bezpieczna. (WHO, 2022)",
-      "Monitoruj spożycie dla spokoju. (CDC, 2021)",
-      "Fluorki w normie nie budzą obaw. (EPA, 2020)"
-    ],
-    "beauty": [
-      "Fluorki 1.2-1.5 mg/L mogą powodować fluoroze u dzieci. (CDC, 2021)",
-      "Monitoruj stan zębów przy fluorkach 1.2-1.5 mg/L. (EPA, 2020)",
-      "Fluorki nie wpływają na skórę. (PubMed, 2023)",
-      "Używaj pasty z fluorem dla ochrony. (WHO, 2022)",
-      "Filtruj wodę dla ostrożności. (NTP, 2024)"
-    ],
-    "ecology": [
-      "Kranówka z fluorkami 1.2-1.5 mg/L zmniejsza plastik. (EPA, 2020)",
-      "Filtracja jest bardziej eko niż butelki. (Water Authority, 2023)",
-      "Wybieraj filtry redukujące fluorki. (CDC, 2021)",
-      "Minimalizuj odpady plastikowe. (EPA, 2020)",
-      "Filtracja wspiera środowisko. (PubMed, 2023)"
-    ],
-    "lifestyle": [
-      "Fluorki 1.2-1.5 mg/L nie zmieniają smaku. (EPA, 2020)",
-      "Używaj kranówki do gotowania. (WHO, 2022)",
-      "Fluorki w normie są ekonomiczne. (PubMed, 2023)",
-      "Monitoruj spożycie u dzieci. (CDC, 2021)",
-      "Fluorki 1.2-1.5 mg/L są w normie UE. (Dyrektywa UE 98/83/EC)"
-    ],
-    "autoimmune_health": [
-      "Brak dowodów na wpływ fluorków 1.2-1.5 mg/L na autoimmunologię. (PubMed, 2023)",
-      "Monitoruj zdrowie przy fluorkach 1.2-1.5 mg/L. (NTP, 2024)",
-      "Skonsultuj się z lekarzem w razie obaw. (CDC, 2021)",
-      "Używaj wody o znanym poziomie fluorków. (WHO, 2022)",
-      "Fluorki w normie są bezpieczne. (EPA, 2020)"
-    ]
-  },
-  "red": {
-    "health_physical": [
-      "Fluorki ≥1.5 mg/L zwiększają ryzyko fluorozy; filtruj wodę. (WHO, 2022)"
-    ],
-    "gym": [
-      "Woda z fluorkami ≥1.5 mg/L jest bezpieczna, ale monitoruj spożycie. (PubMed, 2023)"
-    ],
-    "health_mental": [
-      "Fluorki ≥1.5 mg/L mogą budzić obawy; filtruj wodę. (NTP, 2024)"
-    ],
-    "beauty": [
-      "Fluorki ≥1.5 mg/L powodują fluoroze zębów; filtruj wodę. (CDC, 2021)"
-    ],
-    "ecology": [
-      "Filtracja wody z fluorkami ≥1.5 mg/L jest eko. (EPA, 2020)"
-    ],
-    "lifestyle": [
-      "Fluorki ≥1.5 mg/L mogą budzić obawy; filtruj wodę. (PubMed, 2023)"
-    ],
-    "autoimmune_health": [
-      "Fluorki ≥1.5 mg/L: skonsultuj się z lekarzem. (PubMed, 2023)"
-    ]
-  },
-  "no_data": {
-    "health_physical": [
-      "Brak danych o fluorkach. Mogą wpływać na zęby; zbadaj wodę. (WHO, 2022)"
-    ],
-    "gym": [
-      "Brak danych o fluorkach. Mogą budzić obawy; zbadaj wodę. (PubMed, 2023)"
-    ],
-    "health_mental": [
-      "Brak danych o fluorkach. Mogą budzić obawy; zbadaj wodę. (NTP, 2024)"
-    ],
-    "beauty": [
-      "Brak danych o fluorkach. Mogą wpływać na zęby; zbadaj wodę. (CDC, 2021)"
-    ],
-    "ecology": [
-      "Brak danych o fluorkach. Filtruj wodę dla eko-życia. (EPA, 2020)"
-    ],
-    "lifestyle": [
-      "Brak danych o fluorkach. Mogą budzić obawy; zbadaj wodę. (PubMed, 2023)"
-    ],
-    "autoimmune_health": [
-      "Brak danych o fluorkach. Skonsultuj się z lekarzem. (PubMed, 2023)"
-    ]
-  }
-},
-  "chlor": {
-    "green": {
-      "health_physical": [
-        "Chlor <0.15 mg/L jest bezpieczny do picia, zgodny z normami WHO. (WHO, 2022)"
-      ],
-      "gym": [
-        "Woda z chlorem <0.15 mg/L jest bezpieczna podczas ćwiczeń. (EPA, 2020)"
-      ],
-      "health_mental": [
-        "Niski chlor <0.15 mg/L nie wpływa na samopoczucie. (PubMed, 2023)"
-      ],
-      "beauty": [
-        "Chlor <0.15 mg/L jest łagodny dla skóry i włosów. (CDC, 2021)"
-      ],
-      "ecology": [
-        "Woda z kranu <0.15 mg/L zmniejsza zużycie plastiku. (EPA, 2020)"
-      ],
-      "lifestyle": [
-        "Chlor <0.15 mg/L nie zmienia smaku potraw. (WHO, 2022)"
-      ],
-      "autoimmune_health": [
-        "Chlor <0.15 mg/L jest bezpieczny, brak wpływu na autoimmunologię. (PubMed, 2023)"
-      ]
-    },
-    "orange": {
-      "health_physical": [
-        "Chlor 0.15-0.27 mg/L może powodować smak/zapach, ale jest w normie. (WHO, 2022)",
-        "U wrażliwych osób może lekko podrażniać skórę. (EPA, 2020)",
-        "DBP mogą wzrastać; badania wskazują potencjalne ryzyko. (PubMed, 2023)",
-        "Rozważ filtrację przy obawach o DBP. (CDC, 2021)",
-        "Monitoruj jakość wody dla pewności. (NTP, 2024)"
-      ],
-      "gym": [
-        "Chlor 0.15-0.27 mg/L może zniechęcać do picia; filtruj wodę. (EPA, 2020)",
-        "Po treningu spłukuj skórę, by uniknąć podrażnień. (PubMed, 2023)",
-        "Używaj filtrowanej wody dla lepszego smaku. (WHO, 2022)",
-        "Smak chloru może wpływać na napoje sportowe. (CDC, 2021)",
-        "Monitoruj reakcje skóry po wysiłku. (EPA, 2020)"
-      ],
-      "health_mental": [
-        "Smak chloru 0.15-0.27 mg/L może budzić obawy; filtruj wodę. (NTP, 2024)",
-        "Lepszy smak wody wspiera nawodnienie. (WHO, 2022)",
-        "Filtracja może zwiększyć komfort psychiczny. (PubMed, 2023)",
-        "Woda w normie, ale smak może zniechęcać. (CDC, 2021)",
-        "Znajdź smaczną wodę dla spokoju ducha. (EPA, 2020)"
-      ],
-      "beauty": [
-        "Chlor 0.15-0.27 mg/L może wysuszać skórę; użyj filtra. (EPA, 2020)",
-        "Stosuj balsam po kąpieli w takiej wodzie. (PubMed, 2023)",
-        "Chron włosy odżywkami przed chlorem. (CDC, 2021)",
-        "Wrażliwa skóra może reagować; użyj łagodnych mydeł. (WHO, 2022)",
-        "Rozważ filtr prysznicowy dla lepszej pielęgnacji. (NTP, 2024)"
-      ],
-      "ecology": [
-        "Filtruj wodę 0.15-0.27 mg/L zamiast kupować butelkowaną. (EPA, 2020)",
-        "Kranówka jest bardziej eko niż plastik. (Water Authority, 2023)",
-        "Wybieraj filtry wielokrotnego użytku. (CDC, 2021)",
-        "Zmniejsz odpady dzięki wodzie z kranu. (EPA, 2020)",
-        "Filtracja wspiera ekologiczny styl życia. (PubMed, 2023)"
-      ],
-      "lifestyle": [
-        "Chlor 0.15-0.27 mg/L może psuć smak kawy; filtruj wodę. (WHO, 2022)",
-        "Używaj filtrowanej wody do gotowania. (EPA, 2020)",
-        "Napowietrzaj wodę, by zmniejszyć zapach chloru. (PubMed, 2023)",
-        "Smak napojów może być zmieniony; filtruj. (CDC, 2021)",
-        "Zainstaluj filtr dla lepszej jakości wody. (NTP, 2024)"
-      ],
-      "autoimmune_health": [
-        "Chlor 0.15-0.27 mg/L zwiększa DBP; wpływ niejasny. (PubMed, 2023)",
-        "Rozważ filtr przy chorobach autoimmunologicznych. (NTP, 2024)",
-        "Brak dowodów na szkodliwość, ale bądź ostrożny. (CDC, 2021)",
-        "Monitoruj zdrowie przy tym poziomie chloru. (WHO, 2022)",
-        "Filtracja może być dodatkową ochroną. (EPA, 2020)"
-      ]
-    },
-    "red": {
-      "health_physical": [
-        "Chlor ≥0.27 mg/L: wyraźny smak/zapach, filtruj wodę. (WHO, 2022)",
-        "Może podrażniać skórę i oczy; używaj filtrów. (EPA, 2020)",
-        "Zwiększone ryzyko DBP, np. raka pęcherza. (PubMed, 2023)",
-        "Zaleca się filtrację dla zdrowia. (CDC, 2021)",
-        "Skonsultuj się z lekarzem przy obawach. (NTP, 2024)"
-      ],
-      "gym": [
-        "Chlor ≥0.27 mg/L zniechęca do picia; filtruj wodę. (EPA, 2020)",
-        "Podrażnia skórę po wysiłku; spłukuj dokładnie. (PubMed, 2023)",
-        "Używaj filtrowanej wody do nawodnienia. (WHO, 2022)",
-        "Smak może utrudniać picie po treningu. (CDC, 2021)",
-        "Monitoruj reakcje skóry i dostosuj wodę. (EPA, 2020)"
-      ],
-      "health_mental": [
-        "Chlor ≥0.27 mg/L budzi obawy; filtruj wodę. (NTP, 2024)",
-        "Silny smak zniechęca do picia; użyj filtra. (WHO, 2022)",
-        "Filtracja wspiera nawodnienie i spokój. (PubMed, 2023)",
-        "Znajdź alternatywę dla lepszego samopoczucia. (CDC, 2021)",
-        "Wysoki chlor może wpływać na komfort. (EPA, 2020)"
-      ],
-      "beauty": [
-        "Chlor ≥0.27 mg/L wysusza skórę; użyj filtra prysznicowego. (EPA, 2020)",
-        "Stosuj intensywne nawilżacze po kąpieli. (PubMed, 2023)",
-        "Filtr zmniejsza wpływ na włosy i skórę. (CDC, 2021)",
-        "Wysoki chlor nasila egzemę; skonsultuj się z lekarzem. (WHO, 2022)",
-        "Unikaj długich kąpieli w takiej wodzie. (NTP, 2024)"
-      ],
-      "ecology": [
-        "Filtruj wodę ≥0.27 mg/L zamiast kupować butelkowaną. (EPA, 2020)",
-        "Wysoki chlor skłania do plastiku; wybierz filtry. (Water Authority, 2023)",
-        "Używaj filtrów wielokrotnego użytku. (CDC, 2021)",
-        "Zmniejsz odpady dzięki filtrowanej kranówce. (EPA, 2020)",
-        "Wspieraj lokalne działania dla lepszej wody. (PubMed, 2023)"
-      ],
-      "lifestyle": [
-        "Chlor ≥0.27 mg/L psuje smak potraw; filtruj wodę. (WHO, 2022)",
-        "Używaj filtrowanej wody do kawy i gotowania. (EPA, 2020)",
-        "Wysoki chlor zostawia osady; filtruj wodę. (PubMed, 2023)",
-        "Do lodu używaj wody filtrowanej, by uniknąć smaku. (CDC, 2021)",
-        "Napowietrzanie nie wystarczy; instaluj filtr. (NTP, 2024)"
-      ],
-      "autoimmune_health": [
-        "Chlor ≥0.27 mg/L zwiększa DBP; wpływ niejasny. (PubMed, 2023)",
-        "Rozważ filtrację przy chorobach autoimmunologicznych. (NTP, 2024)",
-        "Skonsultuj się z lekarzem w sprawie wody. (CDC, 2021)",
-        "Wysoki chlor może budzić obawy; filtruj. (WHO, 2022)",
-        "Filtr zmniejsza potencjalne ryzyko DBP. (EPA, 2020)"
-      ]
-    },
-    "missing_data": {
-      "health_physical": [
-        "Brak danych o chlorze; zbadaj wodę dla bezpieczeństwa. (WHO, 2022)"
-      ],
-      "gym": [
-        "Bez danych o chlorze, zbadaj wodę przed treningiem. (EPA, 2020)"
-      ],
-      "health_mental": [
-        "Brak danych o chlorze; zbadaj wodę dla spokoju. (NTP, 2024)"
-      ],
-      "beauty": [
-        "Chlor może wysuszać skórę; zbadaj wodę lub filtruj. (CDC, 2021)"
-      ],
-      "ecology": [
-        "Zbadaj wodę, by wspierać eko wybory bez plastiku. (EPA, 2020)"
-      ],
-      "lifestyle": [
-        "Brak danych o chlorze; zbadaj wodę dla jakości. (WHO, 2022)"
-      ],
-      "autoimmune_health": [
-        "Brak danych o chlorze; skonsultuj się z lekarzem. (PubMed, 2023)"
-      ]
-    }
-  },
-  "chlorki": {
-  "green": {
-    "health_physical": [
-      "Chlorki <125 mg/L są bezpieczne do picia. (WHO, 2003)"
-    ],
-    "gym": [
-      "Woda z chlorkami <125 mg/L jest neutralna do picia. (EPA, 2020)"
-    ],
-    "health_mental": [
-      "Chlorki <125 mg/L nie mają znanego wpływu na zdrowie. (PubMed, 2023)"
-    ],
-    "beauty": [
-      "Woda z chlorkami <125 mg/L jest neutralna dla skóry. (EPA, 2020)"
-    ],
-    "ecology": [
-      "Kranówka z chlorkami <125 mg/L zmniejsza zużycie plastiku. (EPA, 2020)"
-    ],
-    "lifestyle": [
-      "Woda z chlorkami <125 mg/L ma neutralny smak. (WHO, 2003)"
-    ],
-    "autoimmune_health": [
-      "Chlorki <125 mg/L są bezpieczne. (PubMed, 2023)"
-    ]
-  },
-  "orange": {
-    "health_physical": [
-      "Chlorki 125-250 mg/L mogą dawać słony smak; filtruj wodę. (EPA, 2020)"
-    ],
-    "gym": [
-      "Słony smak może zniechęcać do picia; filtruj wodę. (EPA, 2020)"
-    ],
-    "health_mental": [
-      "Słony smak może wpływać na komfort picia. (EPA, 2020)"
-    ],
-    "beauty": [
-      "Chlorki 125-250 mg/L nie wpływają na skórę ani włosy. (EPA, 2020)"
-    ],
-    "ecology": [
-      "Kranówka z chlorkami 125-250 mg/L zmniejsza plastik. (EPA, 2020)"
-    ],
-    "lifestyle": [
-      "Chlorki 125-250 mg/L mogą psuć smak kawy; filtruj wodę. (EPA, 2020)"
-    ],
-    "autoimmune_health": [
-      "Brak dowodów na wpływ chlorków 125-250 mg/L na autoimmunologię. (PubMed, 2023)"
-    ]
-  },
-  "no_data": {
-    "health_physical": [
-      "Brak danych o chlorkach; zbadaj wodę, by wykluczyć słony smak. (EPA, 2020)"
-    ],
-    "gym": [
-      "Bez danych o chlorkach, filtruj wodę dla smaku. (PubMed, 2023)"
-    ],
-    "health_mental": [
-      "Brak danych o chlorkach; zbadaj wodę dla spokoju. (CDC, 2021)"
-    ],
-    "beauty": [
-      "Brak danych o chlorkach; filtruj wodę dla pewności. (EPA, 2020)"
-    ],
-    "ecology": [
-      "Zbadaj wodę, by wspierać eko wybory. (EPA, 2020)"
-    ],
-    "lifestyle": [
-      "Brak danych o chlorkach; zbadaj wodę dla jakości. (WHO, 2003)"
-    ],
-    "autoimmune_health": [
-      "Brak danych o chlorkach; skonsultuj się z lekarzem. (PubMed, 2023)"
-    ]
-  }
-},
-  "siarczany": {
-  "green": {
-    "health_physical": [
-      "Siarczany <125 mg/L są bezpieczne do picia. (WHO, 2004)"
-    ],
-    "gym": [
-      "Woda z siarczanami <125 mg/L jest neutralna do picia. (EPA, 2020)"
-    ],
-    "health_mental": [
-      "Siarczany <125 mg/L nie mają znanego wpływu na zdrowie. (PubMed, 2023)"
-    ],
-    "beauty": [
-      "Woda z siarczanami <125 mg/L jest neutralna dla skóry. (EPA, 2020)"
-    ],
-    "ecology": [
-      "Kranówka z siarczanami <125 mg/L zmniejsza zużycie plastiku. (EPA, 2020)"
-    ],
-    "lifestyle": [
-      "Woda z siarczanami <125 mg/L ma neutralny smak. (WHO, 2004)"
-    ],
-    "autoimmune_health": [
-      "Siarczany <125 mg/L są bezpieczne. (PubMed, 2023)"
-    ]
-  },
-  "orange": {
-    "health_physical": [
-      "Siarczany 125-250 mg/L mogą dawać gorzki smak; filtruj wodę. (EPA, 2020)",
-      "Osoby wrażliwe mogą doświadczać łagodnych efektów przeczyszczających. (WHO, 2004)",
-      "Monitoruj spożycie wody z siarczanami 125-250 mg/L. (MN Dept. of Health, 2024)",
-      "Wysokie siarczany mogą wpływać na trawienie; pij ostrożnie. (CDC, 1999)",
-      "Zaleca się używanie filtrowanej wody. (PubMed, 2023)"
-    ],
-    "gym": [
-      "Gorzki smak wody z siarczanami 125-250 mg/L może zniechęcać do picia; filtruj wodę. (EPA, 2020)",
-      "Efekt przeczyszczający może prowadzić do dehydratacji; bądź ostrożny. (WHO, 2004)",
-      "Zaleca się picie wody z niższymi siarczanami. (PubMed, 2023)",
-      "Monitoruj nawodnienie. (CDC, 1999)",
-      "Rozważ alternatywne źródła wody. (EPA, 2020)"
-    ],
-    "health_mental": [
-      "Obawy o siarczany mogą powodować stres; filtruj wodę. (WHO, 2004)",
-      "Wiedza o poziomie siarczanów pomoże w podejmowaniu decyzji. (EPA, 2020)",
-      "Czysta woda to mniejszy stres. (PubMed, 2023)",
-      "Pijąc filtrowaną wodę, możesz czuć się pewniej. (CDC, 1999)",
-      "Zadbaj o jakość wody. (MN Dept. of Health, 2024)"
-    ],
-    "beauty": [
-      "Woda z siarczanami 125-250 mg/L może mieć gorzki smak, ale nie wpływa na skórę. (EPA, 2020)",
-      "Myj twarz kranówką, ale filtruj do picia. (WHO, 2004)",
-      "Siarczany do 250 mg/L nie wpływają na cerę. (PubMed, 2023)",
-      "Używaj kranówki do mycia. (CDC, 1999)",
-      "Wysokie siarczany nie wpływają na włosy. (EPA, 2020)"
-    ],
-    "ecology": [
-      "Wybieraj kranówkę, ale filtruj przy siarczanach 125-250 mg/L. (WHO, 2004)",
-      "Filtr to eko-ruch – mniej plastiku. (EPA, 2020)",
-      "Pijąc kranówkę z filtrem, chronisz planetę. (PubMed, 2023)",
-      "Zmniejsz ślad węglowy, używając filtra. (CDC, 1999)",
-      "Siarczany nie zanieczyszczają środowiska. (MN Dept. of Health, 2024)"
-    ],
-    "lifestyle": [
-      "Siarczany 125-250 mg/L psują smak kawy; filtruj wodę. (EPA, 2020)",
-      "Gotuj z filtrowaną wodą. (WHO, 2004)",
-      "Wysokie siarczany mogą korodować urządzenia. (Lenntech, 2023)",
-      "Monitoruj stan rur. (PubMed, 2023)",
-      "Używaj filtra, aby uniknąć osadów. (CDC, 1999)"
-    ],
-    "autoimmune_health": [
-      "Brak dowodów na wpływ siarczanów 125-250 mg/L na autoimmunologię. (WHO, 2004)",
-      "Osoby z autoimmunizmem mogą pić wodę bez obaw. (PubMed, 2023)",
-      "W razie wątpliwości, skonsultuj się z lekarzem. (EPA, 2020)",
-      "Używaj filtra, jeśli preferujesz. (MN Dept. of Health, 2024)",
-      "Badania nie wykazują wpływu na stany zapalne. (CDC, 1999)"
-    ]
-  },
-  "no_data": {
-    "health_physical": [
-      "Brak danych o siarczanach; zbadaj wodę, by wykluczyć gorzki smak. (WHO, 2004)"
-    ],
-    "gym": [
-      "Bez danych o siarczanach, filtruj wodę dla smaku. (EPA, 2020)"
-    ],
-    "health_mental": [
-      "Brak danych o siarczanach; zbadaj wodę dla spokoju. (PubMed, 2023)"
-    ],
-    "beauty": [
-      "Brak danych o siarczanach; filtruj wodę dla pewności. (EPA, 2020)"
-    ],
-    "ecology": [
-      "Zbadaj wodę, by wspierać eko wybory. (WHO, 2004)"
-    ],
-    "lifestyle": [
-      "Brak danych o siarczanach; zbadaj wodę dla jakości. (Lenntech, 2023)"
-    ],
-    "autoimmune_health": [
-      "Brak danych o siarczanach; skonsultuj się z lekarzem. (PubMed, 2023)"
-    ]
-  }
-},
-  "barwa": {
-    "green": {
-      "health_physical": [
-        "Barwa <7.5 mg Pt/L jest bezpieczna do picia. (WHO 2022)",
-        "Niska barwa oznacza brak nadmiaru organiki. (EPA 2020)"
-      ],
-      "gym": [
-        "Woda o barwie <7.5 mg Pt/L dobra do nawodnienia. (WHO 2022)",
-        "Niska barwa zapewnia jakość wody w sporcie. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Barwa <7.5 mg Pt/L jest estetycznie OK. (WHO 2022)",
-        "Czysta woda wspiera nawodnienie i komfort. (EPA 2020)"
-      ],
-      "beauty": [
-        "Woda o niskiej barwie neutralna dla skóry. (EPA 2020)",
-        "Niska barwa zapobiega osadom na włosach. (PubMed 2023)"
-      ],
-      "ecology": [
-        "Kranówka zmniejsza zużycie plastiku. (WHO 2022)",
-        "Picie kranówki o niskiej barwie wspiera eko. (EPA 2020)"
-      ],
-      "lifestyle": [
-        "Niska barwa nie zmienia smaku potraw. (EPA 2020)",
-        "Czysta woda dobra do gotowania. (WHO 2022)"
-      ],
-      "autoimmune_health": [
-        "Barwa <7.5 mg Pt/L bezpieczna dla autoimmunologii. (PubMed 2023)",
-        "Niska barwa nie wpływa na zdrowie. (WHO 2022)"
-      ]
-    },
-    "orange": {
-      "health_physical": [
-        "Barwa 7.5-15 mg Pt/L może mieć organikę. Filtruj. (EPA 2020)",
-        "Podwyższona barwa zmienia smak, ale jest OK. (WHO 2022)"
-      ],
-      "gym": [
-        "Wysoka barwa może zniechęcać; filtruj wodę. (WHO 2022)",
-        "Filtruj dla lepszego nawodnienia w sporcie. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Wygląd wody wpływa na komfort; filtruj. (EPA 2020)",
-        "Czysta woda wspiera koncentrację. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Podwyższona barwa może dawać osady; filtruj. (EPA 2020)",
-        "Czysta woda lepsza dla skóry i włosów. (PubMed 2023)"
-      ],
-      "ecology": [
-        "Kranówka zmniejsza plastik mimo barwy. (WHO 2022)",
-        "Filtruj, by wspierać zrównoważony rozwój. (EPA 2020)"
-      ],
-      "lifestyle": [
-        "Wysoka barwa zmienia smak potraw; filtruj. (EPA 2020)",
-        "Czysta woda lepsza do gotowania. (WHO 2022)"
-      ],
-      "autoimmune_health": [
-        "Barwa 7.5-15 mg Pt/L nie szkodzi; filtruj dla pewności. (PubMed 2023)",
-        "Upewnij się, że woda spełnia normy. (WHO 2022)"
-      ]
-    },
-    "no_data": {
-      "health_physical": [
-        "Bez danych o barwie zbadaj wodę dla pewności. (WHO 2022)"
-      ],
-      "gym": [
-        "Używaj czystej wody w sporcie; filtruj, jeśli niepewna. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Sprawdź klarowność wody dla komfortu picia. (EPA 2020)"
-      ],
-      "beauty": [
-        "Do pielęgnacji filtruj wodę, jeśli brak danych. (WHO 2022)"
-      ],
-      "ecology": [
-        "Kranówka eko, ale sprawdź jej jakość. (EPA 2020)"
-      ],
-      "lifestyle": [
-        "Do gotowania zbadaj wodę, jeśli brak danych. (PubMed 2023)"
-      ],
-      "autoimmune_health": [
-        "Bez danych o barwie filtruj lub sprawdź u władz. (WHO 2022)"
-      ]
-    }
-  },
-  
-  "magnez": {
-    "green": {
-      "health_physical": [
-        "Magnez <25 mg/L bezpieczny dla zdrowia. (WHO 2009)",
-        "Woda z niskim magnezem ma neutralny smak. (EPA 2020)"
-      ],
-      "gym": [
-        "Woda z magnezem <25 mg/L dobra do picia. (NIH 2020)",
-        "Niski magnez nie wpływa na nawodnienie. (CDC 2020)"
-      ],
-      "health_mental": [
-        "Magnez <25 mg/L neutralny dla psychiki. (PubMed 2023)",
-        "Czysta woda wspiera samopoczucie. (WHO 2009)"
-      ],
-      "beauty": [
-        "Niski magnez neutralny dla skóry. (Dermatology Journal 2020)",
-        "Kranówka dobra do mycia. (EPA 2020)"
-      ],
-      "ecology": [
-        "Kranówka zmniejsza zużycie plastiku. (EPA 2020)",
-        "Woda z kranu to eko wybór. (UN 2020)"
-      ],
-      "lifestyle": [
-        "Niski magnez nie zmienia smaku. (EPA 2020)",
-        "Kranówka idealna do codziennego użytku. (WHO 2009)"
-      ],
-      "autoimmune_health": [
-        "Magnez <25 mg/L bezpieczny dla autoimmunologii. (PubMed 2023)",
-        "Nawodnienie kranówką wspiera zdrowie. (NIH 2020)"
-      ]
-    },
-    "orange": {
-      "health_physical": [
-        "Magnez 25-50 mg/L może być gorzki. (EPA 2020)",
-        "Bezpieczny, ale rozważ filtrację. (Consumer Reports 2020)"
-      ],
-      "gym": [
-        "Woda 25-50 mg/L nawadnia, ale może być gorzka. (NIH 2020)",
-        "Filtruj, jeśli smak przeszkadza w sporcie. (Sports Medicine 2020)"
-      ],
-      "health_mental": [
-        "Gorzki smak (25-50 mg/L) nie szkodzi psychice. (PubMed 2023)",
-        "Pij dużo wody dla nawodnienia. (WHO 2009)"
-      ],
-      "beauty": [
-        "Magnez 25-50 mg/L bezpieczny dla skóry. (Dermatology Journal 2020)",
-        "Filtruj, jeśli smak wpływa na pielęgnację. (EPA 2020)"
-      ],
-      "ecology": [
-        "Kranówka z magnezem 25-50 mg/L wciąż eko. (EPA 2020)",
-        "Filtruj, by unikać plastiku. (Consumer Reports 2020)"
-      ],
-      "lifestyle": [
-        "Magnez 25-50 mg/L może być gorzki; filtruj. (EPA 2020)",
-        "Dodaj cytrynę dla lepszego smaku. (Culinary Institute 2020)"
-      ],
-      "autoimmune_health": [
-        "Magnez 25-50 mg/L bezpieczny; filtruj dla pewności. (PubMed 2023)",
-        "Konsultuj z lekarzem w razie obaw. (NIH 2020)"
-      ]
-    },
-    "no_data": {
-      "health_physical": [
-        "Bez danych o magnezie zbadaj wodę. (WHO 2009)"
-      ],
-      "gym": [
-        "Zbadaj magnez dla pewności w sporcie. (NIH 2020)"
-      ],
-      "health_mental": [
-        "Jakość wody ważna; zbadaj magnez. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Zbadaj magnez dla pielęgnacji skóry. (Dermatology Journal 2020)"
-      ],
-      "ecology": [
-        "Kranówka eko; zbadaj jej jakość. (EPA 2020)"
-      ],
-      "lifestyle": [
-        "Zbadaj wodę do gotowania, jeśli brak danych. (EPA 2020)"
-      ],
-      "autoimmune_health": [
-        "Znajomość magnezu ważna; zbadaj wodę. (PubMed 2023)"
-      ]
-  }
-},
-  "potas": {
-    "green": {
-      "health_physical": [
-        "Potas <8 mg/L bezpieczny do picia. (WHO 2009)",
-        "Woda z niskim potasem ma neutralny smak. (EPA 2020)"
-      ],
-      "gym": [
-        "Woda z potasem <8 mg/L dobra do nawodnienia. (WHO 2009)",
-        "Niski potas nie wpływa na wydajność. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Czysta woda wspiera samopoczucie. (WHO 2009)",
-        "Potas <8 mg/L neutralny dla nastroju. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Woda z potasem <8 mg/L dobra do mycia. (EPA 2020)",
-        "Niski potas neutralny dla skóry. (Dermatology Journal 2020)"
-      ],
-      "ecology": [
-        "Kranówka zmniejsza zużycie plastiku. (EPA 2020)",
-        "Wybór kranówki wspiera planetę. (UN 2020)"
-      ],
-      "lifestyle": [
-        "Potas <8 mg/L nie zmienia smaku. (EPA 2020)",
-        "Woda idealna do gotowania. (WHO 2009)"
-      ],
-      "autoimmune_health": [
-        "Potas <8 mg/L bezpieczny dla autoimmunologii. (WHO 2009)",
-        "Brak wpływu na zdrowie. (PubMed 2023)"
-      ]
-    },
-    "orange": {
-      "health_physical": [
-        "Potas 8-12 mg/L bezpieczny do picia. (WHO 2009)",
-        "Może lekko zmieniać smak wody. (PMC 2020)"
-      ],
-      "gym": [
-        "Woda 8-12 mg/L dobra do nawodnienia. (WHO 2009)",
-        "Brak wpływu na wydajność w sporcie. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Nawodnienie wspiera samopoczucie. (WHO 2009)",
-        "Lekki smak nie szkodzi psychice. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Woda 8-12 mg/L bezpieczna dla skóry. (EPA 2020)",
-        "Lekki smak nie wpływa na mycie. (Dermatology Journal 2020)"
-      ],
-      "ecology": [
-        "Kranówka z potasem 8-12 mg/L wciąż eko. (EPA 2020)",
-        "Pij kranówkę, by zmniejszyć plastik. (UN 2020)"
-      ],
-      "lifestyle": [
-        "Woda 8-12 mg/L smaczna do picia. (PMC 2020)",
-        "Dobra do gotowania mimo lekkiego smaku. (WHO 2009)"
-      ],
-      "autoimmune_health": [
-        "Potas 8-12 mg/L bezpieczny; monitoruj dietę. (WHO 2009)",
-        "Brak wpływu na autoimmunologię. (PubMed 2023)"
-      ]
-    },
-    "no_data": {
-      "health_physical": [
-        "Bez danych o potasie zbadaj wodę. (WHO 2009)"
-      ],
-      "gym": [
-        "Woda bez danych dobra do nawodnienia. (WHO 2009)"
-      ],
-      "health_mental": [
-        "Pij wodę mimo braku danych o potasie. (WHO 2009)"
-      ],
-      "beauty": [
-        "Woda bez danych bezpieczna do mycia. (EPA 2020)"
-      ],
-      "ecology": [
-        "Kranówka eko mimo braku danych. (EPA 2020)"
-      ],
-      "lifestyle": [
-        "Woda bez danych może być neutralna. (PMC 2020)"
-      ],
-      "autoimmune_health": [
-        "Bez danych o potasie monitoruj dietę. (WHO 2009)"
-      ]
-    }
-  },
-  "olow": {
-    "green": {
-      "health_physical": [
-        "Ołów <5 µg/L bezpieczny do picia. (WHO 2024)",
-        "Niski ołów nie szkodzi zdrowiu. (EPA 2025)"
-      ],
-      "gym": [
-        "Woda z ołowiem <5 µg/L dobra do nawodnienia. (WHO 2024)",
-        "Niski ołów nie wpływa na wydajność. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Ołów <5 µg/L neutralny dla psychiki. (PMC 2016)",
-        "Czysta woda wspiera samopoczucie. (WHO 2024)"
-      ],
-      "beauty": [
-        "Woda z ołowiem <5 µg/L bezpieczna dla skóry. (CDC 2019)",
-        "Niski ołów neutralny dla urody. (EPA 2025)"
-      ],
-      "ecology": [
-        "Kranówka z niskim ołowiem zmniejsza plastik. (EPA 2025)",
-        "Wybór kranówki wspiera ekologię. (WHO 2024)"
-      ],
-      "lifestyle": [
-        "Woda z ołowiem <5 µg/L idealna do gotowania. (WHO 2024)",
-        "Niski ołów zapewnia neutralny smak. (EPA 2025)"
-      ],
-      "autoimmune_health": [
-        "Ołów <5 µg/L bezpieczny dla autoimmunologii. (PubMed 2009)",
-        "Niski ołów nie wpływa na odporność. (ScienceDirect 2017)"
-      ]
-    },
-    "orange": {
-      "health_physical": [
-        "Ołów 5-10 µg/L: filtruj dla dzieci. (WHO 2024)",
-        "Podwyższony ołów wymaga ostrożności; filtruj. (EPA 2025)",
-        "Ołów może wpływać na mózg dzieci; używaj filtra. (CDC 2019)",
-        "Kobiety w ciąży: filtruj wodę. (NHS 2024)",
-        "Sprawdzaj ołów regularnie; filtruj. (ATSDR)"
-      ],
-      "gym": [
-        "Ołów 5-10 µg/L może osłabiać mięśnie; filtruj. (ATSDR)",
-        "Podwyższony ołów może męczyć; filtruj. (PMC 2016)",
-        "Sportowcy: filtruj wodę z ołowiem. (EPA 2025)",
-        "Ołów może powodować zmęczenie; filtruj. (WHO 2024)",
-        "Pij filtrowaną wodę dla zdrowia w sporcie. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Ołów 5-10 µg/L może drażnić; filtruj wodę. (PMC 2016)",
-        "Podwyższony ołów szkodzi fokusowi; filtruj. (ATSDR)",
-        "Ołów może zaburzać nastrój; używaj filtra. (WHO 2024)",
-        "Ołów groźny dla mózgu; filtruj. (EPA 2025)",
-        "Filtruj wodę dla zdrowia psychicznego. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Mycie wodą z ołowiem OK, ale filtruj do picia. (CDC 2019)",
-        "Ołów 5-10 µg/L szkodzi zdrowiu; filtruj. (WHO 2024)",
-        "Podwyższony ołów wymaga ostrożności; filtruj. (EPA 2025)",
-        "Ołów groźny dla zdrowia; używaj filtra. (ATSDR)",
-        "Pij filtrowaną wodę dla zdrowia i urody. (PubMed 2023)"
-      ],
-      "ecology": [
-        "Filtruj wodę z ołowiem zamiast butelek. (EPA 2025)",
-        "Ołów 5-10 µg/L wymaga filtra; eko wybór. (WHO 2024)",
-        "Filtry redukują ołów i plastik. (EPA 2025)",
-        "Używaj filtra dla dobra planety. (WHO 2024)",
-        "Filtracja wspiera zrównoważony rozwój. (PubMed 2023)"
-      ],
-      "lifestyle": [
-        "Ołów 5-10 µg/L? Filtruj wodę w domu. (WHO 2024)",
-        "Gotuj i pij wodę bez ołowiu; filtruj. (EPA 2025)",
-        "Podwyższony ołów wymaga filtra. (CDC 2019)",
-        "Ołów groźny dla zdrowia; używaj filtra. (ATSDR)",
-        "Pij wodę bez ołowiu dla zdrowia. (PubMed 2023)"
-      ],
-      "autoimmune_health": [
-        "Ołów 5-10 µg/L może nasilać autoimmunologię; filtruj. (PubMed 2009)",
-        "Podwyższony ołów szkodzi odporności; filtruj. (ScienceDirect 2017)",
-        "Ołów groźny dla odporności; filtruj. (PubMed 2006)",
-        "Chroń zdrowie: pij wodę bez ołowiu. (ResearchGate 2022)",
-        "Filtruj wodę, by minimalizować ołów. (EPA 2025)"
-      ]
-    },
-    "red": {
-      "health_physical": [
-        "Ołów ≥10 µg/L groźny dla dzieci; pij butelkowaną. (EPA 2025)",
-        "Wysoki ołów szkodzi nerwom; unikaj kranówki. (WHO 2024)",
-        "Nie pij wody z ołowiem ≥10 µg/L. (CDC 2019)",
-        "Kobiety w ciąży: używaj butelkowanej. (NHS 2024)",
-        "Zgłoś wysoki ołów dostawcy wody. (ATSDR)"
-      ],
-      "gym": [
-        "Ołów ≥10 µg/L osłabia mięśnie; pij butelkowaną. (ATSDR)",
-        "Wysoki ołów szkodzi sportowcom; unikaj. (PMC 2016)",
-        "Unikaj wody z ołowiem ≥10 µg/L w sporcie. (EPA 2025)",
-        "Ołów powoduje zmęczenie; pij bezpieczną wodę. (WHO 2024)",
-        "Pij butelkowaną dla zdrowia w treningu. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Ołów ≥10 µg/L szkodzi psychice; pij butelkowaną. (PMC 2016)",
-        "Wysoki ołów zaburza fokus; unikaj kranówki. (ATSDR)",
-        "Unikaj ołowiu ≥10 µg/L dla zdrowia mózgu. (WHO 2024)",
-        "Ołów groźny neurologicznie; pij bezpieczną wodę. (EPA 2025)",
-        "Chroń umysł: unikaj wysokiego ołowiu. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Mycie OK, ale pij butelkowaną przy ołowiu ≥10 µg/L. (CDC 2019)",
-        "Wysoki ołów szkodzi zdrowiu; unikaj kranówki. (WHO 2024)",
-        "Ołów ≥10 µg/L groźny; używaj butelkowanej. (EPA 2025)",
-        "Nie pij wody z wysokim ołowiem. (ATSDR)",
-        "Pij bezpieczną wodę dla zdrowia i urody. (PubMed 2023)"
-      ],
-      "ecology": [
-        "Ołów ≥10 µg/L? Używaj butelkowanej z recyklingu. (EPA 2025)",
-        "Wysoki ołów wymaga filtrów lub butelek eko. (WHO 2024)",
-        "Filtry zamiast butelek chronią planetę. (EPA 2025)",
-        "Wybieraj skuteczne filtry na ołów. (WHO 2024)",
-        "Balansuj zdrowie i ekologię z bezpieczną wodą. (PubMed 2023)"
-      ],
-      "lifestyle": [
-        "Ołów ≥10 µg/L to ryzyko; pij butelkowaną. (WHO 2024)",
-        "Wysoki ołów wymaga zmiany źródła wody. (EPA 2025)",
-        "Unikaj ołowiu ≥10 µg/L w gotowaniu. (CDC 2019)",
-        "Wybieraj wodę bez ołowiu dla zdrowia. (ATSDR)",
-        "Działaj szybko przy wysokim ołowiu. (PubMed 2023)"
-      ],
-      "autoimmune_health": [
-        "Ołów ≥10 µg/L nasila autoimmunologię; pij butelkowaną. (PubMed 2009)",
-        "Wysoki ołów groźny dla odporności; unikaj. (ScienceDirect 2017)",
-        "Ołów ≥10 µg/L szkodzi zdrowiu; używaj bezpiecznej wody. (PubMed 2006)",
-        "Chroń odporność: unikaj wysokiego ołowiu. (ResearchGate 2022)",
-        "Przy wysokim ołowiu pij butelkowaną. (EPA 2025)"
-      ]
-    },
-    "no_data": {
-      "health_physical": [
-        "Bez danych o ołowiu zbadaj wodę dla dzieci. (EPA 2025)"
-      ],
-      "gym": [
-        "Zbadaj wodę na ołów dla bezpieczeństwa w sporcie. (ATSDR)"
-      ],
-      "health_mental": [
-        "Ołów może szkodzić psychice; zbadaj wodę. (PMC 2016)"
-      ],
-      "beauty": [
-        "Zbadaj wodę do picia na ołów dla zdrowia. (CDC 2019)"
-      ],
-      "ecology": [
-        "Filtruj lub zbadaj wodę dla ekologii. (EPA 2025)"
-      ],
-      "lifestyle": [
-        "Zbadaj wodę na ołów dla zdrowego stylu życia. (WHO 2024)"
-      ],
-      "autoimmune_health": [
-        "Ołów szkodzi odporności; zbadaj wodę. (PubMed 2009)"
-      ]
-    }
-  },
-  "rtec": {
-    "green": {
-      "health_physical": [
-        "Rtęć <0,5 µg/L bezpieczna do picia. (WHO 2022)",
-        "Niska rtęć nie szkodzi zdrowiu. (EPAMeyer 2020)"
-      ],
-      "gym": [
-        "Woda z rtęcią <0,5 µg/L dobra w sporcie. (EPA 2020)",
-        "Brak wpływu rtęci na wydajność. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Rtęć <0,5 µg/L neutralna dla psychiki. (WHO 2022)",
-        "Czysta woda wspiera samopoczucie. (EPA 2020)"
-      ],
-      "beauty": [
-        "Woda z rtęcią <0,5 µg/L OK dla skóry. (EPA 2020)",
-        "Niska rtęć neutralna dla urody. (PubMed 2023)"
-      ],
-      "ecology": [
-        "Kranówka z niską rtęcią zmniejsza plastik. (EPA 2020)",
-        "Wybór kranówki wspiera ekologię. (WHO 2022)"
-      ],
-      "lifestyle": [
-        "Rtęć <0,5 µg/L idealna do użytku. (WHO 2022)",
-        "Woda ma neutralny smak. (EPA 2020)"
-      ],
-      "autoimmune_health": [
-        "Rtęć <0,5 µg/L bezpieczna dla autoimmunologii. (PubMed 2023)",
-        "Brak wpływu na odporność. (WHO 2022)"
-      ]
-    },
-    "orange": {
-      "health_physical": [
-        "Rtęć 0,5-1 µg/L: filtruj dla dzieci. (WHO 2022)",
-        "Podwyższona rtęć wymaga ostrożności; filtruj. (EPA 2020)",
-        "Rtęć toksyczna; używaj filtrów. (PubMed 2023)",
-        "Kobiety w ciąży: filtruj wodę. (WHO 2022)",
-        "Sprawdzaj rtęć regularnie; filtruj. (EPA 2020)"
-      ],
-      "gym": [
-        "Rtęć 0,5-1 µg/L: filtruj w sporcie. (EPA 2020)",
-        "Rtęć może szkodzić zdrowiu; filtruj. (PubMed 2023)",
-        "Bezpieczna woda w treningu: filtruj. (WHO 2022)",
-        "Minimalizuj toksyny; używaj filtrów. (EPA 2020)",
-        "Rozważ butelkowaną przy rtęci blisko 1 µg/L. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Rtęć może wpływać na mózg; filtruj. (WHO 2022)",
-        "Ekspozycja grozi zaburzeniami; filtruj. (PubMed 2023)",
-        "Chroń psychikę: unikaj rtęci 0,5-1 µg/L. (EPA 2020)",
-        "Używaj wody z rtęcią <0,5 µg/L. (WHO 2022)",
-        "Konsultuj obawy z lekarzem. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Rtęć 0,5-1 µg/L: filtruj do pielęgnacji. (EPA 2020)",
-        "Toksyny mogą szkodzić; filtruj wodę. (WHO 2022)",
-        "Dla skóry używaj filtrowanej wody. (PubMed 2023)",
-        "Unikaj toksyn w urodzie; filtruj. (EPA 2020)",
-        "Sprawdź wodę przy problemach ze skórą. (WHO 2022)"
-      ],
-      "ecology": [
-        "Filtracja zmniejsza plastik i ryzyko. (EPA 2020)",
-        "Kranówka z filtrem eko vs butelki. (WHO 2022)",
-        "Wspieraj eko: filtruj wodę. (PubMed 2023)",
-        "Filtracja przy rtęci to eko wybór. (EPA 2020)",
-        "Chroń planetę filtrowaną kranówką. (WHO 2022)"
-      ],
-      "lifestyle": [
-        "Rtęć może psuć smak; filtruj wodę. (PubMed 2023)",
-        "Filtruj wodę z rtęcią do użytku. (EPA 2020)",
-        "Lepszy smak po filtracji rtęci. (WHO 2022)",
-        "Bezpieczny dom: filtruj rtęć. (EPA 2020)",
-        "Minimalizuj rtęć dla zdrowia. (PubMed 2023)"
-      ],
-      "autoimmune_health": [
-        "Rtęć może nasilać autoimmunologię; filtruj. (PubMed 2023)",
-        "Unikaj rtęci przy autoimmunologii; filtruj. (ScienceDirect 2023)",
-        "Konsultuj wodę z lekarzem. (WHO 2022)",
-        "Rtęć 0,5-1 µg/L może szkodzić; filtruj. (EPA 2020)",
-        "Chroń zdrowie: pij wodę bez rtęci. (PubMed 2023)"
-      ]
-    },
-    "red": {
-      "health_physical": [
-        "Rtęć ≥1 µg/L groźna; pij butelkowaną. (WHO 2022)",
-        "Wysoka rtęć szkodzi dzieciom; unikaj. (EPA 2020)",
-        "Nie pij wody z rtęcią ≥1 µg/L. (PubMed 2023)",
-        "Zgłoś problem władzom; zmień źródło. (WHO 2022)",
-        "Rtęć powoduje poważne szkody. (EPA 2020)"
-      ],
-      "gym": [
-        "Rtęć ≥1 µg/L groźna w sporcie; pij butelkowaną. (EPA 2020)",
-        "Wysoka rtęć szkodzi zdrowiu; unikaj. (PubMed 2023)",
-        "Unikaj tej wody w treningu. (WHO 2022)",
-        "Chroń zdrowie: pij bezpieczną wodę. (EPA 2020)",
-        "Używaj wody bez rtęci w sporcie. (PubMed 2023)"
-      ],
-      "health_mental": [
-        "Wysoka rtęć szkodzi mózgowi; pij butelkowaną. (WHO 2022)",
-        "Rtęć neurotoksyczna; unikaj kranówki. (PubMed 2023)",
-        "Chroń psychikę: unikaj rtęci ≥1 µg/L. (EPA 2020)",
-        "Używaj czystej wody dla zdrowia mózgu. (WHO 2022)",
-        "Konsultuj rtęć z lekarzem. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Rtęć ≥1 µg/L groźna; pij butelkowaną. (EPA 2020)",
-        "Wysoka rtęć szkodzi zdrowiu; unikaj. (WHO 2022)",
-        "Unikaj toksyn w pielęgnacji; zmień wodę. (PubMed 2023)",
-        "Dla skóry pij wodę bez rtęci. (EPA 2020)",
-        "Sprawdź wodę przy problemach z urodą. (WHO 2022)"
-      ],
-      "ecology": [
-        "Rtęć ≥1 µg/L wymaga butelkowanej eko. (EPA 2020)",
-        "Filtruj wodę, by chronić planetę. (WHO 2022)",
-        "Zmniejsz plastik: filtruj, jeśli bezpieczna. (PubMed 2023)",
-        "Wspieraj eko: zadbaj o jakość wody. (EPA 2020)",
-        "Używaj filtrowanej kranówki, jeśli OK. (WHO 2022)"
-      ],
-      "lifestyle": [
-        "Rtęć ≥1 µg/L psuje smak; pij butelkowaną. (PubMed 2023)",
-        "Wysoka rtęć wymaga zmiany źródła wody. (EPA 2020)",
-        "Używaj bezpiecznej wody w domu. (WHO 2022)",
-        "Działaj ws. jakości wody przy rtęci. (EPA 2020)",
-        "Unikaj rtęci dla zdrowego życia. (PubMed 2023)"
-      ],
-      "autoimmune_health": [
-        "Rtęć ≥1 µg/L nasila autoimmunologię; pij butelkowaną. (PubMed 2023)",
-        "Wysoka rtęć groźna dla odporności; unikaj. (ScienceDirect 2023)",
-        "Konsultuj wodę z lekarzem przy rtęci. (WHO 2022)",
-        "Rtęć ≥1 µg/L szkodzi objawom; zmień źródło. (EPA 2020)",
-        "Chroń odporność: unikaj rtęci. (PubMed 2023)"
-      ]
-    },
-    "no_data": {
-      "health_physical": [
-        "Bez danych o rtęci zbadaj wodę dla dzieci. (WHO 2022)"
-      ],
-      "gym": [
-        "Zbadaj rtęć w wodzie do treningu. (EPA 2020)"
-      ],
-      "health_mental": [
-        "Rtęć może szkodzić psychice; zbadaj wodę. (PubMed 2023)"
-      ],
-      "beauty": [
-        "Zbadaj rtęć w wodzie do pielęgnacji. (EPA 2020)"
-      ],
-      "ecology": [
-        "Testuj wodę dla eko użycia kranówki. (EPA 2020)"
-      ],
-      "lifestyle": [
-        "Zbadaj rtęć dla bezpiecznego użytku. (WHO 2022)"
-      ],
-      "autoimmune_health": [
-        "Minimalizuj rtęć przy autoimmunologii; zbadaj. (PubMed 2023)"
-      ]
-    }
-  },
-  "mangan": {
-    "green": {
-      "health_physical": [
-        "Mangan <20 µg/L jest bezpieczny do picia. (Health Canada, 2019)"
-      ],
-      "gym": [
-        "Woda z manganem <20 µg/L jest neutralna do picia. (EPA, 2004)"
-      ],
-      "health_mental": [
-        "Mangan <20 µg/L nie ma znanego wpływu na zdrowie. (Bouchard et al., 2011)"
-      ],
-      "beauty": [
-        "Woda z manganem <20 µg/L jest neutralna dla skóry. (EPA, 2004)"
-      ],
-      "ecology": [
-        "Kranówka z manganem <20 µg/L zmniejsza zużycie plastiku. (EPA, 2020)"
-      ],
-      "lifestyle": [
-        "Woda z manganem <20 µg/L ma neutralny smak. (EPA, 2004)"
-      ],
-      "autoimmune_health": [
-        "Mangan <20 µg/L jest bezpieczny. (PMC, 2020)"
-      ]
-    },
-    "orange": {
-      "health_physical": [
-        "Mangan 20-50 µg/L może zmieniać smak wody. (EPA, 2004)",
-        "Dla niemowląt zaleca się mangan <100 µg/L. (MDH, 2024)",
-        "Rozważ filtrację dla lepszego smaku. (EPA, 2004)",
-        "Mangan 20-50 µg/L jest bezpieczny dla dorosłych. (Health Canada, 2019)",
-        "Sprawdzaj poziom manganu regularnie. (CDC, 2021)"
-      ],
-      "gym": [
-        "Woda z manganem 20-50 µg/L może mieć metaliczny posmak. (EPA, 2004)",
-        "Posmak może zniechęcać; rozważ filtrację. (Health Canada, 2019)",
-        "Mangan 20-50 µg/L nie wpływa na zdrowie. (MDH, 2024)",
-        "Używaj wody butelkowanej dla smaku. (EPA, 2004)",
-        "Sprawdź inne parametry wody. (CDC, 2021)"
-      ],
-      "health_mental": [
-        "Mangan 20-50 µg/L nie ma znanego wpływu na zdrowie psychiczne. (Bouchard et al., 2011)",
-        "Dla dzieci zaleca się monitorowanie spożycia. (MDH, 2024)",
-        "Woda z manganem 20-50 µg/L jest bezpieczna. (Health Canada, 2019)",
-        "Filtruj wodę dla smaku, nie zdrowia. (EPA, 2004)",
-        "Skonsultuj się z lekarzem przy obawach. (CDC, 2021)"
-      ],
-      "beauty": [
-        "Mangan 20-50 µg/L nie wpływa na skórę ani włosy. (EPA, 2004)",
-        "Osady manganu mogą gromadzić się w instalacjach. (EPA, 2004)",
-        "Filtruj wodę dla czystości. (Health Canada, 2019)",
-        "Sprawdź inne parametry dla pielęgnacji. (CDC, 2021)",
-        "Mangan 20-50 µg/L jest neutralny. (PubMed, 2023)"
-      ],
-      "ecology": [
-        "Kranówka z manganem 20-50 µg/L zmniejsza plastik. (EPA, 2020)",
-        "Filtracja jest bardziej eko niż butelki. (Water Authority, 2023)",
-        "Wybieraj filtry redukujące mangan. (CDC, 2021)",
-        "Minimalizuj odpady plastikowe. (EPA, 2020)",
-        "Filtracja wspiera środowisko. (PubMed, 2023)"
-      ],
-      "lifestyle": [
-        "Mangan 20-50 µg/L może psuć smak kawy. (EPA, 2004)",
-        "Filtruj wodę do gotowania dla smaku. (Health Canada, 2019)",
-        "Osady manganu mogą gromadzić się w czajniku. (EPA, 2004)",
-        "Czyść urządzenia regularnie. (CDC, 2021)",
-        "Zainstaluj filtr redukujący mangan. (MDH, 2024)"
-      ],
-      "autoimmune_health": [
-        "Brak dowodów na wpływ manganu 20-50 µg/L na autoimmunologię. (PMC, 2020)",
-        "Monitoruj spożycie przy chorobach. (PubMed, 2023)",
-        "Skonsultuj się z lekarzem w razie obaw. (CDC, 2021)",
-        "Używaj wody o znanym poziomie manganu. (Health Canada, 2019)",
-        "Filtracja może redukować mangan. (EPA, 2004)"
-      ]
-    },
-    "red": {
-      "health_physical": [
-        "Mangan >50 µg/L wymaga ostrożności; filtruj wodę. (MDH, 2024)"
-      ],
-      "gym": [
-        "Woda z manganem >50 µg/L ma nieprzyjemny smak; filtruj. (EPA, 2004)"
-      ],
-      "health_mental": [
-        "Mangan >50 µg/L może wpływać na dzieci; filtruj wodę. (Bouchard et al., 2011)"
-      ],
-      "beauty": [
-        "Mangan >50 µg/L może zostawiać osady w instalacjach; filtruj wodę. (EPA, 2004)"
-      ],
-      "ecology": [
-        "Filtracja wody z manganem >50 µg/L jest eko. (EPA, 2020)"
-      ],
-      "lifestyle": [
-        "Mangan >50 µg/L psuje smak; filtruj wodę. (EPA, 2004)"
-      ],
-      "autoimmune_health": [
-        "Mangan >50 µg/L: skonsultuj się z lekarzem. (PMC, 2020)"
-      ]
-    },
-    "no_data": {
-      "health_physical": [
-        "Brak danych o manganie. Może psuć smak; zbadaj wodę. (EPA, 2004)"
-      ],
-      "gym": [
-        "Brak danych o manganie. Może wpływać na smak; zbadaj wodę. (Health Canada, 2019)"
-      ],
-      "health_mental": [
-        "Brak danych o manganie. Może budzić obawy; zbadaj wodę. (CDC, 2021)"
-      ],
-      "beauty": [
-        "Brak danych o manganie. Może zostawiać osady; zbadaj wodę. (EPA, 2004)"
-      ],
-      "ecology": [
-        "Brak danych o manganie. Filtruj wodę dla eko-życia. (EPA, 2020)"
-      ],
-      "lifestyle": [
-        "Brak danych o manganie. Może psuć smak; zbadaj wodę. (EPA, 2004)"
-      ],
-      "autoimmune_health": [
-        "Brak danych o manganie. Skonsultuj się z lekarzem. (PMC, 2020)"
-      ]
+    "Sprzątanie": {
+      "ph": {
+        "orange": "pH {value} 🟠 (6.5–6.9 lub 8.6–9.5) zmniejsza skuteczność środków czyszczących.",
+        "red": "pH {value} 🔴 (<6.5 lub >9.5) podrażnia ręce i obniża czyszczenie."
+      },
+      "twardosc": {
+        "orange": "Twardość {value} mg/l 🟠 (150–219 mg/l) zmniejsza efektywność czyszczenia.",
+        "red": "Twardość {value} mg/l 🔴 (≥220 mg/l) powoduje osady na powierzchniach."
+      },
+      "azotany": {
+        "orange": "Azotany {value} mg/l 🟠 (10–19 mg/l) nie mają udokumentowanego wpływu na sprzątanie.",
+        "red": "Azotany {value} mg/l 🔴 (≥20 mg/l) mogą podrażniać ręce podczas sprzątania."
+      },
+      "zelazo": {
+        "orange": "Żelazo {value} mg/l 🟠 (0.1–0.19 mg/l) plami powierzchnie.",
+        "red": "Żelazo {value} mg/l 🔴 (≥0.2 mg/l) zostawia osady na powierzchniach."
+      },
+      "fluorki": {
+        "orange": "Fluorki {value} mg/l 🟠 (1.2–1.49 mg/l) nie mają udokumentowanego wpływu na sprzątanie.",
+        "red": "Fluorki {value} mg/l 🔴 (≥1.5 mg/l) podrażniają ręce podczas sprzątania."
+      },
+      "chlor": {
+        "orange": "Chlor {value} mg/l 🟠 (0.15–0.26 mg/l) zmienia zapach podczas sprzątania.",
+        "red": "Chlor {value} mg/l 🔴 (≥0.27 mg/l) podrażnia drogi oddechowe."
+      },
+      "mangan": {
+        "orange": "Mangan {value} µg/l 🟠 (20–49 µg/l) barwi powierzchnie.",
+        "red": "Mangan {value} µg/l 🔴 (≥50 µg/l) podrażnia ręce i barwi powierzchnie."
+      },
+      "chlorki": {
+        "orange": "Chlorki {value} mg/l 🟠 (125–249 mg/l) nie mają udokumentowanego wpływu na sprzątanie.",
+        "red": "Chlorki {value} mg/l 🔴 (≥250 mg/l) korozyjnie działają na powierzchnie."
+      },
+      "siarczany": {
+        "orange": "Siarczany {value} mg/l 🟠 (125–249 mg/l) wpływają na zapach.",
+        "red": "Siarczany {value} mg/l 🔴 (≥250 mg/l) korozyjnie działają na powierzchnie."
+      },
+      "barwa": {
+        "orange": "Barwa {value} 🟠 (7.5–14.9) plami powierzchnie.",
+        "red": "Barwa {value} 🔴 (≥15) zanieczyszcza wodę i plami powierzchnie."
+      },
+      "magnez": {
+        "orange": "Magnez {value} mg/l 🟠 (25–49 mg/l) zostawia osady na powierzchniach.",
+        "red": "Magnez {value} mg/l 🔴 (≥50 mg/l) korozyjnie działa na powierzchnie."
+      },
+      "potas": {
+        "orange": "Potas {value} mg/l 🟠 (6–11 mg/l) nie ma udokumentowanego wpływu na sprzątanie.",
+        "red": "Potas {value} mg/l 🔴 (≥12 mg/l) korozyjnie działa na powierzchnie."
+      },
+      "olow": {
+        "orange": "Ołów {value} µg/l 🟠 (5–9 µg/l) korozyjnie działa na powierzchnie.",
+        "red": "Ołów {value} µg/l 🔴 (≥10 µg/l) uszkadza powierzchnie i zwiększa ryzyko."
+      },
+      "rtec": {
+        "orange": "Rtęć {value} µg/l 🟠 (0.5–0.99 µg/l) korozyjnie działa na powierzchnie.",
+        "red": "Rtęć {value} µg/l 🔴 (≥1 µg/l) uszkadza powierzchnie i zwiększa ryzyko."
+      }
     }
   }
 }

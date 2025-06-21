@@ -4794,7 +4794,7 @@ export const waterStations = {
             address: "Radość, Wawer",
             data: {
                 pH: "7.4",
-                twardosc: "brak danych",
+                twardosc: "177",
                 azotany: "brak danych",
                 zelazo: "0.022",
                 mangan: "5",
@@ -4817,7 +4817,7 @@ export const waterStations = {
             address: "Falenica, Wawer",
             data: {
                 pH: "7.5",
-                twardosc: "brak danych",
+                twardosc: "245",
                 azotany: "brak danych",
                 zelazo: "0.02",
                 mangan: "5",
@@ -4840,7 +4840,7 @@ export const waterStations = {
             address: "Stara Miłosna, Wesoła",
             data: {
                 pH: "7.4",
-                twardosc: "brak danych",
+                twardosc: "340",
                 azotany: "brak danych",
                 zelazo: "0.02",
                 mangan: "5",

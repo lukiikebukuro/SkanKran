@@ -1,5 +1,6 @@
 import { waterStations } from './waterAnalysis.js';
 import { userCity } from './quiz.js';
+import { getColor } from './utils.js';
 
 export function startAquaBot(type) {
     console.log('Inicjalizacja AquaBot dla typu:', type);
@@ -15,27 +16,21 @@ export function startAquaBot(type) {
     }
 
     botSection.style.display = 'block';
-    const userName = localStorage.getItem('aquaBotUserName');
     const addressStyle = localStorage.getItem('aquaBotAddressStyle');
     let city = localStorage.getItem('aquaBotCity') || userCity || 'Grudziądz';
 
-    if (!userName) {
-        messages.innerHTML = '<p class="bot-message">Cześć! Jestem AquaBot – Twój ekspert od wody. Jak masz na imię? 😊</p>';
-    } else if (!addressStyle) {
-        messages.innerHTML = `<p class="bot-message">Cześć, ${userName}! Jak mam się do Ciebie zwracać? (Np. przyjacielu, kochanie) 😊</p>`;
+    if (!addressStyle) {
+        messages.innerHTML = '<p class="bot-message">Cześć! Jestem AquaBot – Twój ekspert od wody. Jak mam się do Ciebie zwracać? (Np. przyjacielu, kochanie) 😊</p>';
     } else if (!city) {
-        messages.innerHTML = `<p class="bot-message">Super, ${userName}! Skąd jesteś, ${addressStyle}? (Np. Warszawa) 😊</p>`;
+        messages.innerHTML = `<p class="bot-message">Super, ${addressStyle}! Skąd jesteś? (Np. Warszawa, Kraków) 😊</p>`;
     } else {
-        messages.innerHTML = `<p class="bot-message">Cześć, ${userName} z ${city}! Jak mogę Ci pomóc, ${addressStyle}? 😊</p>`;
+        messages.innerHTML = `<p class="bot-message">Cześć, ${addressStyle} z ${city}! Jak mogę Ci pomóc? 😊</p>`;
     }
     input.value = '';
 
     sendButton.onclick = () => sendMessage(type, input, messages);
     input.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(type, input, messages); };
 }
-
-
-
 
 async function sendMessage(type, input, messages) {
     const message = input.value.trim();
@@ -46,25 +41,18 @@ async function sendMessage(type, input, messages) {
     messages.scrollTop = messages.scrollHeight;
 
     try {
-        let userName = localStorage.getItem('aquaBotUserName');
         let addressStyle = localStorage.getItem('aquaBotAddressStyle');
         let userCity = localStorage.getItem('aquaBotCity') || 'Grudziądz';
         let selectedStation = localStorage.getItem('aquaBotSelectedStation') || null;
         let waitingForCategory = localStorage.getItem('aquaBotWaitingForCategory') === 'true';
+        let waitingForSubcategory = localStorage.getItem('aquaBotWaitingForSubcategory') === 'true';
+        let selectedCategory = localStorage.getItem('aquaBotSelectedCategory') || null;
         let lastParameters = JSON.parse(localStorage.getItem('aquaBotLastParameters') || '[]');
-
-        if (!userName) {
-            userName = message;
-            localStorage.setItem('aquaBotUserName', userName);
-            messages.innerHTML += `<p class="bot-message">Cześć, ${userName}! Jak mam się do Ciebie zwracać? (Np. przyjacielu, kochanie) 😊</p>`;
-            messages.scrollTop = messages.scrollHeight;
-            return;
-        }
 
         if (!addressStyle) {
             addressStyle = message;
             localStorage.setItem('aquaBotAddressStyle', addressStyle);
-            messages.innerHTML += `<p class="bot-message">Super, ${userName}! Skąd jesteś, ${addressStyle}? (Np. Warszawa, Kraków) 😊</p>`;
+            messages.innerHTML += `<p class="bot-message">Super, ${addressStyle}! Skąd jesteś? (Np. Warszawa, Kraków) 😊</p>`;
             messages.scrollTop = messages.scrollHeight;
             return;
         }
@@ -79,7 +67,7 @@ async function sendMessage(type, input, messages) {
             if (data.valid) {
                 userCity = data.city;
                 localStorage.setItem('aquaBotCity', userCity);
-                messages.innerHTML += `<p class="bot-message">Okej, ${userName} z ${userCity.charAt(0).toUpperCase() + userCity.slice(1)}! Wybierz stację uzdatniania, ${addressStyle}, np. 'SUW Praga'! 😊</p>`;
+                messages.innerHTML += `<p class="bot-message">Okej, ${addressStyle} z ${userCity.charAt(0).toUpperCase() + userCity.slice(1)}! Wybierz stację uzdatniania, np. 'SUW Praga'! 😊</p>`;
             } else {
                 messages.innerHTML += `<p class="bot-message">Nie znam miasta '${message}', ${addressStyle}! 😕 Wpisz np. 'Warszawa' lub 'Kraków'.</p>`;
             }
@@ -92,43 +80,58 @@ async function sendMessage(type, input, messages) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 message: message,
-                userName: userName,
                 addressStyle: addressStyle,
                 city: userCity,
                 selectedStation: selectedStation,
                 waitingForCategory: waitingForCategory,
+                waitingForSubcategory: waitingForSubcategory,
+                selectedCategory: selectedCategory,
                 lastParameters: lastParameters
             })
         });
         const data = await response.json();
         console.log("API Response:", data);
-        const reply = data.reply || "Brak odpowiedzi, spróbuj ponownie! 😅";
-        messages.innerHTML += `<p class="bot-message">${reply}</p>`;
+
+        const reply = data.reply;
+        if (reply && reply.message) {
+            let replyHtml = reply.message;
+            if (reply.parameters && reply.parameters.length > 0) {
+                replyHtml += '<br>';
+                reply.parameters.forEach(param => {
+                    const colorClass = getColor(param.name.toLowerCase(), param.value);
+                    console.log(`Parametr: ${param.name}, Wartość: ${param.value}, Klasa: ${colorClass}`);
+                    replyHtml += `<p>${param.name}: ${param.value} ${param.unit} <span class="dot ${colorClass}"></span></p>`;
+                });
+                replyHtml += "Wpisz kategorię, np.<br>- zdrowie<br>- uroda<br>- codzienne użycie";
+            }
+            messages.innerHTML += `<div class="bot-message">${replyHtml}</div>`;
+        } else {
+            messages.innerHTML += `<p class="bot-message">Brak odpowiedzi, spróbuj ponownie! 😅</p>`;
+        }
         messages.scrollTop = messages.scrollHeight;
 
-        // Aktualizacja miasta i reset stacji
+        // Zaktualizuj stan w localStorage
+        if (data.waitingForCategory !== undefined) {
+            localStorage.setItem('aquaBotWaitingForCategory', data.waitingForCategory);
+        }
+        if (data.waitingForSubcategory !== undefined) {
+            localStorage.setItem('aquaBotWaitingForSubcategory', data.waitingForSubcategory);
+        }
+        if (data.selectedCategory) {
+            localStorage.setItem('aquaBotSelectedCategory', data.selectedCategory);
+        } else {
+            localStorage.removeItem('aquaBotSelectedCategory');
+        }
         if (data.city) {
-            userCity = data.city;
-            localStorage.setItem('aquaBotCity', userCity);
-            if (data.reply.includes("Zmieniłem miasto")) {
-                localStorage.removeItem('aquaBotSelectedStation');
-                selectedStation = null;
-            }
+            localStorage.setItem('aquaBotCity', data.city);
         }
         if (data.selectedStation) {
             localStorage.setItem('aquaBotSelectedStation', data.selectedStation);
-            selectedStation = data.selectedStation;
-        }
-        if (data.waitingForCategory !== undefined) {
-            localStorage.setItem('aquaBotWaitingForCategory', data.waitingForCategory);
-            waitingForCategory = data.waitingForCategory;
         }
         if (data.lastParameters) {
             localStorage.setItem('aquaBotLastParameters', JSON.stringify(data.lastParameters));
-            lastParameters = data.lastParameters;
         } else {
             localStorage.removeItem('aquaBotLastParameters');
-            lastParameters = [];
         }
     } catch (error) {
         console.error('Błąd:', error);
@@ -136,30 +139,3 @@ async function sendMessage(type, input, messages) {
         messages.scrollTop = messages.scrollHeight;
     }
 }
-
-
-
-
-
-
-
-
-
-function scheduleReminder() {
-    const lastReminder = localStorage.getItem('lastReminder');
-    const now = new Date().getTime();
-    const oneDay = 24 * 60 * 60 * 1000;
-    if (!lastReminder || now - lastReminder > oneDay) {
-        fetch('/remindWater')
-            .then(response => response.json())
-            .then(data => {
-                alert(data.message);
-                localStorage.setItem('lastReminder', now);
-            })
-            .catch(error => console.error('Błąd przypomnienia:', error));
-    }
-}
-
-window.onload = function() {
-    scheduleReminder();
-};
