@@ -354,28 +354,47 @@ def aquabot():
     print("[DEBUG] Wywołuję endpoint /aquabot")
     data = request.get_json()
     print(f"[DEBUG] Aquabot - Odebrane dane z frontendu: {data}")
-    user_name = data.get('userName', 'Użytkownik')
-    address_style = data.get('addressStyle', 'przyjacielu')
-    city = data.get('city', 'Grudziądz')
-    message = data.get('message', '')
-    selected_station = data.get('selectedStation')
-    waiting_for_category = data.get('waitingForCategory', False)
-    last_parameters = data.get('lastParameters', [])
     
+    # Pobierz dane z żądania
+    message = data.get('message', '')
+    address_style = data.get('addressStyle', 'przyjacielu')
+    city = data.get('city', None)
+    selected_station = data.get('selectedStation', None)
+    waiting_for_category = data.get('waitingForCategory', False)
+    waiting_for_subcategory = data.get('waitingForSubcategory', False)
+    selected_category = data.get('selectedCategory', None)
+    last_parameters = data.get('lastParameters', [])
+    in_conversation = data.get('in_conversation', False)  # Nowe pole
+
     try:
         print("[DEBUG] Tworzę instancję AquaBot")
-        bot = AquaBot(user_name, city, address_style, selected_station, waiting_for_category, last_parameters)
+        bot = AquaBot(
+            userName=address_style,
+            city=city,
+            addressStyle=address_style,
+            selectedStation=selected_station,
+            waitingForCategory=waiting_for_category,
+            lastParameters=last_parameters,
+            selectedCategory=selected_category,
+            waitingForSubcategory=waiting_for_subcategory,
+            in_conversation=in_conversation
+        )
         print("[DEBUG] Wywołuję getHealthAdvice")
         reply = bot.getHealthAdvice(message)
+        
         response = {
             'reply': reply,
             'waitingForCategory': bot.waiting_for_category,
+            'waitingForSubcategory': bot.waiting_for_subcategory,
+            'in_conversation': bot.in_conversation,  # Dodajemy do odpowiedzi
+            'selectedCategory': bot.selected_category,
             'lastParameters': bot.last_parameters,
-            'city': bot.city  # Zwracam pełne miasto
+            'city': bot.city
         }
         if bot.selected_station:
             response['selectedStation'] = bot.selected_station['name']
             print(f"[DEBUG] Wybrana stacja w odpowiedzi: {bot.selected_station['name']}")
+        
         print(f"[DEBUG] Zwracam odpowiedź: {response}")
         return jsonify(response)
     except Exception as e:
