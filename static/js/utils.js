@@ -1,6 +1,6 @@
 import { fetchPosts } from './community.js';
 
-export const cities = ["Chorzów","Gdynia","Kielce","Dąbrowa Górnicza","Szczecin","Piła","Jelenia Góra","Konin","Głogów","Białystok","Tarnów","Siedlce","Łódź", "Mordy", "Rzeszów", "Sosnowiec", "Wrocław","Lublin", "Częstochowa", "Płock","Poznań", "Olsztyn", "Tychy","Gorzów Wielkopolski", "Warszawa", "Kraków", "Gdańsk", "Kalisz", "Koszalin", "Grudziądz", "Wałbrzych", "Bydgoszcz", "Toruń", "Zielona Góra", "Legnica", "Radom",];
+export const cities = ["Katowice","Gdynia","Kielce","Dąbrowa Górnicza","Szczecin","Piła","Jelenia Góra","Konin","Głogów","Białystok","Tarnów","Siedlce","Łódź", "Mordy", "Rzeszów", "Sosnowiec", "Wrocław","Lublin", "Częstochowa", "Płock","Poznań", "Olsztyn", "Tychy","Gorzów Wielkopolski", "Warszawa", "Kraków", "Gdańsk", "Kalisz", "Koszalin", "Grudziądz", "Wałbrzych", "Bydgoszcz", "Toruń", "Zielona Góra", "Legnica", "Radom",];
 export const bottles = ["Nałęczowianka", "Muszynianka", "Cisowianka", "Staropolanka", "Żywiec Zdrój", "Polaris"];
 
 export function suggestCities(val, inputId = 'city') {
@@ -70,7 +70,7 @@ export function suggestBottles(val) {
 
 export function selectBottle(bottle) {
     try {
-        const bottleInput = document.getElementById('bottle');
+        const bottleInput = document.getElementById('bottleName');
         const suggestionsElement = document.getElementById('bottle-suggestions');
         if (bottleInput && suggestionsElement) {
             bottleInput.value = bottle;
@@ -84,7 +84,7 @@ export function selectBottle(bottle) {
 export function getColor(parameter, value) {
     console.log(`getColor called with parameter: ${parameter}, value: ${value}, type: ${typeof value}`);
 
-    if (value === null) return 'green-dot';
+    if (value === null || value === 0 || value === "Brak danych") return 'grey-dot';
 
     let numValue;
     if (typeof value === 'string' && value.startsWith('<')) {
@@ -96,8 +96,8 @@ export function getColor(parameter, value) {
     console.log(`Parsed numValue: ${numValue}`);
 
     if (isNaN(numValue)) {
-        console.log('numValue is NaN, returning green-dot');
-        return 'green-dot';
+        console.log('numValue is NaN, returning grey-dot');
+        return 'grey-dot';
     }
 
     switch (parameter) {
@@ -157,15 +157,15 @@ export function getColor(parameter, value) {
             if (numValue >= 6) return 'orange-dot';
             return 'green-dot';
         case 'olow':
-    if (numValue >= 10) return 'red-dot';
-    if (numValue >= 5) return 'orange-dot';
-    return 'green-dot';
-case 'rtec':
-    if (numValue >= 1) return 'red-dot';
-    if (numValue >= 0.5) return 'orange-dot';
-    return 'green-dot';
-        default:
+            if (numValue >= 10) return 'red-dot';
+            if (numValue >= 5) return 'orange-dot';
             return 'green-dot';
+        case 'rtec':
+            if (numValue >= 1) return 'red-dot';
+            if (numValue >= 0.5) return 'orange-dot';
+            return 'green-dot';
+        default:
+            return 'grey-dot';
     }
 }
 
@@ -203,7 +203,7 @@ export function getParameterDescription(parameter, value, color) {
 export function getSelectedParameters(data) {
     const basicParams = [
         { name: 'pH', norm: '6.5–9.5', unit: '' },
-        { name: 'twardosc', norm: '60–500', unit: 'mg/l' },
+        { name: 'twardosc', norm: '60–500', unit: 'mg CaCO₃/L' },
         { name: 'azotany', norm: '<50', unit: 'mg/l' },
         { name: 'zelazo', norm: '<0.2', unit: 'mg/l' },
         { name: 'fluorki', norm: '<1.5', unit: 'mg/l' },

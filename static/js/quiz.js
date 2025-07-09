@@ -61,7 +61,7 @@ export function checkQuizSkin() {
                 - W ciągu dnia: Pij 1 l przefiltrowanej kranówki – filtr zmiękczający to must-have.<br>
                 - Wieczorem: Wypij 0,5 l Żywiec Zdrój. Umyj twarz przefiltrowaną wodą.<br>
                 <b>Porada eksperta:</b> Dr Anna Woda: Twarda woda wysusza cerę. Filtr zmiękczający to klucz!<br>
-                <button onclick="startAquaBot('skin')">Porozmawiaj z AquaBotem!</button>
+                <button onclick="showSection('aqua-bot'); startAquaBot('skin')">Porozmawiaj z AquaBotem!</button>
             `;
             filter += "<li>Zmiękczający (99 zł) – na twardość</li><li>Eko-filtr (109 zł) – na metale</li><li>Premium (129 zł) – pełna ochrona</li></ul>";
         } else if (skinQuizAnswers.q1 === "normalna" && skinQuizAnswers.q2 === "nie" && skinQuizAnswers.q3 === "nie" && skinQuizAnswers.q7 === "nie" && skinQuizAnswers.q8 === "rzadko") {
@@ -74,7 +74,7 @@ export function checkQuizSkin() {
                 - W ciągu dnia: Pij 1 l kranówki – filtr smakowy poprawi smak.<br>
                 - Wieczorem: Wypij 0,5 l Nałęczowianki.<br>
                 <b>Porada eksperta:</b> Dr Anna Woda: Regularne nawodnienie utrzyma cerę w formie.<br>
-                <button onclick="startAquaBot('skin')">Porozmawiaj z AquaBotem!</button>
+                <button onclick="showSection('aqua-bot'); startAquaBot('skin')">Porozmawiaj z AquaBotem!</button>
             `;
             filter += "<li>Smakowy (99 zł) – dla smaku</li><li>Premium (129 zł) – pełna ochrona</li></ul>";
         } else {
@@ -86,7 +86,7 @@ export function checkQuizSkin() {
                 - Pij 2 litry dziennie, mieszaj kranówkę z butelkowaną.<br>
                 - Rozważ filtr zmiękczający przy osadzie.<br>
                 <b>Porada eksperta:</b> Dr Anna Woda: Twarda woda może szkodzić cerze.<br>
-                <button onclick="startAquaBot('skin')">Porozmawiaj z AquaBotem!</button>
+                <button onclick="showSection('aqua-bot'); startAquaBot('skin')">Porozmawiaj z AquaBotem!</button>
             `;
             filter += "<li>Premium (129 zł) – pełna ochrona</li></ul>";
         }
@@ -132,7 +132,7 @@ export function checkQuizWellbeing() {
                 - Dzień: 1 l przefiltrowanej kranówki – ${userCity && waterStations[userCity] ? `w ${userCity} woda jest twarda (${waterStations[userCity].average.twardosc} mg/l)` : "rozważ filtr zmiękczający"}.<br>
                 - Wieczór: 0,5 l Nałęczowianki – wspiera sen.<br>
                 <b>Porada eksperta:</b> Dr Jan: Regularne nawodnienie i filtr zmiękczający pomogą!<br>
-                <button onclick="startAquaBot('wellbeing')">Porozmawiaj z AquaBotem!</button>
+                <button onclick="showSection('aqua-bot'); startAquaBot('wellbeing')">Porozmawiaj z AquaBotem!</button>
             `;
             filter += "<li>Zmiękczający (99 zł) – na twardość</li><li>Premium (129 zł) – pełna ochrona</li></ul>";
         } else if (wellbeingQuizAnswers.q1 === "nie" && wellbeingQuizAnswers.q2 === "nie" && wellbeingQuizAnswers.q3 === "nie" && wellbeingQuizAnswers.q5 === "regularnie" && wellbeingQuizAnswers.q6 === "butelkowana") {
@@ -144,7 +144,7 @@ export function checkQuizWellbeing() {
                 - Pij 2 litry dziennie – Żywiec Zdrój.<br>
                 - Rozważ filtr eko na mikroplastik.<br>
                 <b>Porada eksperta:</b> Dr Jan: Utrzymaj nawodnienie i unikaj mikroplastiku!<br>
-                <button onclick="startAquaBot('wellbeing')">Porozmawiaj z AquaBotem!</button>
+                <button onclick="showSection('aqua-bot'); startAquaBot('wellbeing')">Porozmawiaj z AquaBotem!</button>
             `;
             filter += "<li>Eko-filtr (109 zł) – na mikroplastik</li><li>Premium (129 zł) – pełna ochrona</li></ul>";
         } else {
@@ -156,7 +156,7 @@ export function checkQuizWellbeing() {
                 - Pij 2 litry dziennie – Nałęczowianka.<br>
                 - ${wellbeingQuizAnswers.q2 === "tak" ? "Problemy ze snem? Unikaj ekranów przed snem." : ""}<br>
                 <b>Porada eksperta:</b> Dr Jan: Nawodnienie i relaks to klucz.<br>
-                <button onclick="startAquaBot('wellbeing')">Porozmawiaj z AquaBotem!</button>
+                <button onclick="showSection('aqua-bot'); startAquaBot('wellbeing')">Porozmawiaj z AquaBotem!</button>
             `;
             filter += "<li>Premium (129 zł) – pełna ochrona</li></ul>";
         }
