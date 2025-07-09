@@ -4794,7 +4794,7 @@ export const waterStations = {
             address: "Radość, Wawer",
             data: {
                 pH: "7.4",
-                twardosc: "brak danych",
+                twardosc: "177",
                 azotany: "brak danych",
                 zelazo: "0.022",
                 mangan: "5",
@@ -4817,7 +4817,7 @@ export const waterStations = {
             address: "Falenica, Wawer",
             data: {
                 pH: "7.5",
-                twardosc: "brak danych",
+                twardosc: "245",
                 azotany: "brak danych",
                 zelazo: "0.02",
                 mangan: "5",
@@ -4840,7 +4840,7 @@ export const waterStations = {
             address: "Stara Miłosna, Wesoła",
             data: {
                 pH: "7.4",
-                twardosc: "brak danych",
+                twardosc: "340",
                 azotany: "brak danych",
                 zelazo: "0.02",
                 mangan: "5",
@@ -5098,8 +5098,204 @@ export const waterStations = {
         "Kostuchna": "Średnia dla Katowic"
     },
     info: "Dane z 2025 roku,obecnie tylko uśrednione dla Katowic. W przyszłości planujemy dodać szczegółowe dane dla konkretnych SUW."
+}, 
+  "Tychy": {
+    average: {
+      pH: "7.6",
+      twardosc: "60.5",
+      azotany: "3.6",
+      fluorki: "0.064",
+      zelazo: "0.010",
+      mangan: "1.0",
+      chlorki: "13",
+      siarczany: "15",
+      barwa: "5",
+      metnosc: "0.63",
+      magnez: "3.73",
+      potas: "0",
+      olow: "0.1",
+      rtec: "0.10",
+      chlor: "0.05"
+    },
+    stations: [
+      {
+        name: "SUW Tychy",
+        coords: [50.1371, 18.9664],
+        address: "Tychy, ul. Sadowa 4",
+        data: {
+          pH: "7.6",
+          twardosc: "60.5",
+          azotany: "3.6",
+          fluorki: "0.064",
+          zelazo: "0.010",
+          mangan: "1.0",
+          chlorki: "13",
+          siarczany: "15",
+          barwa: "5",
+          metnosc: "0.63",
+          magnez: "3.73",
+          potas: "0",
+          olow: "0.1",
+          rtec: "0.10",
+          chlor: "0.05"
+        },
+        history: []
+      }
+    ],
+    measurementPoints: [
+      {
+        name: "ul. Sadowa 4",
+        coords: [50.1371, 18.9664],
+        address: "ul. Sadowa 4",
+        data: {
+          pH: "7.6",
+          twardosc: "60.5",
+          azotany: "3.6",
+          fluorki: "0.064",
+          zelazo: "0.010",
+          mangan: "1.0",
+          chlorki: "13",
+          siarczany: "15",
+          barwa: "5",
+          metnosc: "0.63",
+          magnez: "3.73",
+          potas: "0",
+          olow: "0.1",
+          rtec: "0.10",
+          chlor: "0.05"
+        }
+      }
+    ],
+    zones: {
+      "Centrum": "SUW Tychy"
+    }
+  },"Kalisz": {
+        average: {
+            pH: 7.38,
+            twardosc: 305.75,
+            azotany: 2.15,
+            zelazo: 0.028,
+            fluorki: 0.62,
+            chlor: 0,
+            chlorki: 43.5,
+            siarczany: 66,
+            potas: 3.93,
+            metnosc: 0.2,
+            barwa: 8.58,
+            mangan: 0,
+            magnez: 0,
+            olow: 0,
+            rtec: 0
+        },
+        stations: [
+            {
+                name: "SUW Lis",
+                coords: [51.7500, 18.1000],
+                address: "ul. Lis 10, Kalisz",
+                data: {
+                    pH: 7.4,
+                    twardosc: 254,
+                    azotany: 3.5,
+                    zelazo: 0.027,
+                    fluorki: 0.12,
+                    chlor: 0,
+                    mangan: 0,
+                    chlorki: 28,
+                    siarczany: 80,
+                    potas: 2.3,
+                    metnosc: 0.19,
+                    barwa: 7.0,
+                    magnez: 0,
+                    olow: 0,
+                    rtec: 0
+                },
+                history: []
+            },
+            {
+                name: "SUW Fabryczna",
+                coords: [51.7650, 18.0900],
+                address: "ul. Fabryczna 2, Kalisz",
+                data: {
+                    pH: 7.6,
+                    twardosc: 269,
+                    azotany: 1.4,
+                    zelazo: 0.022,
+                    fluorki: 0.94,
+                    chlor: 0,
+                    mangan: 0,
+                    chlorki: 45,
+                    siarczany: 13,
+                    potas: 4.4,
+                    metnosc: 0.18,
+                    barwa: 10,
+                    magnez: 0,
+                    olow: 0,
+                    rtec: 0
+                },
+                history: []
+            },
+            {
+                name: "SUW Warszawska",
+                coords: [51.7400, 18.1100],
+                address: "ul. Warszawska 100, Kalisz",
+                data: {
+                    pH: 7.4,
+                    twardosc: 290,
+                    azotany: 1.6,
+                    zelazo: 0.029,
+                    fluorki: 0.98,
+                    chlor: 0,
+                    mangan: 0,
+                    chlorki: 42,
+                    siarczany: 28,
+                    potas: 3.1,
+                    metnosc: 0.22,
+                    barwa: 8.8,
+                    magnez: 0,
+                    olow: 0,
+                    rtec: 0
+                },
+                history: []
+            },
+            {
+                name: "SUW Poznańska",
+                coords: [51.7700, 18.0800],
+                address: "ul. Poznańska 50, Kalisz",
+                data: {
+                    pH: 7.1,
+                    twardosc: 410,
+                    azotany: 2.1,
+                    zelazo: 0.032,
+                    fluorki: 0.42,
+                    chlor: 0,
+                    mangan: 0,
+                    chlorki: 59,
+                    siarczany: 143,
+                    potas: 5.9,
+                    metnosc: 0.21,
+                    barwa: 8.5,
+                    magnez: 0,
+                    olow: 0,
+                    rtec: 0
+                },
+                history: []
+            }
+        ],
+        measurementPoints: [],
+        zones: {
+            "Śródmieście": "SUW Lis",
+            "Zawodzie": "SUW Lis",
+            "Majków": "SUW Fabryczna",
+            "Piwonice": "SUW Fabryczna",
+            "Chmielnik": "SUW Warszawska",
+            "Rypinek": "SUW Warszawska",
+            "Dobrzec": "SUW Poznańska",
+            "Szczypiorno": "SUW Poznańska"
+        },
+        info: "Dane na podstawie raportu PWiK Sp. z o.o. w Kaliszu za II półrocze 2024 roku. Śródmieście i Zawodzie obsługiwane przez SUW Lis, Majków i Piwonice przez SUW Fabryczna, Chmielnik i Rypinek przez SUW Warszawska, Dobrzec i Szczypiorno przez SUW Poznańska. Dane uśredniane przez aplikację."
+    }
 }
-};
+
 export const bottleData = {
     "Nałęczowianka": {
         wapn: { value: 130, norm: "Korzystna: >150 mg/l", color: "orange", desc: "Wapń: Dobry dla kości, ale trochę mało!" },
