@@ -858,7 +858,11 @@ header {
 
 .aquabot-container {
     width: 100%; /* Pełna szerokość */
+<<<<<<< HEAD
     max-width: 900px; /* Nieco szerszy dla nowoczesności */
+=======
+    max-width: 850px; /* Nieco szerszy dla nowoczesności */
+>>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
     height: 520px; /* Lekko wyższy */
     margin: 30px auto; /* Większy margines */
     padding: 25px; /* Większy padding */
@@ -1171,6 +1175,7 @@ header {
     color: #0277bd;
 }
 
+<<<<<<< HEAD
 /* Styl dla napisów w header */
 header h1,
 .alert-text {
@@ -1601,3 +1606,5 @@ header h1,
         height: 50px;
     }
 }
+=======
+>>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862

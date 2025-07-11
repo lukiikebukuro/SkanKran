@@ -27,6 +27,7 @@ export function showSection(sectionId) {
         }
     }
 }
+<<<<<<< HEAD
 document.getElementById('send-feedback-btn').addEventListener('click', () => {
     const text = document.getElementById('feedback-text').value;
     if (text.trim()) {
@@ -37,6 +38,8 @@ document.getElementById('send-feedback-btn').addEventListener('click', () => {
         document.getElementById('feedback-status').style.color = '#f44336';
     }
 });
+=======
+>>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
 
 window.onload = function() {
     // Inicjalizacja mapy Leaflet

@@ -56,6 +56,7 @@
             <button onclick="showSection('community')">Społeczność</button>
             <button onclick="showSection('aqua-bot')">AquaBot</button>
         </nav>
+<<<<<<< HEAD
         <div class="top-right-nav">
             <a href="https://coff.ee/skankran" class="coffee-support" target="_blank">
                 <span>Podoba Ci się mój projekt? Wesprzyj mnie kawą</span>
@@ -66,6 +67,11 @@
                 <a href="#" onclick="showSection('faq')">FAQ</a>
                 <a href="#" onclick="showSection('feedback')">Feedback</a>
             </div>
+=======
+        <div id="hamburger" onclick="toggleHamburgerMenu()">☰</div>
+        <div id="hamburger-menu" style="display: none;">
+            <a href="#" onclick="showSection('faq')">FAQ</a>
+>>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
         </div>
     </header>
 
@@ -147,6 +153,7 @@
                 <div id="bottle-rankings"></div>
             </div>
         </div>
+<<<<<<< HEAD
 
         <!-- Sekcja "Woda butelkowana" -->
         <div id="bottled-water" class="section">
@@ -223,6 +230,49 @@
         <p>Będziemy stale ulepszać AquaBota. W drugiej połowie sierpnia planujemy podłączenie API Grok 4 dla lepszych porad.</p>
     </div>
 </div>
+=======
+
+        <!-- Sekcja "Woda butelkowana" -->
+        <div id="bottled-water" class="section">
+            <h2>Woda butelkowana</h2>
+            <input id="bottleName" type="text" placeholder="Wpisz nazwę wody, np. Nałęczowianka">
+            <div id="bottle-suggestions"></div>
+            <button id="search-bottle-water">Wyszukaj wodę</button>
+            <div id="bottle-result"></div>
+        </div>
+
+        <!-- Sekcja "O nas" -->
+        <div id="about" class="section">
+            <h2>O nas</h2>
+            <img src="/static/assets/kranik.png" alt="Uśmiechnięty kranik" class="kranik-gif">
+            <p>Jestem Łuki, twórca Skankran. Od maja 2025 zbieram dane o wodzie, bo chcę zwiększyć świadomość o jej jakości. Tłumaczę co robią parametry na ludzki, zbieram je ręcznie bo AI tego nie ogarnia.<strong> Jeżeli zacznie, to będziecie wiedzieli dzięki komu.</strong> Owszem. Wodociągi spełniają normy prawne, ale normy nie zawsze są normalne. Skankran tłumaczy na ludzki język, czy parametry wody w Twojej okolicy są OK dla zdrowia, urody czy czajnika. Pracuję też nad <a href="https://gmina-ai.pl">gmina-ai.pl</a>, gdzie chcę zautomatyzować zgłaszanie problemów do gmin i wyszukiwanie kontaktów bez chaosu na ich stronach. Jeśli popierasz moją misję, podpisz petycję na <a href="https://gmina-ai.pl">gmina-ai.pl</a> <a href="https://coff.ee/skankran"><img src="/static/assets/icons/coffe.png" alt="Kawa" class="icon-coffe"> 
+                Będę też wdzięczny za postawienie mi kawy :></a>!</p>
+            <p><strong>Oto kilka przykładów, dlaczego normy nie zawsze chronią:</strong></p>
+            <ul>
+                <li>Twardość wody w wielu miastach przekracza 300 mg/l – to zgodne z normą, ale szkodzi skórze, włosom i zaostrza AZS. Nie mówiąc o kamieniu w czajniku!</li>
+                <li>Azotany poniżej 50 mg/l są "bezpieczne", ale dla niemowląt nawet 10 mg/l może być ryzykowne. Chcę was w tym uświadomić.</li>
+                <li>Cukier w napojach gazowanych ma normy – np. w USA dopuszcza się 50 g na 500 ml, ale nawet 20 g (4 łyżeczki!) dziennie zwiększa ryzyko otyłości i cukrzycy. Normy są, ale czy zdrowe?</li>
+            </ul>
+        </div>
+
+        <!-- Sekcja "Społeczność" -->
+        <div id="community" class="section">
+            <h2>Społeczność</h2>
+            <p>Dołącz do naszej społeczności.</p>
+        </div>
+
+        <!-- Sekcja "AquaBot" -->
+        <div id="aqua-bot" class="section">
+            <h2>AquaBot</h2>
+            <div class="aquabot-container">
+                <div id="aqua-bot-skin-messages" class="aquabot-messages"></div>
+                <div class="aquabot-input-container">
+                    <input id="aqua-bot-skin-input" class="aquabot-input" type="text" placeholder="Zadaj pytanie AquaBotowi...">
+                    <button id="aqua-bot-skin-send" class="aquabot-send">Wyślij</button>
+                </div>
+            </div>
+        </div>
+>>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
 
         <!-- Sekcja "FAQ" -->
         <div id="faq" class="section">
@@ -230,6 +280,7 @@
             <p><strong>Pytanie:</strong> Czy kranówka jest bezpieczna?<br>
             <strong>Odpowiedź:</strong> W większości polskich miast kranówka jest regularnie badana i bezpieczna do picia.</p>
         </div>
+<<<<<<< HEAD
 
         <!-- Nowa sekcja "Feedback" -->
 <div id="feedback" class="section">
@@ -252,15 +303,21 @@
         </div>
     </div>
 </div>
+=======
+    </main>
+>>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
 
     <script type="module" src="/static/js/main.js"></script>
     <script type="module" src="/static/js/utils.js"></script>
     <script type="module" src="/static/js/waterAnalysis.js"></script>
     <script type="module" src="/static/js/ranking.js"></script>
+<<<<<<< HEAD
     <footer class="footer">
     <p>Skankran – darmowe narzędzie do analizy wody w Twoim mieście. Wspierasz mój projekt? Zerknij na <a href="https://gmina-ai.pl">gmina-ai.pl</a>, chcemy ułatwić życie mieszkańców i pracowników gmin. Zbieramy petycje żeby pokazać gminom, że wchodzimy w erę automatyzacji.</p>
     <img src="/static/assets/icons/placeholder.svg" alt="Skankran Logo" class="footer-logo">
     <p class="copyright">© Skankran wszelkie prawa zastrzeżone.</p>
 </footer>
+=======
+>>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
 </body>
 </html>

@@ -125,6 +125,7 @@ async function sendMessage(type, input, messages) {
         }
         messages.scrollTop = messages.scrollHeight;
 
+<<<<<<< HEAD
         // Reset stanu po zmianie miasta
         if (data.message && data.message.includes('Zmieniłem na')) {
             localStorage.setItem('aquaBotSelectedStation', null);
@@ -134,6 +135,8 @@ async function sendMessage(type, input, messages) {
             localStorage.setItem('aquaBotLastParameters', '[]');
         }
 
+=======
+>>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
         // Zaktualizuj stan w localStorage
         if (data.waitingForCategory !== undefined) {
             localStorage.setItem('aquaBotWaitingForCategory', data.waitingForCategory);
