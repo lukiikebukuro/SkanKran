@@ -1,342 +1,266 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTest</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Skankran</title>
     <link rel="stylesheet" href="/static/style.css">
-    <link rel="manifest" href="/manifest.json">
-    <style>
-        .aquabot-container { border: 1px solid #ccc; padding: 10px; max-width: 400px; margin-top: 20px; }
-        .aquabot-messages { max-height: 300px; overflow-y: auto; margin-bottom: 10px; }
-        .bot-message { background: #e6f3ff; padding: 5px; margin: 5px; border-radius: 5px; }
-        .user-message { background: #d4edda; padding: 5px; margin: 5px; border-radius: 5px; text-align: right; }
-        .aquabot-input { width: 80%; padding: 5px; }
-        .aquabot-send { padding: 5px 10px; }
-    </style>
+    <!-- Leaflet dla mapy -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Google Fonts dla czcionki Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <img src="/static/assets/icons/placeholder.svg" alt="Logo SkanKran" class="logo">
-        <p class="slogan">sprawdź jakość wody w twoim mieście</p>
-    </header>
-    <div class="container">
+        <img src="/static/assets/icons/placeholder.svg" alt="Skankran Logo" id="logo">
+        <h1>Pionierzy w analizie wody z kranu. Stoimy na straży twojej kranówki!</h1>
+        <div class="alert-text">
+        <p>Czy wiedziałeś, że twarda woda szkodzi włosom i cerze? Azotany mogą być szkodliwe dla dzieci! <strong>Sprawdź, czy Twoja woda jest bezpieczna!</strong></p>
+    </div>
+        <!-- Legenda w lewym górnym rogu -->
+        <div class="legend">
+            <div class="legend-item">
+                <img src="/static/assets/icons/search_icon.svg" alt="Sprawdź kranówkę" class="icon">
+                <p>Sprawdź kranówkę: Wpisz miasto i zobacz podstawowe uśrednione statystyki.</p>
+            </div>
+            <div class="legend-item">
+                <img src="/static/assets/icons/search_icon.svg" alt="Znajdź stacje" class="icon">
+                <p>Znajdź stacje: Wpisz swoją ulicę i miasto, a SkanKran pokaże Ci najbliższą stacje uzdatniania wody z bardziej szczegółowymi parametrami.</p>
+            </div>
+            <div class="legend-item">
+                <img src="/static/assets/icons/ranking_icon.svg" alt="Rankingi" class="icon">
+                <p>Rankingi: Sprawdź które miasta mają najgoszą wodę a które najlepszą i nie tylko.</p>
+            </div>
+            <div class="legend-item">
+                <p>Woda butelkowana: Sprawdź parametry wody butelkowanej.</p>
+            </div>
+            <div class="legend-item">
+                <p>O nas: Dowiedz się więcej o projekcie i naszej misji.</p>
+            </div>
+            <div class="legend-item">
+                <img src="/static/assets/icons/comunity_icon.svg" alt="Społeczność" class="icon">
+                <p>Społeczność: Dołącz do dyskusji na Discordzie.</p>
+            </div>
+            <div class="legend-item">
+                <img src="/static/assets/icons/aqua_bot.svg" alt="AquaBot" class="icon">
+                <p>AquaBot: Porozmawiaj z botem o wpływie wody na zdrowie, urodę i codzienne życie.</p>
+            </div>
+        </div>
         <nav class="sticky-nav">
-            <button onclick="scrollToSection('water-check')">Sprawdź kranówkę</button>
-            <button onclick="scrollToSection('station-finder')">Znajdź stacje</button>
-            <button onclick="scrollToSection('bottled-water')">Woda butelkowana</button>
-            <button onclick="scrollToSection('quizzes')">Quizy</button>
-            <button onclick="scrollToSection('community-section')">Społeczność</button>
-            <button onclick="scrollToSection('user-rankings')">Rankingi</button>
-            <button onclick="submitVote()">Głosuj</button>
+            <button onclick="showSection('check-tapwater')">Sprawdź kranówkę</button>
+            <button onclick="showSection('find-stations')">Znajdź stacje</button>
+            <button onclick="showSection('rankings')">Rankingi</button>
+            <button onclick="showSection('bottled-water')">Woda butelkowana</button>
+            <button onclick="showSection('about')">O nas</button>
+            <button onclick="showSection('community')">Społeczność</button>
+            <button onclick="showSection('aqua-bot')">AquaBot</button>
         </nav>
+        <div class="top-right-nav">
+            <a href="https://coff.ee/skankran" class="coffee-support" target="_blank">
+                <span>Podoba Ci się mój projekt? Wesprzyj mnie kawą</span>
+                <img src="/static/assets/icons/coffe.png" alt="Kawa" class="coffee-icon">
+            </a>
+            <div id="hamburger" onclick="toggleHamburgerMenu()">☰</div>
+            <div id="hamburger-menu" style="display: none;">
+                <a href="#" onclick="showSection('faq')">FAQ</a>
+                <a href="#" onclick="showSection('feedback')">Feedback</a>
+            </div>
+        </div>
+    </header>
 
-        <section id="water-check" class="section">
-            <div class="input-result-group">
-                <div class="input-box">
-                    <input id="city" type="text" placeholder="Wpisz miasto">
-                    <div id="city-suggestions"></div>
-                    <button id="check-kranowka-btn">Sprawdź kranówkę</button>
-                </div>
-                <div class="result-section">
-                    <h3>Wyniki dla miasta</h3>
-                    <div id="city-result" class="result-box"></div>
-                    <div id="norms-section" style="display: none; margin-top: 20px;">
-                        <h3>Normy dla parametrów wody</h3>
-                        <table class="norms-table">
-                            <thead>
-                                <tr>
-                                    <th>Parametr</th>
-                                    <th>Polskie</th>
-                                    <th>WHO</th>
-                                    <th>UE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>pH</td><td>6.5–9.5</td><td>6.5–8.5</td><td>6.5–9.5</td></tr>
-                                <tr><td>Twardość (mg/l CaCO₃)</td><td>60–500</td><td>Brak limitu (<200 zalecane)</td><td>Brak limitu (<150 zalecane)</td></tr>
-                                <tr><td>Azotany (mg/l)</td><td><50</td><td>≤50</td><td>≤50</td></tr>
-                                <tr><td>Żelazo (mg/l)</td><td><0.2</td><td>≤0.3</td><td>≤0.2</td></tr>
-                                <tr><td>Mangan (mg/l)</td><td><0.05</td><td>≤0.4 (zdrowie), ≤0.1 (smak)</td><td>≤0.05</td></tr>
-                                <tr><td>Chlorki (mg/l)</td><td><250</td><td>≤250</td><td>≤250</td></tr>
-                                <tr><td>Fluorki (mg/l)</td><td><1.5</td><td>≤1.5</td><td>≤1.5</td></tr>
-                                <tr><td>Mętność (NTU)</td><td><1</td><td>≤1</td><td>≤1</td></tr>
-                            </tbody>
-                        </table>
-                        <h3>Głosowanie: Które normy są dla Ciebie najbardziej wiarygodne?</h3>
-                        <div id="voting-section">
-                            <label><input type="radio" name="norms" value="polish"> Polskie</label><br>
-                            <label><input type="radio" name="norms" value="who"> WHO</label><br>
-                            <label><input type="radio" name="norms" value="eu"> EU</label><br>
-                            <button onclick="submitVote()">Głosuj</button>
-                            <p id="vote-results"></p>
-                        </div>
-                        <p class="norms-note">Normy Polskie, WHO i EU znajdziesz w sekcji <em>Normy wody</em> w przyszłości!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <main>
+        <!-- Sekcja "Sprawdź kranówkę" -->
+        <div id="check-tapwater" class="section">
+            <h2>Sprawdź kranówkę</h2>
+            <input type="text" id="city" placeholder="Wpisz miasto">
+            <div id="city-suggestions"></div>
+            <button id="check-kranowka-btn">Sprawdź</button>
+            <div id="city-result"></div>
+        </div>
 
-        <section id="station-finder" class="section">
-            <h2>Znajdź stację uzdatniania i punkt pomiarowy</h2>
-            <div class="input-result-group">
-                <div class="input-box">
-                    <input id="street" type="text" placeholder="Wpisz ulicę">
-                    <input id="city-premium" type="text" placeholder="Wpisz miasto">
-                    <div id="city-premium-suggestions"></div>
-                    <div class="button-group">
-                        <button id="find-station-btn">Znajdź najbliższą stację i punkt</button>
-                        <button id="show-suw-btn">Pokaż wszystkie SUW</button>
-                        <button id="show-points-btn">Pokaż wszystkie punkty pomiarowe</button>
-                        <button id="show-history-btn">Pokaż historię</button>
-                    </div>
-                </div>
-            </div>
-            <div class="result-section">
-                <h3>Mapa</h3>
-                <div id="map" style="height: 400px; width: 100%;"></div>
-            </div>
-            <div class="result-section">
-                <h3>Najbliższe stacje i punkty</h3>
-                <div id="waterInfo" class="result-box"></div>
-                <p style="font-size: 0.9em; color: #666;">
-                    Brakuje parametrów (np. ołów, rtęć)? Oznacza to, że wodociągi ich nie podały – nie wiemy dlaczego. Poproś o ich dodanie do publicznych raportów!
-                </p>
-                <button id="request-data-btn">Poproś wodociągi o dane</button>
-            </div>
-            <div class="result-section">
-                <h3>Wszystkie SUW-y</h3>
-                <div id="all-suw" class="result-box"></div>
-            </div>
-            <div class="result-section">
-                <h3>Wszystkie punkty pomiarowe</h3>
-                <div id="all-points" class="result-box"></div>
-            </div>
-            <div class="result-section">
-                <h3>Historia</h3>
-                <div id="history" class="result-box"></div>
-            </div>
-        </section>
+        <!-- Sekcja "Znajdź stacje" -->
+        <div id="find-stations" class="section">
+            <h2>Znajdź najbliższą stację uzdatniania wody i najbliższy punkt pomiarowy</h2>
+            <input type="text" id="city-premium" placeholder="Wpisz miasto">
+            <div id="city-premium-suggestions"></div>
+            <input type="text" id="street" placeholder="Wpisz ulicę">
+            <button id="find-station-btn">Znajdź</button>
+            <div id="waterInfo"></div>
+            <div id="map" style="height: 300px; width: 100%; margin: 20px 0;"></div>
+            <button id="show-suw-btn">Pokaż wszystkie SUW</button>
+            <button id="show-history-btn">Pokaż historię</button>
+        </div>
 
-        <section id="ranking-section" class="section">
-            <h2>Rankingi</h2>
-            <div class="input-box">
-                <select id="rankingParameter2">
-                    <option value="twardosc">Twardość</option>
-                    <option value="pH">pH</option>
-                    <option value="azotany">Azotany</option>
-                    <option value="zelazo">Żelazo</option>
-                    <option value="mangan">Mangan</option>
-                    <option value="chlor">Chlor wolny</option>
-                </select>
-                <button id="ranking-miast-btn2">Pokaż ranking miast</button>
-                <input id="city-for-suw-ranking" type="text" placeholder="Wpisz miasto dla SUW">
-                <div id="city-for-suw-suggestions"></div>
-                <button id="ranking-suw-btn2">Pokaż ranking SUW w mieście</button>
-                <button id="ranking-district-btn">Pokaż ranking dzielnic</button>
-            </div>
-            <div class="result-section">
-                <h3>Wyniki rankingu</h3>
-                <div id="rankings2" class="result-box">
-                    <ol>
-                        <li><img src="/static/assets/icons/goldendrop.svg" class="droplet-icon" alt="Gold Droplet"> Toruń - 110 mg/l</li>
-                        <li><img src="/static/assets/icons/silverdrop.svg" class="droplet-icon" alt="Silver Droplet"> Grudziądz - 150 mg/l</li>
-                        <li><img src="/static/assets/icons/bronzedrop.svg" class="droplet-icon" alt="Bronze Droplet"> Zielona Góra - 180 mg/l</li>
-                    </ol>
-                </div>
-                <p style="font-size: 0.9em; color: #666;">Uwaga: Brak danych dla chloru wolnego może oznaczać, że miasto lub stacja uzdatniania nie używa chloru w procesie uzdatniania wody. To nie wpływa na jakość wody w rankingu.</p>
-            </div>
-        </section>
+        <!-- Sekcja "Rankingi" -->
+        <div id="rankings" class="section">
+            <button id="tap-water-btn">Woda kranowa</button>
+            <button id="bottled-water-btn">Woda butelkowana</button>
 
-        <section id="bottled-water" class="section">
-            <h2>Sprawdź wodę butelkowaną</h2>
-            <div class="input-result-group">
-                <div class="input-box">
-                    <input id="bottle" type="text" placeholder="Wpisz markę">
-                    <div id="bottle-suggestions"></div>
-                    <button id="check-butelkowana-btn">Sprawdź butelkowaną</button>
-                    <select id="bottleRankingParameter">
-                        <option value="wapn">Wapń</option>
-                        <option value="magnez">Magnez</option>
-                        <option value="sod">Sód</option>
+            <div id="tap-water-rankings">
+                <div id="city-rankings">
+                    <h3>Ranking miast</h3>
+                    <select id="cityRankingParameter">
+                        <option value="twardosc">Twardość</option>
+                        <option value="mangan">Mangan</option>
                         <option value="pH">pH</option>
-                        <option value="potas">Potas</option>
+                        <option value="azotany">Azotany</option>
+                        <option value="zelazo">Żelazo</option>
                         <option value="fluorki">Fluorki</option>
+                        <option value="chlor">Chlor</option>
                     </select>
-                    <button id="ranking-bottles-btn">Pokaż ranking wód butelkowanych</button>
+                    <button id="generate-city-ranking">Generuj ranking</button>
+                    <div id="city-ranking"></div>
+                </div>
+
+                <div id="suw-district-rankings">
+                    <h3>Ranking SUW-ów i dzielnic</h3>
+                    <input id="city-for-suw" placeholder="Wpisz miasto">
+                    <div id="city-for-suw-suggestions"></div>
+                    <select id="suwRankingParameter">
+                        <option value="twardosc">Twardość</option>
+                        <option value="mangan">Mangan</option>
+                        <option value="pH">pH</option>
+                        <option value="azotany">Azotany</option>
+                        <option value="zelazo">Żelazo</option>
+                        <option value="fluorki">Fluorki</option>
+                        <option value="chlor">Chlor</option>
+                    </select>
+                    <button id="generate-suw-ranking">Ranking SUW-ów</button>
+                    <button id="generate-district-ranking">Ranking dzielnic</button>
+                    <div id="suw-ranking"></div>
+                    <div id="district-ranking"></div>
                 </div>
             </div>
-            <div class="result-section">
-                <h3>Wyniki dla wody butelkowanej</h3>
-                <div id="bottle-result" class="result-box"></div>
-            </div>
-            <div class="result-section">
+
+            <div id="bottled-water-rankings" style="display: none;">
                 <h3>Ranking wód butelkowanych</h3>
-                <div id="bottle-rankings" class="result-box"></div>
-            </div>
-        </section>
-
-        <section id="quizzes" class="section">
-            <h2>Wybierz quiz</h2>
-            <div class="input-box">
-                <button id="quiz-skin-btn" class="quiz-toggle-btn">Quiz o cerze</button>
-                <div id="quiz-skin" style="display: none;">
-                    <form id="quiz-skin-form">
-                        <label>1. Jak opiszesz swoją cerę?</label><br>
-                        <input type="radio" name="q1" value="sucha"> Sucha<br>
-                        <input type="radio" name="q1" value="normalna"> Normalna<br>
-                        <input type="radio" name="q1" value="tłusta"> Tłusta<br><br>
-                        <button type="button" id="check-skin-quiz-btn">Sprawdź wynik</button>
-                    </form>
-                    <div id="quiz-skin-result"></div>
-                    <div id="aqua-bot-skin" style="display: none;">
-                        <h3>AquaBot – Twój ekspert od wody</h3>
-                        <div id="aqua-bot-skin-messages"></div>
-                        <div id="aqua-bot-skin-options"></div>
-                    </div>
-                </div>
-                <button id="quiz-wellbeing-btn" class="quiz-toggle-btn">Quiz o samopoczuciu</button>
-                <div id="quiz-wellbeing" style="display: none;">
-                    <form id="quiz-wellbeing-form">
-                        <label>1. Czy czujesz się często przemęczony?</label><br>
-                        <input type="radio" name="q1" value="tak"> Tak<br>
-                        <input type="radio" name="q1" value="czasami"> Czasami<br>
-                        <input type="radio" name="q1" value="nie"> Nie<br><br>
-                        <button type="button" id="check-wellbeing-quiz-btn">Sprawdź wynik</button>
-                    </form>
-                    <div id="quiz-wellbeing-result"></div>
-                    <div id="aqua-bot-wellbeing" style="display: none;">
-                        <h3>AquaBot – Twój ekspert od wody</h3>
-                        <div id="aqua-bot-wellbeing-messages"></div>
-                        <div id="aqua-bot-wellbeing-options"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="community-section" class="section">
-            <h2>Społeczność</h2>
-            <div id="login-box" class="login-box">
-                <input id="username" type="text" placeholder="Wpisz nazwę użytkownika">
-                <button id="login-btn">Zaloguj</button>
-            </div>
-            <div id="user-info" style="display: none; margin-bottom: 20px;">
-                <span id="current-username"></span> (<span id="user-rank"></span>)
-                <button id="toggle-premium">Włącz/Wyłącz Premium</button>
-                <button id="logout">Wyloguj</button>
-            </div>
-            <div class="post-box" style="display: none;" id="post-form">
-                <select id="post-category">
-                    <option value="problemy">Problemy z wodą</option>
-                    <option value="filtry">Filtry</option>
-                    <option value="ogolne">Ogólne</option>
+                <select id="bottleRankingParameter">
+                    <option value="wapn">Wapń</option>
+                    <option value="magnez">Magnez</option>
+                    <option value="sod">Sód</option>
+                    <option value="potas">Potas</option>
+                    <option value="fluorki">Fluorki</option>
+                    <option value="pH">pH</option>
                 </select>
-                <textarea id="post-content" placeholder="Napisz nowy post..." rows="3"></textarea>
-                <label><input type="checkbox" id="premium-only-checkbox"> Tylko dla Premium</label>
-                <button id="add-post-btn">Opublikuj</button>
+                <button id="generate-bottle-ranking">Generuj ranking</button>
+                <div id="bottle-rankings"></div>
             </div>
-            <div class="community-controls">
-                <select id="post-filter">
-                    <option value="problemy">Problemy z wodą</option>
-                    <option value="filtry">Filtry</option>
-                    <option value="ogolne">Ogólne</option>
-                    <option value="wszystkie">Wszystkie</option>
-                </select>
-                <select id="post-sort">
-                    <option value="newest">Najnowsze</option>
-                    <option value="popular">Najpopularniejsze</option>
-                </select>
-            </div>
-            <div id="posts-list"></div>
-        </section>
+        </div>
 
-       <section id="aquabot-section" class="section">
-    <h2>AquaBot – Twój ekspert od wody</h2>
-    <div id="aqua-bot-main" class="aquabot-container" data-type="main">
-        <div id="aqua-bot-main-messages" class="aquabot-messages"></div>
-        <input id="aqua-bot-main-input" class="aquabot-input" type="text" placeholder="Napisz do AquaBota...">
-        <button id="aqua-bot-main-send" class="aquabot-send">Wyślij</button>
+        <!-- Sekcja "Woda butelkowana" -->
+        <div id="bottled-water" class="section">
+            <h2>Woda butelkowana</h2>
+            <input id="bottleName" type="text" placeholder="Wpisz nazwę wody, np. Nałęczowianka">
+            <div id="bottle-suggestions"></div>
+            <button id="search-bottle-water">Wyszukaj wodę</button>
+            <div id="bottle-result"></div>
+        </div>
+
+        <!-- Sekcja "O nas" -->
+        <div id="about" class="section">
+            <h2>O nas</h2>
+            <img src="/static/assets/kranik.png" alt="Uśmiechnięty kranik" class="kranik-gif">
+            <p>Jestem Łuki, twórca Skankran. Od maja 2025 zbieram dane o wodzie, bo chcę zwiększyć świadomość o jej jakości. Tłumaczę co robią parametry na ludzki, zbieram je ręcznie bo AI tego nie ogarnia.<strong> Jeżeli zacznie, to będziecie wiedzieli dzięki komu.</strong> Owszem. Wodociągi spełniają normy prawne, ale normy nie zawsze są normalne. Skankran tłumaczy na ludzki język, czy parametry wody w Twojej okolicy są OK dla zdrowia, urody czy czajnika. Pracuję też nad <a href="https://gmina-ai.pl">gmina-ai.pl</a>, gdzie chcę zautomatyzować zgłaszanie problemów do gmin i wyszukiwanie kontaktów bez chaosu na ich stronach. Jeśli popierasz moją misję, podpisz petycję na <a href="https://gmina-ai.pl">gmina-ai.pl</a> <a href="https://coff.ee/skankran"><img src="/static/assets/icons/coffe.png" alt="Kawa" class="icon-coffe"> 
+                Będę też wdzięczny za postawienie mi kawy :></a>!</p>
+            <p><strong>Oto kilka przykładów, dlaczego normy nie zawsze chronią:</strong></p>
+            <ul>
+                <li>Twardość wody w wielu miastach przekracza 300 mg/l – to zgodne z normą, ale szkodzi skórze, włosom i zaostrza AZS. Nie mówiąc o kamieniu w czajniku!</li>
+                <li>Azotany poniżej 50 mg/l są "bezpieczne", ale dla niemowląt nawet 10 mg/l może być ryzykowne. Chcę was w tym uświadomić.</li>
+                <li>Cukier w napojach gazowanych ma normy – np. w USA dopuszcza się 50 g na 500 ml, ale nawet 20 g (4 łyżeczki!) dziennie zwiększa ryzyko otyłości i cukrzycy. Normy są, ale czy zdrowe?</li>
+            </ul>
+        </div>
+
+        <!-- Sekcja "Społeczność" -->
+<div id="community" class="section community-section">
+    <h2>Społeczność</h2>
+    <div class="community-wrapper">
+        <div class="community-topics">
+            <h3>Tematy na naszym Discordzie:</h3>
+            <ul>
+                <li>Wpływ wody na zdrowie: jak twarda woda wysusza skórę, włosy i zaostrza problemy dermatologiczne, azotany zwiększają ryzyko dla niemowląt, a chlor podrażnia oczy i drogi oddechowe.</li>
+                <li>Konspiracje: czy fluor w wodzie to ukryty trucizna powodująca problemy neurologiczne, czy niezbędny dodatek dla zdrowych zębów? Dyskutujemy dowody i mity.</li>
+                <li>Dlaczego wodociągi w większości raportów pomijają metale ciężkie jak ołów i rtęć – czy to oszczędności, brak regulacji, czy coś więcej? Analizujemy raporty i szukamy prawdy.</li>
+            
+                <li>Debaty : Woda butelkowana vs kranówka?</li>
+                <li>Offtop: bo człowiek nie tylko woda żyje – pogaduchy o wszystkim, od memów po hobby i codzienne życie.</li>
+                <li>Opinie o Skankran, bo chętnie wysłucham waszych sugestii.
+                <li>Zapraszam!</li>
+            </ul>
+        </div>
+        <div class="community-join">
+            <a href="https://discord.gg/skankran" target="_blank" class="discord-link">
+                <p>Dołącz do naszego Discorda</p>
+                <img src="/static/assets/icons/discord.png" alt="Discord" class="discord-icon">
+            </a>
+        </div>
     </div>
-</section>
-<script type="module">
-    import { startAquaBot } from '/static/js/aquabot.js';
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM załadowany, wywołuję startAquaBot');
-        startAquaBot('main');
-    });
-</script>
-        <section id="user-rankings" class="section">
-            <h2>Rankingi użytkowników</h2>
-            <div class="input-result-group">
-                <div class="input-box">
-                    <div class="user-ranking-form">
-                        <h3>Oceń wodę</h3>
-                        <select id="water-type">
-                            <option value="kranowa">Woda kranowa</option>
-                            <option value="butelkowana">Woda butelkowana</option>
-                        </select>
-                        <input type="text" id="water-name" placeholder="Nazwa wody (np. Koszalin, Nałęczowianka)">
-                        <select id="water-rating">
-                            <option value="1">1 gwiazdka</option>
-                            <option value="2">2 gwiazdki</option>
-                            <option value="3">3 gwiazdki</option>
-                            <option value="4">4 gwiazdki</option>
-                            <option value="5">5 gwiazdek</option>
-                        </select>
-                        <button id="submit-rating-btn">Oceń</button>
-                        <select id="user-ranking-type">
-                            <option value="kranowa">Kranowa</option>
-                            <option value="butelkowana">Butelkowana</option>
-                            <option value="wszystkie">Wszystkie</option>
-                        </select>
-                        <button id="show-user-rankings-btn">Pokaż ranking użytkowników</button>
-                    </div>
-                    <div class="reminders-box">
-                        <h2>Przypomnienia o piciu wody</h2>
-                        <select id="reminder-frequency">
-                            <option value="1">Co 1 godzinę</option>
-                            <option value="2" selected>Co 2 godziny</option>
-                            <option value="4">Co 4 godziny</option>
-                        </select>
-                        <button id="toggle-reminders">Włącz przypomnienia</button>
-                        <div id="reminder-status"></div>
-                    </div>
-                    <div class="alerts-box">
-                        <h2>Alerty o zmianach w danych</h2>
-                        <input id="alert-city" type="text" placeholder="Wpisz miasto">
-                        <div id="alert-city-suggestions"></div>
-                        <button id="toggle-alerts">Włącz alerty</button>
-                        <div id="alert-status"></div>
-                    </div>
-                </div>
-                <div class="result-section">
-                    <h3>Rankingi użytkowników</h3>
-                    <div id="user-rankings" class="result-box"></div>
-                </div>
+</div>
+
+        <!-- Sekcja "AquaBot" -->
+<div id="aqua-bot" class="section aquabot-section">
+    <h2>AquaBot</h2>
+    <div class="aquabot-wrapper">
+        <div class="aquabot-container">
+            <div id="aqua-bot-skin-messages" class="aquabot-messages"></div>
+            <div class="aquabot-input-container">
+                <input id="aqua-bot-skin-input" class="aquabot-input" type="text" placeholder="Zadaj pytanie AquaBotowi...">
+                <button id="aqua-bot-skin-send" class="aquabot-send">Wyślij</button>
             </div>
-        </section>
+        </div>
+        <div id="aquabot-legend" class="aquabot-legend">
+            <h3>Porady dla AquaBota:</h3>
+            <ul>
+                <li>Jeśli stacja nazywa się podobnie do miasta (np. 'SUW Koszalin (Podgórna)'), wpisz samo unikalne słowo jak 'podgorna', bez nazwy miasta – to uniknie resetu.</li>
+                <li>Aby zmienić miasto, wpisz nazwę innego.</li>
+                <li>Jeśli bot nie znajduje stacji, zgłoś problem w zakładce Feedback w hamburger menu (prawy górny róg).</li>
+            </ul>
+        </div>
     </div>
+    <div id="aquabot-sources" class="sources-note">
+        <h3>Źródła:</h3>
+        <p>Dane o wodzie: z publicznych raportów wodociągów. Porady o wpływie na urodę/zdrowie/codzienne użycie: <a href="https://www.who.int/teams/environment-climate-change-and-health/water-sanitation-and-health/chemical-hazards-in-drinking-water/nitrate-nitrite">WHO Guidelines</a>, <a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations">EPA NPDWR</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6068531/">PubMed review on nitrate health risks</a>.</p>
+        <p>Będziemy stale ulepszać AquaBota. W drugiej połowie sierpnia planujemy podłączenie API Grok 4 dla lepszych porad.</p>
+    </div>
+</div>
 
-    <nav class="bottom-nav">
-        <img src="/static/assets/icons/ranking_icon.svg" alt="Ranking" onclick="scrollToSection('ranking-section')">
-        <img src="/static/assets/icons/search_icon.svg" alt="Wyszukiwanie" onclick="scrollToSection('station-finder')">
-        <img src="/static/assets/icons/comunity_icon.svg" alt="Community" onclick="scrollToSection('community-section')">
-        <img src="/static/assets/icons/aqua_bot.svg" alt="Aquabot" onclick="scrollToSection('aquabot-section')">
-    </nav>
+        <!-- Sekcja "FAQ" -->
+        <div id="faq" class="section">
+            <h2>FAQ</h2>
+            <p><strong>Pytanie:</strong> Czy kranówka jest bezpieczna?<br>
+            <strong>Odpowiedź:</strong> W większości polskich miast kranówka jest regularnie badana i bezpieczna do picia.</p>
+        </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <!-- Nowa sekcja "Feedback" -->
+<div id="feedback" class="section">
+    <h2>Feedback</h2>
+    <div class="feedback-container">
+        <div class="feedback-left">
+            <p>Napisz do nas jeżeli:</p>
+            <ul class="feedback-list">
+                <li>zauważysz jakiś problem lub bug</li>
+                <li>chcesz podzielić się opinią, co Ci się podoba a co nie</li>
+                <li>podoba Ci się to co robię i chcesz dołączyć do drużyny SkanKran</li>
+                <li>chcesz żeby twoje miasto zostało dodane do SkanKran</li>
+            </ul>
+            <textarea id="feedback-text" placeholder="Twoja wiadomość..." rows="5"></textarea>
+            <button id="send-feedback-btn">Wyślij</button>
+            <p id="feedback-status"></p> <!-- Status po "wysłaniu" -->
+        </div>
+        <div class="note">
+            Uwaga: Dane zbierałem ręcznie w maju, więc są aktualne na maj. Następna aktualizacja będzie w pierwszej połowie sierpnia, wtedy zacznie działać też funkcja pokaż historię, gdzie będziecie mogli zobaczyć, jak zmieniły się dane wody. Na lepsze, a może na gorsze?
+        </div>
+    </div>
+</div>
+
     <script type="module" src="/static/js/main.js"></script>
-    <script type="module">
-        import { startAquaBot } from '/static/js/aquabot.js';
-        startAquaBot('main');
-    </script>
-    <script>
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93e15ef15ccdb004',t:'MTc0Njk2MzMwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    <script type="module" src="/static/js/utils.js"></script>
+    <script type="module" src="/static/js/waterAnalysis.js"></script>
+    <script type="module" src="/static/js/ranking.js"></script>
+    <footer class="footer">
+    <p>Skankran – darmowe narzędzie do analizy wody w Twoim mieście. Wspierasz mój projekt? Zerknij na <a href="https://gmina-ai.pl">gmina-ai.pl</a>, chcemy ułatwić życie mieszkańców i pracowników gmin. Zbieramy petycje żeby pokazać gminom, że wchodzimy w erę automatyzacji.</p>
+    <img src="/static/assets/icons/placeholder.svg" alt="Skankran Logo" class="footer-logo">
+    <p class="copyright">© Skankran wszelkie prawa zastrzeżone.</p>
+</footer>
 </body>
 </html>

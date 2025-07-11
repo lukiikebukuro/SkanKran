@@ -4794,7 +4794,7 @@ export const waterStations = {
             address: "Radość, Wawer",
             data: {
                 pH: "7.4",
-                twardosc: "brak danych",
+                twardosc: "177",
                 azotany: "brak danych",
                 zelazo: "0.022",
                 mangan: "5",
@@ -4817,7 +4817,7 @@ export const waterStations = {
             address: "Falenica, Wawer",
             data: {
                 pH: "7.5",
-                twardosc: "brak danych",
+                twardosc: "245",
                 azotany: "brak danych",
                 zelazo: "0.02",
                 mangan: "5",
@@ -4840,7 +4840,7 @@ export const waterStations = {
             address: "Stara Miłosna, Wesoła",
             data: {
                 pH: "7.4",
-                twardosc: "brak danych",
+                twardosc: "340",
                 azotany: "brak danych",
                 zelazo: "0.02",
                 mangan: "5",
@@ -5098,8 +5098,204 @@ export const waterStations = {
         "Kostuchna": "Średnia dla Katowic"
     },
     info: "Dane z 2025 roku,obecnie tylko uśrednione dla Katowic. W przyszłości planujemy dodać szczegółowe dane dla konkretnych SUW."
+}, 
+  "Tychy": {
+    average: {
+      pH: "7.6",
+      twardosc: "60.5",
+      azotany: "3.6",
+      fluorki: "0.064",
+      zelazo: "0.010",
+      mangan: "1.0",
+      chlorki: "13",
+      siarczany: "15",
+      barwa: "5",
+      metnosc: "0.63",
+      magnez: "3.73",
+      potas: "0",
+      olow: "0.1",
+      rtec: "0.10",
+      chlor: "0.05"
+    },
+    stations: [
+      {
+        name: "SUW Tychy",
+        coords: [50.1371, 18.9664],
+        address: "Tychy, ul. Sadowa 4",
+        data: {
+          pH: "7.6",
+          twardosc: "60.5",
+          azotany: "3.6",
+          fluorki: "0.064",
+          zelazo: "0.010",
+          mangan: "1.0",
+          chlorki: "13",
+          siarczany: "15",
+          barwa: "5",
+          metnosc: "0.63",
+          magnez: "3.73",
+          potas: "0",
+          olow: "0.1",
+          rtec: "0.10",
+          chlor: "0.05"
+        },
+        history: []
+      }
+    ],
+    measurementPoints: [
+      {
+        name: "ul. Sadowa 4",
+        coords: [50.1371, 18.9664],
+        address: "ul. Sadowa 4",
+        data: {
+          pH: "7.6",
+          twardosc: "60.5",
+          azotany: "3.6",
+          fluorki: "0.064",
+          zelazo: "0.010",
+          mangan: "1.0",
+          chlorki: "13",
+          siarczany: "15",
+          barwa: "5",
+          metnosc: "0.63",
+          magnez: "3.73",
+          potas: "0",
+          olow: "0.1",
+          rtec: "0.10",
+          chlor: "0.05"
+        }
+      }
+    ],
+    zones: {
+      "Centrum": "SUW Tychy"
+    }
+  },"Kalisz": {
+        average: {
+            pH: 7.38,
+            twardosc: 305.75,
+            azotany: 2.15,
+            zelazo: 0.028,
+            fluorki: 0.62,
+            chlor: 0,
+            chlorki: 43.5,
+            siarczany: 66,
+            potas: 3.93,
+            metnosc: 0.2,
+            barwa: 8.58,
+            mangan: 0,
+            magnez: 0,
+            olow: 0,
+            rtec: 0
+        },
+        stations: [
+            {
+                name: "SUW Lis",
+                coords: [51.7500, 18.1000],
+                address: "ul. Lis 10, Kalisz",
+                data: {
+                    pH: 7.4,
+                    twardosc: 254,
+                    azotany: 3.5,
+                    zelazo: 0.027,
+                    fluorki: 0.12,
+                    chlor: 0,
+                    mangan: 0,
+                    chlorki: 28,
+                    siarczany: 80,
+                    potas: 2.3,
+                    metnosc: 0.19,
+                    barwa: 7.0,
+                    magnez: 0,
+                    olow: 0,
+                    rtec: 0
+                },
+                history: []
+            },
+            {
+                name: "SUW Fabryczna",
+                coords: [51.7650, 18.0900],
+                address: "ul. Fabryczna 2, Kalisz",
+                data: {
+                    pH: 7.6,
+                    twardosc: 269,
+                    azotany: 1.4,
+                    zelazo: 0.022,
+                    fluorki: 0.94,
+                    chlor: 0,
+                    mangan: 0,
+                    chlorki: 45,
+                    siarczany: 13,
+                    potas: 4.4,
+                    metnosc: 0.18,
+                    barwa: 10,
+                    magnez: 0,
+                    olow: 0,
+                    rtec: 0
+                },
+                history: []
+            },
+            {
+                name: "SUW Warszawska",
+                coords: [51.7400, 18.1100],
+                address: "ul. Warszawska 100, Kalisz",
+                data: {
+                    pH: 7.4,
+                    twardosc: 290,
+                    azotany: 1.6,
+                    zelazo: 0.029,
+                    fluorki: 0.98,
+                    chlor: 0,
+                    mangan: 0,
+                    chlorki: 42,
+                    siarczany: 28,
+                    potas: 3.1,
+                    metnosc: 0.22,
+                    barwa: 8.8,
+                    magnez: 0,
+                    olow: 0,
+                    rtec: 0
+                },
+                history: []
+            },
+            {
+                name: "SUW Poznańska",
+                coords: [51.7700, 18.0800],
+                address: "ul. Poznańska 50, Kalisz",
+                data: {
+                    pH: 7.1,
+                    twardosc: 410,
+                    azotany: 2.1,
+                    zelazo: 0.032,
+                    fluorki: 0.42,
+                    chlor: 0,
+                    mangan: 0,
+                    chlorki: 59,
+                    siarczany: 143,
+                    potas: 5.9,
+                    metnosc: 0.21,
+                    barwa: 8.5,
+                    magnez: 0,
+                    olow: 0,
+                    rtec: 0
+                },
+                history: []
+            }
+        ],
+        measurementPoints: [],
+        zones: {
+            "Śródmieście": "SUW Lis",
+            "Zawodzie": "SUW Lis",
+            "Majków": "SUW Fabryczna",
+            "Piwonice": "SUW Fabryczna",
+            "Chmielnik": "SUW Warszawska",
+            "Rypinek": "SUW Warszawska",
+            "Dobrzec": "SUW Poznańska",
+            "Szczypiorno": "SUW Poznańska"
+        },
+        info: "Dane na podstawie raportu PWiK Sp. z o.o. w Kaliszu za II półrocze 2024 roku. Śródmieście i Zawodzie obsługiwane przez SUW Lis, Majków i Piwonice przez SUW Fabryczna, Chmielnik i Rypinek przez SUW Warszawska, Dobrzec i Szczypiorno przez SUW Poznańska. Dane uśredniane przez aplikację."
+    }
 }
-};
+
 export const bottleData = {
     "Nałęczowianka": {
         wapn: { value: 130, norm: "Korzystna: >150 mg/l", color: "orange", desc: "Wapń: Dobry dla kości, ale trochę mało!" },
@@ -5267,13 +5463,7 @@ export function checkWater(inputId) {
     }
 }
 export async function findWaterStation() {
-    const isPremium = localStorage.getItem('isPremium') === 'true';
     try {
-        if (!isPremium) {
-            alert('Funkcja dostępna tylko dla użytkowników Premium! Przejdź na Premium za 9,99 zł/mc na https://x.ai/grok.');
-            return;
-        }
-
         const streetInput = document.getElementById('street');
         const cityInput = document.getElementById('city-premium');
         const waterInfo = document.getElementById('waterInfo');
@@ -5296,7 +5486,6 @@ export async function findWaterStation() {
 
         const stations = waterStations[city]?.stations || [];
         const measurementPoints = waterStations[city]?.measurementPoints || [];
-        const zones = waterStations[city]?.zones || null;
         if (stations.length === 0 && measurementPoints.length === 0) {
             if (city.toLowerCase() === 'wałbrzych' || city.toLowerCase() === 'walbrzych') {
                 waterInfo.innerHTML = "Odmowa podania danych przez Wałbrzyskie Przedsiębiorstwo Wodociągów i Kanalizacji Sp. z o.o.";
@@ -5312,7 +5501,7 @@ export async function findWaterStation() {
 
         const mapElement = document.getElementById('map');
         if (!mapElement || !window.map) {
-            console.error('Mapa nie jest zainicjalizowana: brak elementu #map lub obiektu window.map');
+            console.error('Problem z mapą: brak elementu #map lub obiektu window.map');
             waterInfo.innerHTML += '<p>Problem z załadowaniem mapy – sprawdź konsolę (F12).</p>';
             return;
         }
@@ -5336,14 +5525,12 @@ export async function findWaterStation() {
         });
         L.marker([userLat, userLon]).addTo(window.map).bindPopup(`Lokalizacja: ${street}, ${city}`).openPopup();
 
-        // Najpierw sprawdź dopasowanie adresu SUW
         let closestStation = null;
         let minStationDistance = Infinity;
         stations.forEach(station => {
-            // Sprawdź, czy ulica zawiera nazwę ulicy z adresu SUW (case-insensitive)
             if (station.address.toLowerCase().includes(street.toLowerCase())) {
                 closestStation = station;
-                minStationDistance = 0; // Priorytet dla dopasowania adresu
+                minStationDistance = 0;
             } else {
                 const distance = parseFloat(getDistance(userLat, userLon, station.coords[0], station.coords[1]));
                 if (distance < minStationDistance) {
@@ -5364,6 +5551,8 @@ export async function findWaterStation() {
         });
 
         let waterInfoHTML = `<h3>Wyniki dla adresu: ${street}, ${city}</h3>`;
+        waterInfoHTML += `<div style="display: flex; flex-wrap: wrap; gap: 20px;">`;
+
         if (closestStation) {
             window.map.setView(closestStation.coords, 14);
             L.marker(closestStation.coords).addTo(window.map).bindPopup(`${closestStation.name} (${closestStation.address})`).openPopup();
@@ -5379,11 +5568,17 @@ export async function findWaterStation() {
                 return `<div class="parameter"><span class="dot ${color}"></span> ${param.name.charAt(0).toUpperCase() + param.name.slice(1)}: ${displayValue} (norma: ${normWithUnit}) – ${getParameterDescription(param.name, param.value, color)}</div>`;
             });
 
-            waterInfoHTML += `<h4>Najbliższa stacja SUW: ${closestStation.name} (${closestStation.address})</h4><p>Odległość: ${minStationDistance.toFixed(2)} km</p><p class="note">To najbliższa stacja uzdatniania wody na podstawie Twojej lokalizacji.</p>Jakość wody:<br>${parameters.join('')}`;
-            const filterRec = suggestWaterFilter(params);
-            waterInfoHTML += `<p><strong>Rekomendacja:</strong> ${filterRec.summary}</p>`;
+            waterInfoHTML += `
+                <div style="flex: 1; min-width: 300px;">
+                    <h4>Najbliższa stacja SUW: ${closestStation.name} (${closestStation.address})</h4>
+                    <p>Odległość: ${minStationDistance.toFixed(2)} km</p>
+                    <p class="note">To najbliższa stacja uzdatniania wody na podstawie Twojej lokalizacji.</p>
+                    Jakość wody:<br>${parameters.join('')}
+                    <p><strong>Rekomendacja:</strong> ${suggestWaterFilter(params).summary}</p>
+                </div>
+            `;
         } else {
-            waterInfoHTML += `<p>Brak stacji SUW dla tego miasta.</p>`;
+            waterInfoHTML += `<div style="flex: 1; min-width: 300px;"><p>Brak stacji SUW dla tego miasta.</p></div>`;
         }
 
         if (closestPoint) {
@@ -5398,43 +5593,31 @@ export async function findWaterStation() {
                 return `<div class="parameter"><span class="dot ${color}"></span> ${param.name.charAt(0).toUpperCase() + param.name.slice(1)}: ${displayValue} (norma: ${normWithUnit}) – ${getParameterDescription(param.name, param.value, color)}</div>`;
             });
 
-            waterInfoHTML += `<h4>Najbliższy punkt pomiarowy: ${closestPoint.name} (${closestPoint.address})</h4><p>Odległość: ${minPointDistance.toFixed(2)} km</p><p class="note">Dane z punktów pomiarowych mogą być bardziej precyzyjne dla Twojej lokalizacji.</p>Jakość wody:<br>${pointParameters.join('')}`;
-            const pointFilterRec = suggestWaterFilter(pointParams);
-            waterInfoHTML += `<p><strong>Rekomendacja:</strong> ${pointFilterRec.summary}</p>`;
-            L.marker(closestPoint.coords).addTo(window.map).bindPopup(`${closestPoint.name} (${closestPoint.address})`);
-        } else {
-            waterInfoHTML += `<p>Brak punktów pomiarowych dla tego miasta.</p>`;
-        }
-
-        if (zones && Object.keys(zones).length > 0) {
             waterInfoHTML += `
-                <p class="note">Jeśli chcesz zobaczyć dane dla innej dzielnicy, wybierz ją poniżej:</p>
-                <select id="district-select">
-                    <option value="">Wybierz dzielnicę (opcjonalne)</option>
-                    ${Object.keys(zones).map(z => `<option value="${z}">${z}</option>`).join('')}
-                </select>
-                <button id="show-district-data">Pokaż dane dla wybranej dzielnicy</button>
-                <div id="station-info"></div>
+                <div style="flex: 1; min-width: 300px;">
+                    <h4>Najbliższy punkt pomiarowy: ${closestPoint.name} (${closestPoint.address})</h4>
+                    <p>Odległość: ${minPointDistance.toFixed(2)} km</p>
+                    <p class="note">Dane z punktów pomiarowych mogą być bardziej precyzyjne dla Twojej lokalizacji.</p>
+                    Jakość wody:<br>${pointParameters.join('')}
+                    <p><strong>Rekomendacja:</strong> ${suggestWaterFilter(pointParams).summary}</p>
+                </div>
             `;
+            L.marker(closestPoint.coords).addTo(window.map).bindPopup(`${closestPoint.name} (${closestPoint.address})`);
         }
 
+        waterInfoHTML += `</div>`;
         waterInfo.innerHTML = waterInfoHTML;
-
-        const showDistrictButton = document.getElementById('show-district-data');
-        if (showDistrictButton) {
-            const newButton = showDistrictButton.cloneNode(true);
-            showDistrictButton.parentNode.replaceChild(newButton, showDistrictButton);
-            newButton.addEventListener('click', () => showDistrictData(userLat, userLon));
-        }
     } catch (error) {
         console.error('Błąd w findWaterStation:', error);
         document.getElementById('waterInfo').innerHTML = "Wystąpił błąd – sprawdź konsolę (F12).";
     }
 }
 
+// Zakładam, że pozostałe funkcje (getDistance, getColor, itp.) są zdefiniowane w pliku i nie wymagają zmian.
+
 export function showDistrictData(userLat, userLon) {
     try {
-        const city = document.getElementById('city-premium')?.value?.trim();
+        const city = document.getElementById('city-for-suw')?.value?.trim();
         const districtSelect = document.getElementById('district-select');
         const stationInfo = document.getElementById('station-info');
         if (!city || !districtSelect || !stationInfo) {
@@ -5593,13 +5776,7 @@ export function showDistrictData(userLat, userLon) {
     }
 }
 export function showAllSUW() {
-    const isPremium = localStorage.getItem('isPremium') === 'true';
     try {
-        if (!isPremium) {
-            alert('Funkcja dostępna tylko dla użytkowników Premium! Przejdź na Premium za 9,99 zł/mc na https://x.ai/grok.');
-            return;
-        }
-
         const city = document.getElementById('city-premium')?.value?.trim();
         const waterInfo = document.getElementById('waterInfo');
         const mapElement = document.getElementById('map');
@@ -5664,9 +5841,10 @@ export function showAllSUW() {
     }
 }
 
+
 export function showAllMeasurementPoints() {
     try {
-        const city = document.getElementById('city-premium')?.value?.trim();
+        const city = document.getElementById('city-for-suw')?.value?.trim();
         const waterInfo = document.getElementById('waterInfo');
         if (!city || !waterInfo) {
             console.error('Brak wymaganych elementów HTML: city-premium, waterInfo');
@@ -5708,7 +5886,7 @@ export function showAllMeasurementPoints() {
 
 export function displayHistory() {
     try {
-        const city = document.getElementById('city-premium')?.value?.trim();
+        const city = document.getElementById('city-for-suw')?.value?.trim();
         const waterInfo = document.getElementById('waterInfo');
         if (!city || !waterInfo) {
             console.error('Brak wymaganych elementów HTML: city-premium, waterInfo');

@@ -1,3 +1,10 @@
+.section {
+    display: none; /* Ukrywa wszystkie sekcje domyślnie */
+}
+.section.active {
+    display: block; /* Pokazuje tylko aktywną sekcję */
+}
+
 body {
     background: linear-gradient(135deg, #e0f7fa, #b3e5fc, #ffffff);
     font-family: 'Open Sans', sans-serif;
@@ -21,34 +28,40 @@ body {
 }
 
 .sticky-nav {
-    position: sticky;
-    top: 0;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 2000;
-    border-radius: 10px;
-    margin-bottom: 40px;
+    position: sticky; /* Utrzymuje kontener przy górze ekranu podczas przewijania */
+    top: 0; /* Przykleja do górnej krawędzi */
+    background: linear-gradient(135deg, #e0f7fa, #b3e5fc); /* Nowoczesny, jasny gradient jako tło */
+    padding: 15px 20px; /* Większy padding dla oddechu */
+    display: flex; /* Układ elastyczny dla przycisków */
+    flex-wrap: wrap; /* Przyciski zawijają się na mniejszych ekranach */
+    justify-content: space-around; /* Równomierne rozłożenie przycisków */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Głębszy cień dla efektu 3D */
+    z-index: 2000; /* Wysoka warstwa, żeby był nad innymi elementami */
+    border-radius: 12px; /* Zaokrąglone rogi */
+    margin-bottom: 40px; /* Odstęp od sekcji poniżej */
+    margin-top: 170px; /* Obniżenie, żeby nie nachodził na legendę */
+    backdrop-filter: blur(5px); /* Subtelny efekt rozmycia tła dla nowoczesności */
 }
 
 .sticky-nav button {
-    padding: 10px 15px;
-    font-size: 14px;
-    background: linear-gradient(45deg, #0288d1, #26c6da);
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin: 5px;
+    padding: 14px 25px; /* Duże, wygodne przyciski */
+    font-size: 16px; /* Czytelny rozmiar tekstu */
+    background: linear-gradient(45deg, #0288d1, #26c6da); /* Nowoczesny gradient, pasujący do 2025 */
+    color: white; /* Biały tekst */
+    border: none; /* Bez obramowania */
+    border-radius: 12px; /* Łagodnie zaokrąglone rogi */
+    cursor: pointer; /* Kursor wskazujący */
+    transition: all 0.3s ease; /* Płynna animacja dla wszystkich zmian */
+    margin: 5px; /* Odstęp między przyciskami */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Lekki cień dla głębi */
+    font-family: 'Roboto', sans-serif; /* Nowoczesna czcionka */
 }
 
 .sticky-nav button:hover {
-    background: linear-gradient(45deg, #0277bd, #4dd0e1);
-    transform: translateY(-2px);
+    background: linear-gradient(45deg, #0277bd, #4dd0e1); /* Ciemniejszy gradient przy najechaniu */
+    transform: translateY(-2px); /* Lekkie uniesienie */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Mocniejszy cień przy najechaniu */
+    scale: 1.05; /* Subtelne powiększenie dla efektu 2025 */
 }
 
 .section {
@@ -65,21 +78,18 @@ body {
 }
 
 h1 {
-    color: #ff6200;
-    font-size: 38px;
     font-family: 'Poppins', sans-serif;
+    font-size: 24px;
     font-weight: 700;
-    margin-bottom: 20px;
-    text-align: center;
+    color: #0288d1;
+    margin-top: 20px; /* Mniejszy margines, bliżej logo */
 }
 
 h2 {
-    color: #0288d1;
-    font-size: 28px;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
     font-weight: 600;
-    margin-bottom: 20px;
-    text-align: center;
+    color: #0288d1;
 }
 
 h3 {
@@ -153,7 +163,7 @@ input:focus {
 }
 
 .result-section {
-    margin: 30px 0;
+    margin: 30px  recitation0;
 }
 
 .result-box {
@@ -245,31 +255,7 @@ input:focus {
 .green-dot { background-color: #4caf50; }
 .orange-dot { background-color: #ff9800; }
 .red-dot { background-color: #f44336; }
-
-#aqua-bot-skin, #aqua-bot-wellbeing {
-    margin: 20px 0;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
-}
-
-#aqua-bot-skin-messages, #aqua-bot-wellbeing-messages {
-    max-height: 200px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-    font-size: 15px;
-    color: #555;
-}
-
-#aqua-bot-skin-options button, #aqua-bot-wellbeing-options button {
-    margin: 5px;
-    background: linear-gradient(45deg, #4caf50, #81c784);
-    border-radius: 15px;
-    padding: 12px 25px;
-    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
-    z-index: 1000;
-}
+.grey-dot { background-color: #cccccc; }
 
 #aqua-bot-skin-options button:hover, #aqua-bot-wellbeing-options button:hover {
     background: linear-gradient(45deg, #43a047, #66bb6a);
@@ -280,7 +266,7 @@ input:focus {
 .post-box textarea, .add-comment-box textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid rgba(179, 229, 252, 0.5);
+    border: 1px solid rgba(179, 229, 250, 0.5);
     border-radius: 10px;
     background: rgba(224, 247, 250, 0.7);
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -369,7 +355,7 @@ input:focus {
 }
 
 #waterInfo .station-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 250, 0.9);
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
@@ -723,8 +709,6 @@ input:focus {
     #rankings li {
         font-size: 14px;
         flex-direction: row;
-        flex-wrap: wrap;
-        gap: 8px;
     }
     #rankings .dot {
         width: 16px;
@@ -799,13 +783,12 @@ input:focus {
     color: #555;
 }
 
-/* Styl dla headera i logo */
 header {
     text-align: center;
     padding: 20px;
 }
 
-.logo {
+#logo {
     width: 300px;
     height: auto;
 }
@@ -858,6 +841,7 @@ header {
         font-size: 16px;
     }
 }
+
 #rankings .droplet-icon {
     width: 20px;
     height: 20px;
@@ -869,82 +853,751 @@ header {
     vertical-align: middle;
     margin-right: 5px;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
 .aquabot-container {
-    border: 3px solid #004d40;
-    border-radius: 20px;
-    padding: 30px;
-    max-width: 900px;
-    width: 95%;
-    margin: 40px auto;
-    background: #e0f2f1;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    width: 100%; /* Pełna szerokość */
+    max-width: 900px; /* Nieco szerszy dla nowoczesności */
+    height: 520px; /* Lekko wyższy */
+    margin: 30px auto; /* Większy margines */
+    padding: 25px; /* Większy padding */
+    background: linear-gradient(135deg, #0288d1, #4dd0e1); /* Morski gradient */
+    border: none; /* Bez obramowania */
+    border-radius: 16px; /* Gładkie rogi */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Głębszy cień */
+    display: flex; /* Układ elastyczny */
+    flex-direction: column; /* Pionowy układ */
+    backdrop-filter: blur(5px); /* Subtelne rozmycie */
 }
-.aquabot-container:hover {
-    transform: translateY(-8px);
-}
+
 .aquabot-messages {
-    max-height: 650px;
-    overflow-y: auto;
-    margin-bottom: 25px;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 15px;
-    border: 2px solid #004d40;
+    flex-grow: 1; /* Zajmuje dostępną przestrzeń */
+    max-height: 400px; /* Maksymalna wysokość */
+    overflow-y: auto; /* Pasek przewijania, jeśli za dużo treści */
+    margin-bottom: 15px; /* Odstęp od inputa */
+    padding: 10px; /* Wewnętrzny odstęp */
+    background: linear-gradient(135deg, rgba(227, 242, 253, 0.7), rgba(255, 255, 255, 0.3)); /* Subtelny gradient, pasujący do bąbelków */
+    border: 1px solid #0288d1; /* Morskie obramowanie */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    display: flex; /* Układ elastyczny */
+    flex-direction: column; /* Pionowy układ wiadomości */
+    gap: 10px; /* Odstęp między wiadomościami */
 }
+
 .bot-message {
-    background: #b2dfdb;
-    color: #000000;
-    padding: 15px 20px;
-    margin: 10px 15px;
-    border-radius: 20px 20px 20px 8px;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.6;
-    animation: fadeIn 0.4s ease;
+    background: #e3f2fd;
+    color: #333;
+    padding: 10px 15px;
+    margin: 0 0 15px 0;
+    border-radius: 18px 18px 18px 4px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 80%;
+    align-self: flex-start;
 }
+
 .user-message {
-    background: #81d4fa;
-    color: #000000;
-    padding: 15px 20px;
-    margin: 10px 15px;
-    border-radius: 20px 20px 8px 20px;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.6;
-    text-align: right;
-    animation: fadeIn 0.4s ease;
+    background: #e0e0e0;
+    color: #333;
+    padding: 10px 15px;
+    margin: 0 0 15px auto;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 80%;
+    align-self: flex-end;
 }
+
+.aquabot-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
 .aquabot-input {
-    width: 70%;
-    padding: 15px;
-    font-size: 22px;
-    border: 3px solid #004d40;
-    border-radius: 30px;
-    margin-right: 20px;
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
     outline: none;
-    background: #ffffff;
-    color: #000000;
-    transition: border-color 0.3s ease;
+    background: #fff;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
 }
+
 .aquabot-input:focus {
     border-color: #0288d1;
 }
+
 .aquabot-send {
-    padding: 15px 35px;
-    font-size: 22px;
-    background: #004d40;
-    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #0288d1;
+    color: #fff;
     border: none;
-    border-radius: 30px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    font-family: 'Roboto', sans-serif;
 }
+
 .aquabot-send:hover {
-    background: #00332b;
-    transform: scale(1.1);
+    background: #0277bd;
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+
+.faq-section {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.faq-section h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.faq-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.faq-section li {
+    margin-bottom: 15px;
+}
+
+.faq-section a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.faq-section a:hover {
+    text-decoration: underline;
+}
+
+#hamburger {
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#hamburger-menu {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: none;
+}
+
+#hamburger-menu a {
+    display: block;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #0288d1;
+    font-family: 'Poppins', sans-serif;
+}
+
+#hamburger-menu a:hover {
+    color: #0277bd;
+    text-decoration: underline;
+}
+
+#check-tapwater.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#check-tapwater input, #check-tapwater button {
+    margin: 10px 0;
+    max-width: 300px;
+    width: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    float: left;
+    padding: 10px;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+.ranking-section {
+    display: none;
+}
+
+.ranking-section.active {
+    display: block;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #01579b;
+}
+
+#city-ranking, #suw-ranking, #district-ranking, #bottle-rankings {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(224, 247, 250, 0.5);
+    border-radius: 10px;
+}
+
+#city-ranking ol, #suw-ranking ol, #district-ranking ol, #bottle-rankings ol {
+    list-style-position: inside;
+    padding-left: 0;
+}
+
+#city-ranking li, #suw-ranking li, #district-ranking li, #bottle-rankings li {
+    margin: 5px 0;
+    font-size: 16px;
+}
+#tap-water-rankings {
+    display: flex;
+    gap: 20px;
+}
+
+#city-rankings, #suw-district-rankings {
+    flex: 1;
+}
+
+#bottled-water-rankings {
+    display: none;
+}
+
+#rankings button.active {
+    background: linear-gradient(45deg, #0277bd, #4dd0e1);
+}
+
+
+/* Ustawienie header jako kontenera dla pozycjonowania absolutnego */
+header {
+    position: relative;
+}
+
+/* Styl dla legendy w lewym górnym rogu */
+.legend {
+    position: absolute; /* Ustawia pozycję niezależną od przepływu strony, względem rodzica (header) */
+    top: 10px; /* Odległość od górnej krawędzi rodzica (10 pikseli) */
+    left: 10px; /* Odległość od lewej krawędzi rodzica (10 pikseli) */
+    width: 300px; /* Szerokość kontenera legendy (możesz zmienić, np. na 250px) */
+    background: rgba(255, 255, 255, 0.8); /* Białe tło z 80% przezroczystości (możesz zmienić na np. rgba(224, 247, 250, 0.7)) */
+    padding: 10px; /* Wewnętrzny odstęp (możesz zwiększyć, np. 15px) */
+    border-radius: 5px; /* Zaokrąglenie rogów (możesz zmienić, np. 8px) */
+    font-size: 14px; /* Rozmiar czcionki dla całego kontenera (możesz zmienić, np. 14px) */
+    font-family: 'Roboto', sans-serif; /* Czcionka (możesz zmienić na 'Open Sans') */
+    color: #333; /* Kolor tekstu (możesz zmienić, np. na #0288d1) */
+    z-index: 1000; /* Warstwa (wyżej niż inne elementy, zwykle nie zmieniasz) */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Cień (możesz zmienić, np. 0 4px 8px) */
+}
+
+.legend-item {
+    display: flex; /* Ustawia układ elastyczny (ikonka i tekst w linii) */
+    align-items: center; /* Wyrównuje elementy w pionie do środka */
+    gap: 12px; /* Odstęp między ikoną a tekstem (możesz zwiększyć, np. 8px) */
+    margin-bottom: 18px; /* Odstęp pod każdym elementem (możesz zwiększyć, np. 8px) */
+}
+
+.legend-item p {
+    margin: 0; /* Usuwa domyślne marginesy tekstu (zwykle nie zmieniasz) */
+}
+
+.icon {
+    width: 30px; /* Szerokość ikonki (możesz zmienić, np. na 40px) */
+    height: 30px; /* Wysokość ikonki (możesz zmienić, np. na 40px) */
+}
+
+/* Styl dla GIF-a w sekcji O nas */
+.kranik-gif {
+    width: 300px;
+    height: 200px;
+    float: right;
+    margin: 10px 0 10px 10px;
+    border-radius: 5px;
+}
+
+/* Styl dla ikonki kawy */
+.icon-coffe {
+    width: 80px;
+    height: 80x;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* Styl dla sekcji O nas */
+#about p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+#about ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+#about a {
+    color: #0288d1;
+    text-decoration: none;
+}
+
+#about a:hover {
+    text-decoration: underline;
+    color: #0277bd;
+}
+
+/* Styl dla napisów w header */
+header h1,
+.alert-text {
+    margin-left: 320px; /* Przesuwa napisy na prawo, uwzględniając szerokość legendy (300px) + odstęp */
+}
+
+/* Responsywność dla mniejszych ekranów */
+@media (max-width: 600px) {
+    header h1,
+    .alert-text {
+        margin-left: 0; /* Usuwa margines na małych ekranach */
+    }
+    .legend {
+        position: static; /* Legenda staje się częścią normalnego przepływu */
+        width: 100%; /* Pełna szerokość na małych ekranach */
+        margin-bottom: 20px; /* Odstęp pod legendą */
+    }
+}
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #e0f7fa, #b3e5fc, #ffffff);
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+    color: #333;
+    margin-top: 40px;
+    border-top: 1px solid rgba(179, 229, 252, 0.5);
+}
+.footer a {
+    color: #0288d1;
+    text-decoration: none;
+    font-weight: 600;
+}
+.footer a:hover {
+    color: #0277bd;
+    text-decoration: underline;
+}
+.footer-logo {
+    width: 100px; /* Małe logo – dostosuj, jeśli za małe/duże */
+    height: auto;
+    margin: 10px 0;
+}
+.copyright {
+    font-size: 0.8em;
+    margin-top: 10px;
+}
+
+.top-right-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    gap: 25px; /* Bez zmian – odstęp OK */
+    z-index: 2000;
+}
+.coffee-support {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Lekko zwiększony odstęp między tekstem a ikonką */
+    color: #026fa7; /* Przyciemniony niebieski dla pro wyglądu */
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif; /* Zmiana na Roboto – spójniejsza z stroną */
+    font-size: 16px;
+    font-weight: 500; /* Lekko lżejszy weight dla elegancji */
+    padding: 8px 15px; /* Większy padding – wygląda jak button */
+    border-radius: 8px; /* Miękksze rogi */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtelny cień zamiast border */
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth dla wszystkich */
+    margin-right: 60px; /* Bez zmian – przesunięcie na lewo */
+}
+.coffee-support:hover {
+    background: linear-gradient(45deg, rgba(224, 247, 250, 0.5), rgba(179, 229, 252, 0.5)); /* Lekki gradient na hover – pasuje do strony */
+    color: #01579b; /* Ciemniejszy hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Mocniejszy cień na hover */
+    text-decoration: underline; /* Zachowane dla klikalności */
+}
+.coffee-icon {
+    width: 80px; /* Bez zmian – duża jak ustawiłeś */
+    height: auto;
+    margin-left: 5px; /* Dodany margines – lepiej oddziela od tekstu */
+}
+
+
+
+#bottled-water input#bottleName {
+    width: 300px; /* Szerszy input – z domyślnego na 300px (dostosuj na 250px/350px jeśli za szeroki) */
+}
+
+@media (max-width: 600px) {
+    .legend {
+        position: static; /* Statyczna na mobile – unika nachodzenia */
+        width: 100%; /* Pełna szerokość */
+        margin: 10px auto 20px; /* Centrowanie + odstęp pod */
+        max-height: none; /* Bez limitu wysokości */
+    }
+    .legend-item {
+        gap: 8px; /* Mniejszy odstęp */
+        margin-bottom: 10px;
+    }
+    .icon {
+        width: 25px;
+        height: 25px; /* Mniejsze ikony na mobile */
+    }
+}
+
+#feedback {
+    padding: 20px;
+    background: rgba(224, 247, 250, 0.5);
+    border-radius: 10px;
+    max-width: 800px; /* Zwiększone dla dwóch kolumn */
+    margin: 0 auto; /* Centrowanie */
+}
+
+#feedback .feedback-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Odstęp między kolumnami */
+}
+
+#feedback .feedback-left {
+    flex: 1; /* Lewa kolumna zajmuje większość */
+    max-width: 60%;
+}
+
+#feedback p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#feedback .feedback-list {
+    list-style-type: disc; /* Punkty dla listy */
+    padding-left: 20px;
+    text-align: left; /* Wyrównanie do lewej */
+    margin-bottom: 20px;
+}
+
+#feedback .feedback-list li {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+#feedback .note {
+    font-style: italic;
+    color: #555;
+    font-size: 15px;
+    text-align: left;
+    flex: 1; /* Prawa kolumna */
+    max-width: 40%;
+    margin-top: 0; /* Dopasowanie pionowe */
+}
+
+#feedback textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(179, 229, 252, 0.5);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    resize: vertical;
+}
+
+#send-feedback-btn {
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #0288d1, #26c6da);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+#send-feedback-btn:hover {
+    background: linear-gradient(45deg, #0277bd, #4dd0e1);
+}
+
+#feedback-status {
+    margin-top: 10px;
+    color: #4caf50;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    #feedback .feedback-container {
+        flex-direction: column; /* Stack na mobile */
+    }
+    #feedback .feedback-left,
+    #feedback .note {
+        max-width: 100%; /* Pełna szerokość na mobile */
+    }
+}
+.aquabot-section {
+    margin-top: 50px;  /* Margines od góry */
+    align-items: center;  /* Centrowanie dzieci */
+    padding: 20px;
+}
+
+.aquabot-section.active {
+    display: flex;  /* Flex tylko gdy aktywna sekcja (nie nadpisuje none) */
+    flex-direction: column;
+}
+
+.aquabot-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;  /* Dla centrowania */
+    margin: 0 auto;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.aquabot-container {
+    flex: 1;
+    max-width: 850px;
+}
+
+.aquabot-legend {
+    flex: 0 0 300px;
+    background: rgba(224, 247, 250, 0.7);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    color: #333;
+}
+
+.aquabot-legend h3 {
+    margin-bottom: 10px;
+    color: #0288d1;
+}
+
+.aquabot-legend ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.aquabot-legend li {
+    margin-bottom: 8px;
+    
+}
+
+#aquabot-sources {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: rgba(224, 247, 250, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+#aquabot-sources h3 {
+    margin-bottom: 10px;
+    color: #0288d1;
+}
+
+#aquabot-sources a {
+    color: #0288d1;
+    text-decoration: none;
+}
+
+#aquabot-sources a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .aquabot-wrapper {
+        flex-direction: column;
+        align-items: center;
+        max-width: 850px;
+    }
+    .aquabot-legend {
+        flex: none;
+        width: 100%;
+        max-width: 850px;
+    }
+    #aquabot-sources {
+        max-width: 850px;
+    }
+    .aquabot-section {
+        margin-top: 30px;
+    }
+}
+
+
+.community-section {
+    text-align: center; /* Centruje nagłówek sekcji dla symetrii */
+    padding: 40px 20px; /* Dodaje przestrzeń wokół sekcji dla "oddechu" */
+    background: linear-gradient(135deg, rgba(224, 247, 250, 0.8), rgba(179, 229, 252, 0.8)); /* Gradient tło w stylu wodnym dla efektu wizualnego */
+    border-radius: 15px; /* Zaokrągla rogi sekcji dla nowoczesnego wyglądu */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Dodaje cień 3D, by sekcja "unosiła się" nad stroną */
+}
+
+.community-wrapper {
+    display: flex; /* Ustawia flexbox dla dwóch kolumn obok siebie */
+    flex-direction: row; /* Kolumny w poziomie (lewa + prawa) */
+    gap: 40px; /* Odstęp między kolumnami dla separacji */
+    max-width: 1200px; /* Ogranicza szerokość, by nie rozciągało się na dużych ekranach */
+    margin: 0 auto; /* Centruje wrapper na stronie */
+    align-items: flex-start; /* Wyrównuje kolumny od góry, by nie "pływały" */
+}
+
+.community-topics {
+    flex: 6; /* Lewa kolumna zajmuje ~60% przestrzeni (zmień na 7 dla szerszej) */
+    text-align: left; /* Tekst wyrównany do lewej dla naturalnego czytania */
+    padding: 25px; /* Wewnętrzny odstęp od krawędzi kolumny (zwiększ dla więcej miejsca) */
+    background: rgba(255, 255, 255, 0.9); /* Białe tło z lekką przezroczystością dla kontrastu */
+    border-radius: 10px; /* Zaokrągla rogi kolumny */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Lekki cień dla głębi */
+    font-family: 'Arial', sans-serif; /* Czcionka podstawowa dla całej kolumny (zmień na 'Roboto' dla nowoczesności) */
+    color: #333; /* Kolor tekstu bazowy (ciemny szary dla czytelności) */
+}
+
+.community-topics h3 {
+    color: #0288d1; /* Kolor nagłówka (niebieski brandowy, zmień na #00aaff dla jaśniejszego) */
+    margin-bottom: 15px; /* Odstęp pod nagłówkiem (zwiększ do 20px dla więcej przestrzeni) */
+    font-size: 20px; /* Rozmiar czcionki nagłówka (zwiększ do 22px dla większego wyróżnienia) */
+    font-weight: 700; /* Pogrubienie czcionki (bold dla nacisku) */
+}
+
+.community-topics ul {
+    list-style-type: none; /* Usuwa domyślne punkty listy */
+    padding: 0 0 0 10px; /* Lekki indent z lewej (zmień na 20px dla większego wcięcia) */
+    margin: 0; /* Usuwa domyślne marginesy listy */
+}
+
+.community-topics li {
+    position: relative; /* Pozwala na pozycjonowanie ikony ::before */
+    margin-bottom: 20px; /* Odstęp między punktami listy (zwiększ do 25px dla luźniejszego układu) */
+    padding-left: 35px; /* Miejsce z lewej na ikonę (zwiększ, jeśli ikona większa) */
+    font-size: 15px; /* Rozmiar czcionki tekstu (zmień na 16px dla większej czytelności) */
+    line-height: 1.6; /* Odstęp między liniami tekstu (zwiększ do 1.8 dla lepszego wrapowania długich zdań) */
+    word-break: break-word; /* Łamie długie słowa, by nie wychodziły poza kolumnę */
+    hyphens: auto; /* Automatyczne dzielenie słów na sylaby (dla polskiego tekstu) */
+    transition: transform 0.3s, color 0.3s; /* Animacja na hover (płynne przesunięcie i zmiana koloru) */
+    color: #444; /* Kolor tekstu w punktach (lekko jaśniejszy od bazowego dla kontrastu) */
+}
+
+.community-topics li:hover {
+    transform: translateX(5px); /* Przesuwa punkt w prawo na hover (zmień na 10px dla mocniejszego efektu) */
+    color: #0288d1; /* Zmienia kolor na hover (niebieski dla interaktywności) */
+}
+
+.community-topics li::before {
+    content: '💧'; /* Ikona kropli wody jako punkt listy (zmień na inną emoji, np. '🌊') */
+    position: absolute; /* Pozycjonuje ikonę niezależnie od tekstu */
+    left: 0; /* Ikona z lewej strony */
+    top: 0; /* Ikona na wysokości pierwszej linii tekstu */
+    font-size: 18px; /* Rozmiar ikony (zwiększ do 20px dla większej) */
+    transition: transform 0.3s; /* Animacja ikony na hover */
+}
+
+.community-topics li:hover::before {
+    transform: scale(1.2) rotate(5deg); /* Powiększa i obraca ikonę na hover (eksperymentuj z rotate dla fun) */
+}
+
+.community-join {
+    flex: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: transparent; /* Usuwa białe tło całkowicie (lub rgba(255, 255, 255, 0) dla pełnej przezroczystości) */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.discord-link {
+    display: flex; /* Flexbox dla układu ikonki i tekstu (zmień na inline-flex jeśli chcesz mniejszy) */
+    flex-direction: column; /* Układ pionowy: tekst nad ikoną (zmień na row dla poziomego) */
+    align-items: center; /* Centruje elementy pionowo (tekst i ikonka w środku) */
+    gap: 10px; /* Odstęp między tekstem a ikoną (zwiększ do 15px dla separacji) */
+    padding: 15px 30px; /* Padding wewnątrz buttona (góra/dół 15px, boki 30px dla "button feel") */
+    background: linear-gradient(45deg, #7289da, #5865f2); /* Gradient w kolorach Discorda (zmień kąt na 135deg dla innego kierunku) */
+    color: white; /* Kolor tekstu (biały dla kontrastu z tłem) */
+    text-decoration: none; /* Usuwa podkreślenie linku */
+    border-radius: 15px; /* Mocno zaokrąglone rogi dla "pill" efektu (zmień na 5px dla kwadratowego) */
+    font-size: 18px; /* Rozmiar czcionki tekstu (zwiększ do 20px dla większego buttona) */
+    font-weight: 700; /* Pogrubienie tekstu (bold dla nacisku) */
+    box-shadow: 0 5px 10px rgba(114, 137, 218, 0.3); /* Cień w kolorze Discorda (zwiększ rgba opacity dla mocniejszego glow) */
+    transition: all 0.3s ease; /* Płynna animacja wszystkich zmian (zmień czas na 0.5s dla wolniejszej) */
+    border: 2px solid #5865f2; /* Dodatkowa ramka dla "neon" efektu (usuń jeśli nie chcesz) */
+}
+
+.discord-link:hover {
+    background: linear-gradient(45deg, #5865f2, #7289da); /* Odwrócony gradient na hover (zmień kolory dla innego efektu) */
+    transform: scale(1.05) translateY(-3px); /* Powiększa i unosi button na hover (zmień scale na 1.1 dla większego) */
+    box-shadow: 0 10px 20px rgba(114, 137, 218, 0.5); /* Mocniejszy cień na hover (dla "glow" efektu) */
+    border-color: #7289da; /* Zmienia kolor ramki na hover */
+}
+
+.discord-icon {
+    width: 120px; /* Szerokość ikonki (zwiększ do 80px dla większej) */
+    height: 80px; /* Wysokość ikonki (zawsze kwadratowa) */
+    transition: transform 0.3s; /* Animacja ikonki (płynny obrót) */
+}
+
+.discord-link:hover .discord-icon {
+    transform: rotate(10deg); /* Obraca ikonkę na hover (zmień na 360deg dla pełnego obrotu, ale dodaj transition: transform 1s) */
+}
+
+@media (max-width: 768px) {
+    .community-wrapper {
+        flex-direction: column; /* Na mobile: kolumny jedna pod drugą (stack pionowo) */
+        gap: 20px; /* Mniejszy odstęp między kolumnami na małych ekranach */
+    }
+    .community-topics, .community-join {
+        flex: none; /* Usuwa proporcje flex, by kolumny były pełne */
+        width: 100%; /* Pełna szerokość na mobile */
+    }
+    .discord-link {
+        font-size: 16px; /* Mniejszy tekst buttona na mobile (dla responsywności) */
+        padding: 12px 25px; /* Dostosowany padding na mniejszych ekranach */
+    }
+    .discord-icon {
+        width: 50px; /* Mniejsza ikonka na mobile */
+        height: 50px;
+    }
 }

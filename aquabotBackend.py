@@ -13,6 +13,11 @@ XAI_API_KEY = os.getenv('XAI_API_KEY')
 
 def normalize_name(name):
     """Normalizuje nazwy, usuwając znaki diakrytyczne i zamieniając na małe litery."""
+    if not name:
+        return ""
+    # Usuń specjalne znaki, backslash, punct
+    name = re.sub(r'[\W_]+', ' ', name).strip()  # Zamień non-alphanum na space, strip
+    # Normalize diakrytyki
     return ''.join(c for c in unicodedata.normalize('NFD', name) if unicodedata.category(c) != 'Mn').lower().strip()
 
 def parseFloat(value):
@@ -22,6 +27,7 @@ def parseFloat(value):
     try:
         return float(value)
     except (ValueError, TypeError):
+        print(f"[DEBUG] Błąd konwersji: {value} nie jest konwertowalne na float")
         return None
 
 def normalize_keys(d):
@@ -34,46 +40,90 @@ def normalize_keys(d):
 
 class AquaBot:
     CATEGORY_ALIASES = {
-        "health_physical": ["zdrowie fizyczne", "fizyczne", "zdrowie fiz"],
-        "health_mental": ["zdrowie psychiczne", "psychiczne", "zdrowie psy"],
-        "beauty": ["uroda", "piękno", "wygląd"],
-        "ecology": ["ekologia", "eko", "środowisko"],
-        "lifestyle": ["styl życia", "styl zycia", "zycie", "lifestyle"],
-        "autoimmune_health": ["choroby autoimmunologiczne", "choroby", "autoimmunologiczne", "autoimuno"],
-        "gym": ["gym", "siłownia", "trening", "fitness"],
+        "zdrowie": ["zdrowie", "zdrowie fizyczne", "fizyczne", "zdrowie fiz"],
+        "uroda": ["uroda", "piękno", "wygląd"],
+        "codzienne_uzycie": ["codzienne użycie", "użycie", "gotowanie", "picie"],
+    }
+
+    SUBCATEGORIES = {
+        "zdrowie": ["Picie wody", "Alergie", "Dzieci", "Autoimmunologia/Choroby"],
+        "uroda": ["Skóra", "Włosy", "Oczy"],
+        "codzienne_uzycie": ["Prysznic i kąpiel", "Zmywanie naczyń", "Pranie", "Sprzątanie"]
     }
 
     CITY_ALIASES = {
         "wwa": "warszawa",
+        "waw": "warszawa",
+        "warsaw": "warszawa",
         "krk": "krakow",
-        "wro": "wrocław",
-        "pozn": "poznan",
+        "krak": "krakow",
+        "cracow": "krakow",
         "gd": "gdansk",
+        "gdansk": "gdansk",
+        "wro": "wroclaw",
+        "wroc": "wroclaw",
+        "pozn": "poznan",
+        "poz": "poznan",
         "szcz": "szczecin",
+        "szc": "szczecin",
+        "lodz": "łodz",
+        "lod": "łodz",
+        "gorzow": "gorzow wielkopolski",
+        "gwk": "gorzow wielkopolski",
+        "radom": "radom",
+        "rdm": "radom",
+        "byd": "bydgoszcz",
+        "tor": "torun",
+        "ziel": "zielona gora",
+        "leg": "legnica",
+        "lub": "lublin",
+        "czest": "czestochowa",
+        "plock": "płock",
+        "olsz": "olsztyn",
+        "tychy": "tychy",
+        "kalisz": "kalisz",
+        "kosz": "koszalin",
+        "grudz": "grudziadz",
+        "walb": "wałbrzych",
+        "pil": "piła",
+        "jel": "jelenia gora",
+        "kon": "konin",
+        "glog": "głogow",
+        "bial": "białystok",
+        "tar": "tarnow",
+        "sied": "siedlce",
+        "mordy": "mordy",
+        "rzesz": "rzeszow",
+        "sosn": "sosnowiec",
+        "dab": "dabrowa gornicza",
+        "chorz": "chorzow",
+        "gdynia": "gdynia",
+        "kiel": "kielce",
     }
 
-    def __init__(self, userName, city, addressStyle, selectedStation=None, waitingForCategory=False, lastParameters=[], expectingCity=False):
-        self.userName = userName or "Użytkownik"
-        self.city = city or "Grudziądz"
+    def __init__(self, userName, city, addressStyle, selectedStation=None, waitingForCategory=False, lastParameters=[], selectedCategory=None, waitingForSubcategory=False, expectingCity=False, in_conversation=False):
+        self.userName = addressStyle
+        self.city = city or None
         self.addressStyle = addressStyle or "przyjacielu"
-        self.selected_station = None
         self.waiting_for_category = waitingForCategory
+        self.selected_category = selectedCategory
+        self.waiting_for_subcategory = waitingForSubcategory
         self.last_parameters = lastParameters
         self.chat_history = []
         self.expecting_city = expectingCity
-
-        self.client = OpenAI(api_key=XAI_API_KEY, base_url="https://api.x.ai/v1")
+        self.in_conversation = in_conversation
 
         try:
             with open('static/js/waterAnalysis.json', 'r', encoding='utf-8') as f:
                 self.water_data = json.load(f)
             self.water_data = normalize_keys(self.water_data)
+            print(f"[DEBUG] Loaded cities: {list(self.water_data.keys())}")
         except Exception as e:
             print(f"Błąd ładowania waterAnalysis.json: {e}")
             self.water_data = {}
 
         try:
-            with open("advice_templates.json", "r", encoding="utf-8") as f:
+            with open('advice_templates.json', 'r', encoding='utf-8') as f:
                 self.advice_templates = json.load(f)
         except Exception as e:
             print(f"Błąd ładowania advice_templates.json: {e}")
@@ -120,10 +170,44 @@ class AquaBot:
         }
 
         if selectedStation:
-            self.setStation(selectedStation)
+            if isinstance(selectedStation, str):
+                self.selected_station = self.find_station_by_name(selectedStation)
+            else:
+                self.selected_station = selectedStation
+        else:
+            self.selected_station = None
+        print(f"[DEBUG] Set selected_station: {self.selected_station}")
 
-    def call_xai_api(self, prompt, max_tokens=100):
-        """Wywołuje API xAI z historią rozmowy."""
+        if self.selected_station and not self.in_conversation and not waitingForCategory and not waitingForSubcategory:
+            self.setStation(self.selected_station['name'])
+
+    def find_station_by_name(self, station_name):
+        """Znajduje stację na podstawie nazwy i miasta z ulepszonym fuzzy matchingiem."""
+        if not self.city:
+            print(f"[DEBUG] No city selected for station: {station_name}")
+            return None
+        city_key = normalize_name(self.city)
+        if city_key not in self.water_data:
+            print(f"[DEBUG] City {self.city} not found in water_data")
+            return None
+        stations = self.water_data[city_key].get('stations', [])
+        if not stations:
+            print(f"[DEBUG] No stations found for city: {self.city}")
+            return None
+        normalized_input = normalize_name(station_name)
+        best_match = None
+        best_score = 0
+        for station in stations:
+            norm_station = normalize_name(station['name'])
+            score = fuzz.token_set_ratio(normalized_input, norm_station)
+            if score > best_score and score >= 70:
+                best_score = score
+                best_match = station
+        print(f"[DEBUG] Best station match: {best_match['name'] if best_match else None} with score {best_score}")
+        return best_match
+
+    def call_xai_api(self, prompt, parameters_out_of_norm=[], subcategory=None, max_tokens=100):
+        """Wywołuje API Grok 3 z historią rozmowy i danymi o parametrach wody."""
         cache_file = "cache.json"
         try:
             with open(cache_file, "r") as f:
@@ -133,14 +217,18 @@ class AquaBot:
         except FileNotFoundError:
             cache = {}
 
+        params_description = ""
+        if parameters_out_of_norm:
+            params_description = "Parametry wody poza normą: " + ", ".join([f"{p['name']}: {p['value']} {p['unit']}" for p in parameters_out_of_norm]) + "."
+
         system_prompt = (
-            f"Jesteś AquaBot, mega inteligentny i wyluzowany ziomek, który troszczy się o użytkownika jak o kumpla. "
-            f"Nie mów o wodzie, chyba że ktoś o to pyta – wtedy krótko i na temat, sugerując filtry do wody, jeśli pasują. "
-            f"Odpowiadaj krótko, max 80 znaków, z jajem i opieką, np. 'Yo, {self.userName}! Dbaj o siebie – co lubisz?' "
-            f"Na 'lubisz anime?' mów np. 'Yo, {self.userName}! Anime? Spoko, a Ty co lubisz?' "
-            f"Subtelnie naprowadzaj rozmowę, np. 'Yo, {self.userName}! Akcja? To może Mad Max?' "
-            f"Jeśli pyta o parametry, sugeruj filtry, np. 'Podwyższone chlorki? Filtr z węglem aktywnym pomoże!' "
-            f"Pamiętaj kontekst z ostatnich 5 wiadomości."
+            f"Jesteś AquaBot, ekspert od wody, troszczący się o użytkownika. "
+            f"Odpowiadaj krótko (max 80 znaków), merytorycznie i wspierająco. "
+            f"Używaj kontekstu ostatnich 5 wiadomości. "
+            f"Parametry wody: {params_description} "
+            f"Podkategoria: {subcategory}. "
+            f"Skup się na wpływie parametrów na {subcategory} w {self.selected_category}. "
+            f"Przykład: 'Wysoka twardość? Użyj filtra, {self.userName}!'"
         )
 
         messages = [{"role": "system", "content": system_prompt}]
@@ -154,7 +242,7 @@ class AquaBot:
         for attempt in range(3):
             try:
                 completion = self.client.chat.completions.create(
-                    model="grok-2-1212",
+                    model="grok-3",
                     messages=messages,
                     max_tokens=100,
                     temperature=0.9,
@@ -163,58 +251,70 @@ class AquaBot:
                 content = completion.choices[0].message.content.strip()
                 if len(content) > 80:
                     last_space = content[:80].rfind(' ')
-                    if last_space != -1:
-                        content = content[:last_space]
-                    else:
-                        content = content[:80]
-                if content and len(content) >= 20 and "pokićkało" not in content:
-                    reply = content
-                else:
-                    reply = f"Yo, {self.userName}! 😎 Coś mi umknęło, ale spoko, co słychać?"
+                    content = content[:last_space] if last_space != -1 else content[:80]
+                reply = content if content and len(content) >= 20 else f"Ups, coś poszło nie tak, {self.userName}!"
                 cache[prompt] = reply
                 with open(cache_file, "w") as f:
                     json.dump(cache, f)
                 return reply
             except Exception as e:
-                print(f"Błąd API xAI: {e}")
+                print(f"Błąd API Grok 3: {e}")
                 time.sleep(2 ** attempt)
-        return f"Yo, {self.userName}! 😎 Coś poszło nie tak, spróbuj później."
+        return f"Coś nie działa, {self.userName}! Spróbuj później."
 
     def match_city(self, user_input):
         """Dopasowuje miasto na podstawie aliasów lub fuzzy matching."""
         user_input = normalize_name(user_input)
+        print(f"[DEBUG] Trying to match city: {user_input}")
+
         if user_input in self.CITY_ALIASES:
-            return self.CITY_ALIASES[user_input]
-        best_match = process.extractOne(user_input, self.water_data.keys(), scorer=fuzz.ratio)
+            matched_city = self.CITY_ALIASES[user_input]
+            print(f"[DEBUG] Found in aliases: {matched_city}")
+            return matched_city
+
+        print(f"[DEBUG] Checking fuzzy match for {user_input}")
+        available_cities = list(self.water_data.keys())
+        best_match = process.extractOne(user_input, available_cities, scorer=fuzz.token_set_ratio)
         if best_match and best_match[1] >= 80:
+            print(f"[DEBUG] Best match: {best_match[0]} with score {best_match[1]}")
             return best_match[0]
+
+        print("[DEBUG] No match found")
         return None
 
     def setStation(self, station_name):
-        """Ustawia stację na podstawie nazwy i sugeruje zapytanie o wodę."""
+        """Ustawia stację i zwraca parametry poza normą."""
+        if not self.city:
+            print(f"[DEBUG] No city selected for setting station: {station_name}")
+            return {'message': f"Podaj miasto, {self.addressStyle}! Np. 'Warszawa'.", 'parameters': []}
         city_key = normalize_name(self.city)
         if city_key not in self.water_data:
-            return f"Nie mam danych dla {self.city}, {self.addressStyle}! 😕"
-
+            print(f"[DEBUG] City {self.city} not found in water_data")
+            return {'message': f"Brak danych dla {self.city}, {self.addressStyle}!", 'parameters': []}
         stations = self.water_data[city_key].get('stations', [])
         if not stations:
-            return f"Brak stacji dla {self.city}, {self.addressStyle}! 😕"
-
+            print(f"[DEBUG] No stations found for city: {self.city}")
+            return {'message': f"Brak stacji w {self.city}, {self.addressStyle}!", 'parameters': []}
         normalized_input = normalize_name(station_name)
+        print(f"[DEBUG] Trying to match station: {normalized_input} in city: {city_key}")
         for station in stations:
-            if normalized_input in normalize_name(station['name']):
+            norm_station = normalize_name(station['name'])
+            if normalized_input == norm_station or normalized_input in norm_station:
                 self.selected_station = station
-                return f"Ustawiłem stację na {station['name']}, {self.addressStyle}! 😊 Teraz możesz zapytać 'co z wodą'."
-        best_match = process.extractOne(normalized_input, [normalize_name(s['name']) for s in stations], scorer=fuzz.token_sort_ratio)
-        if best_match and best_match[1] >= 70:
-            matched_station = next(s for s in stations if normalize_name(s['name']) == best_match[0])
-            self.selected_station = matched_station
-            return f"Ustawiłem stację na {matched_station['name']}, {self.addressStyle}! 😊 Teraz możesz zapytać 'co z wodą'."
-        return f"Nie znalazłem stacji '{station_name}' w {self.city}, {self.addressStyle}. 😕 Spróbuj np. 'SUW Praga'!"
+                out_of_norm = self.get_out_of_norm_parameters()
+                print(f"[DEBUG] Station set: {station['name']}, parameters out of norm: {out_of_norm}")
+                if out_of_norm:
+                    self.last_parameters = [param['name'].lower() for param in out_of_norm]
+                    self.waiting_for_category = True
+                    return {'message': f"Stacja: {station['name']}. Parametry poza normą:", 'parameters': out_of_norm}
+                return {'message': f"Stacja: {station['name']}. Woda w normie!", 'parameters': []}
+        print(f"[DEBUG] No station found for: {station_name} in {self.city}")
+        return {'message': f"Nie znalazłem '{station_name}' w {self.city}. Spróbuj dokładniej lub sprawdź w 'Znajdź stacje'.", 'parameters': []}
 
     def get_out_of_norm_parameters(self):
-        """Zwraca parametry poza normą."""
+        """Zwraca parametry poza normą w formacie JSON."""
         if not self.selected_station or 'data' not in self.selected_station:
+            print("[DEBUG] No selected station or data for parameters")
             return []
         data = self.selected_station['data']
         out_of_norm = []
@@ -226,13 +326,18 @@ class AquaBot:
                 status = self.get_parameter_status(param, value)
                 if status in ['orange', 'red']:
                     unit = "μg/l" if param in ['olow', 'rtec', 'mangan'] else "mg/l"
-                    out_of_norm.append(f"{param.capitalize()}: {value} {unit}, {self.status_descriptions[status]}")
+                    out_of_norm.append({"name": param.capitalize(), "value": value, "unit": unit})
         return out_of_norm
 
     def get_parameter_status(self, param, value):
-        """Określa status parametru względem normy."""
+        """Określa status parametru względem normy. Wymusza konwersję na float."""
         norm = self.normy.get(param, {})
         if not norm or value is None:
+            return 'green'
+        try:
+            value = float(value)
+        except (ValueError, TypeError):
+            print(f"[DEBUG] Błąd konwersji w get_parameter_status dla {param}: {value}")
             return 'green'
         if norm['type'] == 'range':
             if norm['green_min'] <= value <= norm['green_max']:
@@ -248,167 +353,180 @@ class AquaBot:
             return 'red'
         return 'green'
 
-    def get_norm_text(self, param, norm):
-        """Zwraca tekst normy dla parametru."""
-        unit = "μg/l" if param in ['olow', 'rtec', 'mangan'] else "mg/l"
-        if norm['type'] == 'range':
-            return f"norma: {norm['green_min']}-{norm['green_max']}"
-        return f"norma: <{norm['thresholds']['orange']} {unit}"
-
-    def extract_parameter_from_message(self, message):
-        """Rozpoznaje parametr z wiadomości z priorytetem dla dokładnych dopasowań."""
-        normalized_message = normalize_name(message)
-        for param, aliases in self.param_aliases.items():
-            for alias in aliases:
-                if normalize_name(alias) == normalized_message:
-                    return param
-        words = normalized_message.split()
-        for word in words:
-            for param, aliases in self.param_aliases.items():
-                for alias in aliases:
-                    if normalize_name(alias) == word:
-                        return param
-        for param, aliases in self.param_aliases.items():
-            for alias in aliases:
-                if normalize_name(alias) in normalized_message:
-                    return param
-        return None
-
     def match_category(self, message):
-        """Dopasowuje kategorię na podstawie wiadomości."""
+        """Dopasowuje kategorię."""
         message = normalize_name(message)
         for category, aliases in self.CATEGORY_ALIASES.items():
             if any(normalize_name(alias) in message for alias in aliases):
                 return category
         return None
 
+    def match_subcategory(self, category, user_input):
+        """Dopasowuje podkategorię."""
+        user_input = normalize_name(user_input)
+        if "choroby" in user_input or "autoimmunologia" in user_input:
+            return "Autoimmunologia/Choroby"  # Force match dla wariacji
+        subcats = self.SUBCATEGORIES.get(category, [])
+        best_score = 0
+        best_subcat = None
+        for subcat in subcats:
+            norm_subcat = normalize_name(subcat)
+            score = fuzz.token_sort_ratio(user_input, norm_subcat)
+            if score > best_score:
+                best_score = score
+                best_subcat = subcat
+        if best_score >= 80:
+            return best_subcat
+        return None
+
     def getHealthAdvice(self, message=""):
-        """Obsługuje zapytania użytkownika z API xAI tylko przy braku danych."""
+        """Obsługuje zapytania z podkategoriami i templatekami."""
+        print(f"[DEBUG] getHealthAdvice: message={message}, waiting_for_category={self.waiting_for_category}, waiting_for_subcategory={self.waiting_for_subcategory}, in_conversation={self.in_conversation}")
         message_lower = message.lower().strip()
         normalized_message = normalize_name(message_lower)
-        categories_prompt = "Chcesz porady z kategorii: zdrowie fizyczne, zdrowie psychiczne, uroda, ekologia, styl życia, choroby autoimmunologiczne, siłownia?"
 
         self.chat_history.append(f"Użytkownik: {message}")
         if len(self.chat_history) > 10:
             self.chat_history = self.chat_history[-10:]
-
-        if self.expecting_city:
-            matched_city = self.match_city(normalized_message)
-            if matched_city:
-                self.city = matched_city
-                self.selected_station = None
-                self.expecting_city = False
-                self.waiting_for_category = False
-                self.last_parameters = []
-                reply = f"Zmieniłem miasto na {matched_city.capitalize()}, {self.userName}! 😊 Wybierz stację, np. 'SUW {matched_city.capitalize()}'!"
-                self.chat_history.append(f"AquaBot: {reply}")
-                return reply
-            else:
-                reply = f"Nie znam miasta '{message}', {self.addressStyle}! 😕 Wpisz np. 'Warszawa' lub 'Kraków'."
-                self.chat_history.append(f"AquaBot: {reply}")
-                return reply
-
-        if any(keyword in message_lower for keyword in ["zmienić miasto", "inne miasto", "jak zmienić miasto"]):
-            self.expecting_city = True
-            reply = f"Yo, {self.userName}! Wpisz nazwę miasta, np. 'Toruń', a ja je ustawię!"
-            self.chat_history.append(f"AquaBot: {reply}")
-            return reply
 
         matched_city = self.match_city(normalized_message)
         if matched_city:
             self.city = matched_city
             self.selected_station = None
             self.waiting_for_category = False
+            self.waiting_for_subcategory = False
+            self.selected_category = None
             self.last_parameters = []
             self.expecting_city = False
-            reply = f"Zmieniłem miasto na {matched_city.capitalize()}, {self.userName}! 😊 Wybierz stację, np. 'SUW {matched_city.capitalize()}'!"
-            self.chat_history.append(f"AquaBot: {reply}")
-            return reply
+            self.in_conversation = False
+            message = f"Zmieniłem na {matched_city.capitalize()}, {self.addressStyle}! 😊 Wybierz stację, np. 'SUW {matched_city.capitalize()}'."
+            self.chat_history.append(f"AquaBot: {message}")
+            return {
+                'message': message,
+                'parameters': [],
+                'waitingForCategory': False,
+                'waitingForSubcategory': False,
+                'in_conversation': False,
+                'selectedCategory': None,
+                'city': self.city
+            }
+
+        if not self.city:
+            return {
+                'message': f"Skąd jesteś, {self.addressStyle}? Np. 'Warszawa'.",
+                'parameters': [],
+                'waitingForCategory': False,
+                'waitingForSubcategory': False,
+                'in_conversation': False,
+                'selectedCategory': None
+            }
 
         if self.city and not self.selected_station:
             station_result = self.setStation(message)
-            if "Ustawiłem stację" in station_result:
-                self.waiting_for_category = False
-                self.last_parameters = []
-                self.chat_history.append(f"AquaBot: {station_result}")
-                return station_result
-            elif "Nie znalazłem stacji" not in station_result:
-                self.chat_history.append(f"AquaBot: {station_result}")
-                return station_result
-
-        if any(keyword in message_lower for keyword in ["co z wodą", "jak woda", "sprawdź wodę", "jaka woda", "woda"]):
-            if not self.selected_station:
-                reply = f"Najpierw wybierz stację, {self.addressStyle}! 😊"
-                self.chat_history.append(f"AquaBot: {reply}")
-                return reply
-            out_of_norm = self.get_out_of_norm_parameters()
-            if out_of_norm:
-                self.last_parameters = [param.split(':')[0].lower() for param in out_of_norm]
-                self.waiting_for_category = True
-                reply = ", ".join(out_of_norm) + ". " + categories_prompt
-                self.chat_history.append(f"AquaBot: {reply}")
-                return reply
-            reply = f"Woda w normie dla stacji {self.selected_station['name']}, {self.addressStyle}! 😊 Możesz sprawdzić parametry."
-            self.chat_history.append(f"AquaBot: {reply}")
-            return reply
+            self.chat_history.append(f"AquaBot: {station_result['message']}")
+            return {
+                **station_result,
+                'waitingForCategory': self.waiting_for_category,
+                'waitingForSubcategory': self.waiting_for_subcategory,
+                'in_conversation': False,
+                'selectedCategory': self.selected_category,
+                'city': self.city
+            }
 
         if self.waiting_for_category:
             category = self.match_category(message_lower)
+            print(f"[DEBUG] Dopasowana kategoria: {category}")
             if category:
-                param = self.last_parameters[0] if self.last_parameters else None
-                if param and self.selected_station:
-                    data = self.selected_station['data']
-                    if param in data and data[param] is not None:
-                        value = parseFloat(data[param])
-                        status = self.get_parameter_status(param, value)
-                        advice_list = self.advice_templates.get(param, {}).get(status, {}).get(category, [])
-                        if advice_list:
-                            advice = random.choice(advice_list)
-                            self.waiting_for_category = False
-                            self.last_parameters = []
-                            reply = f"{advice} Wpisz inny parametr lub zmień miasto."
-                            self.chat_history.append(f"AquaBot: {reply}")
-                            return reply
-                prompt = f"Brak danych dla parametru: {param}, kategoria: {category}. Podaj krótko wpływ {param} na {category} (WHO/EPA)."
-                reply = self.call_xai_api(prompt)
+                self.selected_category = category
                 self.waiting_for_category = False
-                self.last_parameters = []
-                self.chat_history.append(f"AquaBot: {reply}")
-                return reply
-            reply = f"Wybierz kategorię, np. 'zdrowie fizyczne', {self.addressStyle}!"
-            self.chat_history.append(f"AquaBot: {reply}")
-            return reply
+                self.waiting_for_subcategory = True
+                subcats = self.SUBCATEGORIES.get(category, [])
+                message = f"Wybrałeś {category}. Wybierz podkategorię:<br>" + "<br>".join([f"- {subcat}" for subcat in subcats])
+                self.chat_history.append(f"AquaBot: {message}")
+                return {
+                    'message': message,
+                    'parameters': [],
+                    'waitingForCategory': False,
+                    'waitingForSubcategory': True,
+                    'in_conversation': False,
+                    'selectedCategory': category
+                }
+            message = f"Wpisz np. 'zdrowie', 'uroda', 'codzienne użycie'."
+            self.chat_history.append(f"AquaBot: {message}")
+            return {
+                'message': message,
+                'parameters': [],
+                'waitingForCategory': True,
+                'waitingForSubcategory': False,
+                'in_conversation': False,
+                'selectedCategory': self.selected_category
+            }
 
-        param = self.extract_parameter_from_message(normalized_message)
-        if param:
-            if not self.selected_station:
-                reply = f"Najpierw wybierz stację, {self.addressStyle}! 😊"
-                self.chat_history.append(f"AquaBot: {reply}")
-                return reply
-            data = self.selected_station['data']
-            if param in data and data[param] is not None:
-                value = parseFloat(data[param])
-                if value == 0:
-                    reply = f"Brak danych dla {param}, {self.addressStyle}!"
+        elif self.waiting_for_subcategory:
+            subcategory = self.match_subcategory(self.selected_category, message_lower)
+            print(f"[DEBUG] Dopasowana podkategoria: {subcategory}")
+            if subcategory:
+                advice = []
+                for param in self.last_parameters:
+                    raw_value = self.selected_station['data'].get(param, None)
+                    print(f"[DEBUG] Param: {param}, Raw value: {raw_value}, Type: {type(raw_value)}")
+                    value = parseFloat(raw_value)
+                    print(f"[DEBUG] Parsed value: {value}, Type: {type(value)}")
+                    if value is not None:
+                        status = self.get_parameter_status(param, value)
+                        print(f"[DEBUG] Status: {status}")
+                        category_data = self.advice_templates.get(self.selected_category, {})
+                        subcategory_data = category_data.get(subcategory, {})
+                        param_data = subcategory_data.get(param, {})
+                        advice_text = param_data.get(status)
+                        if advice_text:
+                            advice.append(advice_text.format(value=value))
+                if advice:
+                    reply = "<br>".join(advice) + "<br>Chcesz wiedzieć więcej? Dopytaj Wpisz uroda, zdrowie lub codzienne użytkowanie!"
                 else:
-                    status = self.get_parameter_status(param, value)
-                    norm_text = self.get_norm_text(param, self.normy[param])
-                    unit = "μg/l" if param in ['olow', 'rtec', 'mangan'] else "mg/l"
-                    self.last_parameters = [param]
-                    self.waiting_for_category = True
-                    reply = f"{param.capitalize()}: {value} {unit}, {self.status_descriptions[status]} ({norm_text}). {categories_prompt}"
+                    reply = "Brak dostępnych porad dla wybranych parametrów."
+                self.waiting_for_subcategory = False
+                self.waiting_for_category = True  # Wracamy do wyboru kategorii
                 self.chat_history.append(f"AquaBot: {reply}")
-                return reply
-            prompt = f"Brak danych dla parametru: {param}. Podaj krótko wpływ {param} na zdrowie (WHO/EPA)."
-            reply = self.call_xai_api(prompt)
-            self.chat_history.append(f"AquaBot: {reply}")
-            return reply
+                return {
+                    'message': reply,
+                    'parameters': [],
+                    'waitingForCategory': True,
+                    'waitingForSubcategory': False,
+                    'in_conversation': False,
+                    'selectedCategory': self.selected_category,
+                    'city': self.city
+                }
+            subcats = self.SUBCATEGORIES.get(self.selected_category, [])
+            message = f"Wybierz podkategorię:<br>" + "<br>".join([f"- {subcat}" for subcat in subcats])
+            self.chat_history.append(f"AquaBot: {message}")
+            return {
+                'message': message,
+                'parameters': [],
+                'waitingForCategory': False,
+                'waitingForSubcategory': True,
+                'in_conversation': False,
+                'selectedCategory': self.selected_category
+            }
 
-        reply = self.call_xai_api(message)
-        self.chat_history.append(f"AquaBot: {reply}")
-        return reply
+        # Jeśli użytkownik wpisuje coś w trakcie, gdy nie oczekujemy kategorii ani podkategorii
+        message = f"Wpisz kategorię, np. 'zdrowie', 'uroda', 'codzienne użycie'."
+        self.chat_history.append(f"AquaBot: {message}")
+        return {
+            'message': message,
+            'parameters': [],
+            'waitingForCategory': True,
+            'waitingForSubcategory': False,
+            'in_conversation': False,
+            'selectedCategory': self.selected_category,
+            'city': self.city
+        }
 
-if __name__ == "__main__":
-    bot = AquaBot("Łuki", "Warszawa", "luki")
-    print(bot.getHealthAdvice("praga"))
-    print(bot.getHealthAdvice("co z wodą"))
+    def remindWater(self):
+        """Przypomina o piciu wody."""
+        responses = [
+            f"Hej, {self.addressStyle}! Czas na łyk wody! 💧",
+            f"{self.addressStyle}, nie zapomnij się nawodnić! 😊",
+            f"Pij wodę, {self.addressStyle}! Twoje ciało Ci podziękuje! 💦"
+        ]
+        return random.choice(responses)
