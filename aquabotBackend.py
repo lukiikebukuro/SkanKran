@@ -15,12 +15,9 @@ def normalize_name(name):
     """Normalizuje nazwy, usuwając znaki diakrytyczne i zamieniając na małe litery."""
     if not name:
         return ""
-<<<<<<< HEAD
     # Usuń specjalne znaki, backslash, punct
     name = re.sub(r'[\W_]+', ' ', name).strip()  # Zamień non-alphanum na space, strip
     # Normalize diakrytyki
-=======
->>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
     return ''.join(c for c in unicodedata.normalize('NFD', name) if unicodedata.category(c) != 'Mn').lower().strip()
 
 def parseFloat(value):
@@ -115,6 +112,7 @@ class AquaBot:
         self.chat_history = []
         self.expecting_city = expectingCity
         self.in_conversation = in_conversation
+        self.client = OpenAI(api_key=XAI_API_KEY, base_url="https://api.xai.tools/v1")
 
         try:
             with open('static/js/waterAnalysis.json', 'r', encoding='utf-8') as f:
@@ -202,13 +200,8 @@ class AquaBot:
         best_score = 0
         for station in stations:
             norm_station = normalize_name(station['name'])
-<<<<<<< HEAD
             score = fuzz.token_set_ratio(normalized_input, norm_station)
             if score > best_score and score >= 70:
-=======
-            score = fuzz.partial_ratio(normalized_input, norm_station)
-            if score > best_score and score >= 85:
->>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
                 best_score = score
                 best_match = station
         print(f"[DEBUG] Best station match: {best_match['name'] if best_match else None} with score {best_score}")
@@ -317,11 +310,7 @@ class AquaBot:
                     return {'message': f"Stacja: {station['name']}. Parametry poza normą:", 'parameters': out_of_norm}
                 return {'message': f"Stacja: {station['name']}. Woda w normie!", 'parameters': []}
         print(f"[DEBUG] No station found for: {station_name} in {self.city}")
-<<<<<<< HEAD
         return {'message': f"Nie znalazłem '{station_name}' w {self.city}. Spróbuj dokładniej lub sprawdź w 'Znajdź stacje'.", 'parameters': []}
-=======
-        return {'message': f"Nie znalazłem '{station_name}' w {self.city}.", 'parameters': []}
->>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
 
     def get_out_of_norm_parameters(self):
         """Zwraca parametry poza normą w formacie JSON."""
@@ -376,11 +365,8 @@ class AquaBot:
     def match_subcategory(self, category, user_input):
         """Dopasowuje podkategorię."""
         user_input = normalize_name(user_input)
-<<<<<<< HEAD
         if "choroby" in user_input or "autoimmunologia" in user_input:
             return "Autoimmunologia/Choroby"  # Force match dla wariacji
-=======
->>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
         subcats = self.SUBCATEGORIES.get(category, [])
         best_score = 0
         best_subcat = None
@@ -497,11 +483,7 @@ class AquaBot:
                         if advice_text:
                             advice.append(advice_text.format(value=value))
                 if advice:
-<<<<<<< HEAD
                     reply = "<br>".join(advice) + "<br>Chcesz wiedzieć więcej? Dopytaj Wpisz uroda, zdrowie lub codzienne użytkowanie!"
-=======
-                    reply = "<br>".join(advice) + "<br>Chcesz wiedzieć więcej? Dopytaj!"
->>>>>>> 7a9ef061c85b479cfac2324056bbec8c72c62862
                 else:
                     reply = "Brak dostępnych porad dla wybranych parametrów."
                 self.waiting_for_subcategory = False
